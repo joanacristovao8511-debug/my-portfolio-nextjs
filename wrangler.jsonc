@@ -7,6 +7,18 @@
   ],
   "main": "vinext/server/app-router-entry",
   "assets": {
+    "directory": "dist/client",
     "not_found_handling": "none"
+  },
+  "vars": {
+    "NODE_ENV": "production",
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "OPENROUTER_MODEL": "openrouter/free",
+    "OPENROUTER_BASE_URL": "https://openrouter.ai/api/v1"
   }
+  // Environment variables (set via wrangler secret or .env):
+  // - DATABASE_URL: Neon PostgreSQL connection string
+  // - DIRECT_URL: Direct database connection
+  // - AUTH_SECRET: NextAuth secret
+  // - OPENROUTER_API_KEY: OpenRouter API key
 }
