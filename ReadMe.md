@@ -106,4 +106,4 @@ npm run db:studio
 
 ## Production Docker
 
-The repository includes `Dockerfile`, `docker-compose.yml`, and `DEPLOYMENT.md` for deployment configuration. The application baseline uses PostgreSQL; provide a reachable PostgreSQL `DATABASE_URL`/`DIRECT_URL` in the deployment environment and use `/api/health` for health checks.
+The repository includes `Dockerfile`, `docker-compose.yml`, and `DEPLOYMENT.md` for deployment configuration. The application baseline uses PostgreSQL; provide a reachable PostgreSQL `DATABASE_URL`/`DATABASE_URL` in the deployment environment and use `/api/health` for health checks.

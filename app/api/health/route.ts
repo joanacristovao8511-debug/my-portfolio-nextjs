@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { runtimeEnv } from "@/lib/runtime-env";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +12,7 @@ export async function GET() {
       ok: true,
       service: "portfolio",
       database: "ok",
-      ai: process.env.OPENROUTER_API_KEY ? "configured" : "missing",
+      ai: runtimeEnv().OPENROUTER_API_KEY ? "configured" : "missing",
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
@@ -22,7 +23,7 @@ export async function GET() {
         ok: false,
         service: "portfolio",
         database: "error",
-        ai: process.env.OPENROUTER_API_KEY ? "configured" : "missing",
+        ai: runtimeEnv().OPENROUTER_API_KEY ? "configured" : "missing",
         timestamp: new Date().toISOString(),
       },
       { status: 503 },
