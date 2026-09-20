@@ -5,15 +5,8 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "main": "vinext/server/app-router-entry",
   "assets": {
-    "directory": "dist/client",
-    "not_found_handling": "none",
-    "binding": "ASSETS"
-  },
-  "images": {
-    "binding": "IMAGES"
-  },
-  "version_metadata": {
-    "binding": "CF_VERSION_METADATA"
+    "not_found_handling": "none"
   }
 }
