@@ -1,0 +1,894 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Skill {
+  id            Int            @id @default(autoincrement())
+  name          String         @unique
+  category      String
+  order         Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  projectSkills ProjectSkill[]
+
+  @@index([category])
+  @@index([order])
+  @@index([category, order])
+}
+
+model Project {
+  id               Int                @id @default(autoincrement())
+  title            String
+  slug             String             @unique
+  summary          String
+  description      String
+  challenge        String?
+  solution         String?
+  architecture     String?
+  role             String?
+  impact           String?
+  category         String?
+  url              String?
+  githubUrl        String?
+  imageUrl         String?
+  featured         Boolean            @default(false)
+  status           String             @default("active")
+  tags             String             @default("")
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  projectSkills    ProjectSkill[]
+  WorkspaceProject WorkspaceProject[]
+
+  @@index([featured])
+  @@index([status])
+  @@index([status, featured, createdAt])
+}
+
+model AdminUser {
+  id                                                               String                      @id @default(cuid())
+  name                                                             String
+  email                                                            String                      @unique
+  passwordHash                                                     String
+  role                                                             String                      @default("admin")
+  status                                                           String                      @default("active")
+  lastLoginAt                                                      DateTime?
+  lastLoginIp                                                      String?
+  lastLoginUserAgent                                               String?
+  failedLoginCount                                                 Int                         @default(0)
+  lastFailedLoginAt                                                DateTime?
+  lockedUntil                                                      DateTime?
+  mfaEnabled                                                       Boolean                     @default(false)
+  mfaSecret                                                        String?
+  recoveryCodesHash                                                Json?
+  createdAt                                                        DateTime                    @default(now())
+  updatedAt                                                        DateTime                    @updatedAt
+  AdminApprovalRequest_AdminApprovalRequest_approverIdToAdminUser  AdminApprovalRequest[]      @relation("AdminApprovalRequest_approverIdToAdminUser")
+  AdminApprovalRequest_AdminApprovalRequest_requesterIdToAdminUser AdminApprovalRequest[]      @relation("AdminApprovalRequest_requesterIdToAdminUser")
+  AdminPermission                                                  AdminPermission[]
+  AdminSession                                                     AdminSession[]
+  AdminStepUpChallenge                                             AdminStepUpChallenge[]
+  Notification                                                     Notification[]
+  NotificationPreference                                           NotificationPreference[]
+  OnCallMember                                                     OnCallMember[]
+  SecurityAlert_SecurityAlert_acknowledgedByIdToAdminUser          SecurityAlert[]             @relation("SecurityAlert_acknowledgedByIdToAdminUser")
+  SecurityAlert_SecurityAlert_assignedToIdToAdminUser              SecurityAlert[]             @relation("SecurityAlert_assignedToIdToAdminUser")
+  SecurityAlertEvent                                               SecurityAlertEvent[]
+  SecurityAlertGroup                                               SecurityAlertGroup[]
+  SecurityEscalationPolicy                                         SecurityEscalationPolicy[]
+  SecurityIncident_SecurityIncident_assignedToIdToAdminUser        SecurityIncident[]          @relation("SecurityIncident_assignedToIdToAdminUser")
+  SecurityIncident_SecurityIncident_createdByIdToAdminUser         SecurityIncident[]          @relation("SecurityIncident_createdByIdToAdminUser")
+  SecurityIncidentNote                                             SecurityIncidentNote[]
+  SecurityMaintenanceWindow                                        SecurityMaintenanceWindow[]
+
+  @@index([role])
+  @@index([status])
+}
+
+model Profile {
+  id           Int      @id @default(autoincrement())
+  name         String
+  title        String
+  headline     String
+  bio          String
+  email        String?
+  location     String?
+  summary      String
+  availability String?
+  website      String?
+  github       String?
+  linkedin     String?
+  avatarUrl    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Experience {
+  id           Int      @id @default(autoincrement())
+  name         String   @default("")
+  company      String
+  position     String
+  location     String?
+  startDate    String
+  endDate      String?
+  description  String
+  technologies String   @default("")
+  current      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([current])
+  @@index([current, startDate])
+}
+
+model ChatFeedback {
+  id        String   @id @default(cuid())
+  messageId String   @unique
+  value     String
+  reason    String?
+  comment   String?
+  question  String?
+  answer    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([value])
+  @@index([createdAt])
+}
+
+model ProjectSkill {
+  projectId Int
+  skillId   Int
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  skill     Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, skillId])
+  @@index([skillId])
+}
+
+model SiteContent {
+  id               Int      @id @default(autoincrement())
+  heroBadge        String?
+  heroTitle        String?
+  heroDescription  String?
+  aboutTitle       String?
+  aboutText        String?
+  services         Json?
+  whyTitle         String?
+  whyItems         Json?
+  ctaTitle         String?
+  ctaDescription   String?
+  ctaPrimaryText   String?
+  ctaSecondaryText String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  icon        String?
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  role      String
+  company   String?
+  message   String
+  avatar    String?
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactMessage {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  company     String?
+  projectType String?
+  budget      String?
+  message     String
+  status      String   @default("NEW")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  title     String
+  excerpt   String
+  content   String
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MediaAsset {
+  id        Int      @id @default(autoincrement())
+  url       String
+  type      String
+  alt       String?
+  createdAt DateTime @default(now())
+}
+
+model AnalyticsEvent {
+  id                    Int                     @id @default(autoincrement())
+  event                 String
+  path                  String?
+  sessionId             String?
+  metadata              Json?
+  createdAt             DateTime                @default(now())
+  SecurityIncidentEvent SecurityIncidentEvent[]
+
+  @@index([event, createdAt])
+  @@index([path, createdAt])
+  @@index([sessionId, createdAt])
+}
+
+model AdminApprovalRequest {
+  id                                                    String     @id
+  requesterId                                           String
+  approverId                                            String?
+  action                                                String
+  status                                                String     @default("pending")
+  payload                                               Json
+  reason                                                String?
+  expiresAt                                             DateTime
+  createdAt                                             DateTime   @default(now())
+  approvedAt                                            DateTime?
+  rejectedAt                                            DateTime?
+  executedAt                                            DateTime?
+  AdminUser_AdminApprovalRequest_approverIdToAdminUser  AdminUser? @relation("AdminApprovalRequest_approverIdToAdminUser", fields: [approverId], references: [id])
+  AdminUser_AdminApprovalRequest_requesterIdToAdminUser AdminUser  @relation("AdminApprovalRequest_requesterIdToAdminUser", fields: [requesterId], references: [id], onDelete: Cascade)
+
+  @@index([approverId, createdAt])
+  @@index([requesterId, createdAt])
+  @@index([status, expiresAt])
+}
+
+model AdminPermission {
+  id         String    @id
+  userId     String
+  permission String
+  enabled    Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime
+  AdminUser  AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, permission])
+  @@index([permission, enabled])
+}
+
+model AdminSession {
+  id         String    @id
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime
+  userId     String
+  sessionId  String    @unique
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  lastSeenAt DateTime  @default(now())
+  ipAddress  String?
+  userAgent  String?
+  AdminUser  AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([userId])
+}
+
+model AdminStepUpChallenge {
+  id        String    @id
+  userId    String
+  sessionId String
+  purpose   String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  AdminUser AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, expiresAt])
+  @@index([userId, purpose, expiresAt])
+}
+
+model ApprovalRequest {
+  id          String    @id
+  workspaceId String
+  title       String
+  description String?
+  status      String    @default("pending")
+  requestedBy String
+  decidedBy   String?
+  decidedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([createdAt])
+  @@index([workspaceId, status])
+}
+
+model AutomationWorkflow {
+  id         String   @id
+  tenantId   String?
+  name       String
+  status     String   @default("draft")
+  definition Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime
+
+  @@index([tenantId, status])
+}
+
+model BillingAccount {
+  id               String           @id
+  email            String           @unique
+  displayName      String?
+  stripeCustomerId String?          @unique
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime
+  BillingRequest   BillingRequest[]
+  Invoice          Invoice[]
+  Subscription     Subscription[]
+  UsageCounter     UsageCounter[]
+  UsageRecord      UsageRecord[]
+
+  @@index([createdAt])
+}
+
+model BillingRequest {
+  id               String         @id
+  billingAccountId String
+  type             String
+  requestedPlan    String?
+  status           String         @default("pending")
+  note             String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime
+  BillingAccount   BillingAccount @relation(fields: [billingAccountId], references: [id], onDelete: Cascade)
+
+  @@index([billingAccountId, createdAt])
+  @@index([status, createdAt])
+}
+
+model ClientAccount {
+  id                String          @id
+  email             String          @unique
+  name              String
+  passwordHash      String
+  role              String          @default("client")
+  status            String          @default("active")
+  workspaceMemberId String          @unique
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime
+  WorkspaceMember   WorkspaceMember @relation(fields: [workspaceMemberId], references: [id], onDelete: Cascade)
+
+  @@index([email, status])
+  @@index([status, role])
+}
+
+model CollaborationMessage {
+  id          String    @id
+  workspaceId String
+  senderName  String
+  senderEmail String
+  body        String
+  createdAt   DateTime  @default(now())
+  editedAt    DateTime?
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, createdAt])
+}
+
+model CyberBrainMemory {
+  id         String   @id
+  tenantId   String?
+  key        String
+  summary    String
+  confidence Float    @default(0.5)
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime
+
+  @@index([tenantId, key])
+}
+
+model DigitalTwinAsset {
+  id          String   @id
+  tenantId    String?
+  name        String
+  kind        String
+  criticality Int      @default(3)
+  riskScore   Int      @default(0)
+  metadata    Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+
+  @@index([tenantId, kind])
+}
+
+model Invoice {
+  id               String         @id
+  billingAccountId String
+  number           String         @unique
+  status           String         @default("open")
+  amountCents      Int
+  currency         String         @default("usd")
+  description      String?
+  dueDate          DateTime?
+  paidAt           DateTime?
+  hostedInvoiceUrl String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime
+  BillingAccount   BillingAccount @relation(fields: [billingAccountId], references: [id], onDelete: Cascade)
+
+  @@index([billingAccountId, createdAt])
+  @@index([status, dueDate])
+}
+
+model Notification {
+  id          String     @id
+  type        String
+  title       String
+  message     String
+  href        String?
+  readAt      DateTime?
+  recipientId String?
+  createdAt   DateTime   @default(now())
+  AdminUser   AdminUser? @relation(fields: [recipientId], references: [id], onDelete: Cascade)
+
+  @@index([readAt, createdAt])
+  @@index([recipientId, readAt, createdAt])
+  @@index([type, createdAt])
+}
+
+model NotificationPreference {
+  id          String    @id
+  adminUserId String
+  type        String
+  enabled     Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  AdminUser   AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@unique([adminUserId, type])
+  @@index([adminUserId, enabled])
+}
+
+model OnCallMember {
+  id             String         @id
+  scheduleId     String
+  adminUserId    String
+  position       Int            @default(0)
+  enabled        Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime
+  AdminUser      AdminUser      @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+  OnCallSchedule OnCallSchedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+
+  @@unique([scheduleId, adminUserId])
+  @@index([scheduleId, enabled, position])
+}
+
+model OnCallSchedule {
+  id                       String                     @id
+  name                     String                     @unique
+  timezone                 String                     @default("UTC")
+  rotationMinutes          Int                        @default(1440)
+  cycleStartAt             DateTime                   @default(now())
+  enabled                  Boolean                    @default(true)
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime
+  OnCallMember             OnCallMember[]
+  SecurityEscalationPolicy SecurityEscalationPolicy[]
+
+  @@index([enabled, cycleStartAt])
+}
+
+model ProjectNote {
+  id          String    @id
+  workspaceId String
+  title       String
+  content     String
+  authorName  String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, updatedAt])
+}
+
+model RiskForecast {
+  id            String   @id
+  tenantId      String?
+  horizon       String
+  currentRisk   Int
+  projectedRisk Int
+  confidence    Float
+  drivers       Json?
+  createdAt     DateTime @default(now())
+
+  @@index([tenantId, createdAt])
+}
+
+model SecurityAlert {
+  id                                                  String               @id
+  ruleId                                              String?
+  title                                               String
+  message                                             String
+  severity                                            String               @default("high")
+  status                                              String               @default("open")
+  triggeredAt                                         DateTime             @default(now())
+  acknowledgedAt                                      DateTime?
+  acknowledgedById                                    String?
+  escalatedAt                                         DateTime?
+  resolvedAt                                          DateTime?
+  assignedToId                                        String?
+  incidentId                                          String?
+  groupId                                             String?
+  suppressedAt                                        DateTime?
+  suppressionReason                                   String?
+  acknowledgeDueAt                                    DateTime?
+  escalationDueAt                                     DateTime?
+  slaBreachedAt                                       DateTime?
+  evidence                                            Json?
+  createdAt                                           DateTime             @default(now())
+  updatedAt                                           DateTime
+  AdminUser_SecurityAlert_acknowledgedByIdToAdminUser AdminUser?           @relation("SecurityAlert_acknowledgedByIdToAdminUser", fields: [acknowledgedById], references: [id])
+  AdminUser_SecurityAlert_assignedToIdToAdminUser     AdminUser?           @relation("SecurityAlert_assignedToIdToAdminUser", fields: [assignedToId], references: [id])
+  SecurityAlertGroup                                  SecurityAlertGroup?  @relation(fields: [groupId], references: [id])
+  SecurityIncident                                    SecurityIncident?    @relation(fields: [incidentId], references: [id])
+  SecurityAlertRule                                   SecurityAlertRule?   @relation(fields: [ruleId], references: [id])
+  SecurityAlertEvent                                  SecurityAlertEvent[]
+
+  @@index([groupId, triggeredAt])
+  @@index([incidentId, status])
+  @@index([ruleId, triggeredAt])
+  @@index([status, severity, triggeredAt])
+}
+
+model SecurityAlertEvent {
+  id            String        @id
+  alertId       String
+  actorId       String?
+  action        String
+  fromStatus    String?
+  toStatus      String?
+  metadata      Json?
+  createdAt     DateTime      @default(now())
+  AdminUser     AdminUser?    @relation(fields: [actorId], references: [id])
+  SecurityAlert SecurityAlert @relation(fields: [alertId], references: [id], onDelete: Cascade)
+
+  @@index([action, createdAt])
+  @@index([alertId, createdAt])
+}
+
+model SecurityAlertGroup {
+  id                String             @id
+  fingerprint       String             @unique
+  title             String
+  severity          String             @default("high")
+  status            String             @default("open")
+  ruleId            String?
+  occurrenceCount   Int                @default(0)
+  firstSeenAt       DateTime           @default(now())
+  lastSeenAt        DateTime           @default(now())
+  createdById       String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime
+  SecurityAlert     SecurityAlert[]
+  AdminUser         AdminUser?         @relation(fields: [createdById], references: [id])
+  SecurityAlertRule SecurityAlertRule? @relation(fields: [ruleId], references: [id])
+
+  @@index([ruleId, lastSeenAt])
+  @@index([status, severity, lastSeenAt])
+}
+
+model SecurityAlertRule {
+  id                       String                    @id
+  name                     String
+  event                    String
+  severity                 String                    @default("high")
+  threshold                Int                       @default(1)
+  windowMinutes            Int                       @default(10)
+  enabled                  Boolean                   @default(true)
+  escalationRole           String                    @default("security")
+  notifyOnTrigger          Boolean                   @default(true)
+  autoEscalate             Boolean                   @default(false)
+  acknowledgeWithinMinutes Int                       @default(15)
+  escalateAfterMinutes     Int                       @default(30)
+  escalationPolicyId       String?
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime
+  SecurityAlert            SecurityAlert[]
+  SecurityAlertGroup       SecurityAlertGroup[]
+  SecurityEscalationPolicy SecurityEscalationPolicy? @relation(fields: [escalationPolicyId], references: [id])
+
+  @@index([enabled, event])
+  @@index([escalationPolicyId])
+}
+
+model SecurityAuditEvent {
+  id                    String                  @id
+  event                 String
+  severity              String                  @default("info")
+  actorId               String?
+  actorEmail            String?
+  role                  String?
+  ipAddress             String?
+  requestId             String?
+  method                String?
+  path                  String?
+  userAgent             String?
+  metadata              Json?
+  createdAt             DateTime                @default(now())
+  SecurityIncidentEvent SecurityIncidentEvent[]
+
+  @@index([actorId, createdAt])
+  @@index([event, createdAt])
+  @@index([ipAddress, createdAt])
+  @@index([severity, createdAt])
+}
+
+model SecurityDecision {
+  id         String   @id
+  tenantId   String?
+  decision   String
+  confidence Float
+  rationale  String
+  signalIds  Json?
+  createdAt  DateTime @default(now())
+
+  @@index([tenantId, createdAt])
+}
+
+model SecurityEscalationPolicy {
+  id                       String              @id
+  name                     String              @unique
+  event                    String?
+  severity                 String?
+  enabled                  Boolean             @default(true)
+  acknowledgeWithinMinutes Int                 @default(15)
+  escalateAfterMinutes     Int                 @default(30)
+  maxEscalations           Int                 @default(1)
+  escalationRole           String              @default("security")
+  onCallScheduleId         String?
+  createdById              String?
+  createdAt                DateTime            @default(now())
+  updatedAt                DateTime
+  SecurityAlertRule        SecurityAlertRule[]
+  AdminUser                AdminUser?          @relation(fields: [createdById], references: [id])
+  OnCallSchedule           OnCallSchedule?     @relation(fields: [onCallScheduleId], references: [id])
+
+  @@index([enabled, event, severity])
+  @@index([onCallScheduleId])
+}
+
+model SecurityIncident {
+  id                                                 String                  @id
+  title                                              String
+  severity                                           String                  @default("medium")
+  status                                             String                  @default("open")
+  description                                        String?
+  assignedToId                                       String?
+  createdById                                        String?
+  correlationKey                                     String?                 @unique
+  resolvedAt                                         DateTime?
+  createdAt                                          DateTime                @default(now())
+  updatedAt                                          DateTime
+  SecurityAlert                                      SecurityAlert[]
+  AdminUser_SecurityIncident_assignedToIdToAdminUser AdminUser?              @relation("SecurityIncident_assignedToIdToAdminUser", fields: [assignedToId], references: [id])
+  AdminUser_SecurityIncident_createdByIdToAdminUser  AdminUser?              @relation("SecurityIncident_createdByIdToAdminUser", fields: [createdById], references: [id])
+  SecurityIncidentEvent                              SecurityIncidentEvent[]
+  SecurityIncidentNote                               SecurityIncidentNote[]
+}
+
+model SecurityIncidentEvent {
+  id                 String             @id
+  incidentId         String
+  auditEventId       String
+  createdAt          DateTime           @default(now())
+  analyticsEventId   Int?
+  AnalyticsEvent     AnalyticsEvent?    @relation(fields: [analyticsEventId], references: [id])
+  SecurityAuditEvent SecurityAuditEvent @relation(fields: [auditEventId], references: [id], onDelete: Cascade)
+  SecurityIncident   SecurityIncident   @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+
+  @@unique([incidentId, auditEventId])
+  @@index([auditEventId])
+}
+
+model SecurityIncidentNote {
+  id               String           @id
+  incidentId       String
+  authorId         String
+  body             String
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime
+  AdminUser        AdminUser        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  SecurityIncident SecurityIncident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+
+  @@index([incidentId, createdAt])
+}
+
+model SecurityLearningEvent {
+  id         String   @id
+  tenantId   String?
+  category   String
+  outcome    String
+  confidence Float?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([tenantId, category, createdAt])
+}
+
+model SecurityMaintenanceWindow {
+  id          String     @id
+  name        String
+  reason      String?
+  event       String?
+  severity    String?
+  startsAt    DateTime
+  endsAt      DateTime
+  enabled     Boolean    @default(true)
+  createdById String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime
+  AdminUser   AdminUser? @relation(fields: [createdById], references: [id])
+
+  @@index([enabled, startsAt, endsAt])
+  @@index([event, severity, enabled])
+}
+
+model SecurityPolicy {
+  id                 String   @id
+  action             String   @unique
+  enabled            Boolean  @default(true)
+  requireStepUp      Boolean  @default(true)
+  requireApproval    Boolean  @default(false)
+  minApproverRole    String?
+  approvalTtlMinutes Int      @default(15)
+  description        String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime
+
+  @@index([enabled])
+}
+
+model StripeEvent {
+  id          String    @id
+  type        String
+  processedAt DateTime?
+  error       String?
+  createdAt   DateTime  @default(now())
+
+  @@index([type, createdAt])
+}
+
+model Subscription {
+  id                     String         @id
+  billingAccountId       String
+  plan                   String         @default("free")
+  status                 String         @default("active")
+  provider               String?
+  providerCustomerId     String?
+  providerSubscriptionId String?        @unique
+  currentPeriodStart     DateTime?
+  currentPeriodEnd       DateTime?
+  cancelAtPeriodEnd      Boolean        @default(false)
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime
+  BillingAccount         BillingAccount @relation(fields: [billingAccountId], references: [id], onDelete: Cascade)
+
+  @@index([billingAccountId])
+  @@index([currentPeriodEnd])
+  @@index([plan, status])
+  @@index([providerCustomerId])
+}
+
+model UsageCounter {
+  id               String         @id
+  billingAccountId String
+  metric           String
+  quantity         Int            @default(0)
+  periodStart      DateTime
+  periodEnd        DateTime
+  updatedAt        DateTime
+  BillingAccount   BillingAccount @relation(fields: [billingAccountId], references: [id], onDelete: Cascade)
+
+  @@unique([billingAccountId, metric, periodStart, periodEnd])
+  @@index([billingAccountId, metric])
+}
+
+model UsageRecord {
+  id               String         @id
+  billingAccountId String
+  metric           String
+  quantity         Int            @default(1)
+  periodStart      DateTime
+  periodEnd        DateTime
+  metadata         Json?
+  createdAt        DateTime       @default(now())
+  BillingAccount   BillingAccount @relation(fields: [billingAccountId], references: [id], onDelete: Cascade)
+
+  @@index([billingAccountId, metric, periodStart, periodEnd])
+  @@index([metric, createdAt])
+}
+
+model Workspace {
+  id                   String                 @id
+  name                 String
+  slug                 String                 @unique
+  description          String?
+  status               String                 @default("active")
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime
+  ApprovalRequest      ApprovalRequest[]
+  CollaborationMessage CollaborationMessage[]
+  ProjectNote          ProjectNote[]
+  WorkspaceActivity    WorkspaceActivity[]
+  WorkspaceMember      WorkspaceMember[]
+  WorkspaceProject     WorkspaceProject[]
+
+  @@index([status, updatedAt])
+}
+
+model WorkspaceActivity {
+  id          String    @id
+  workspaceId String
+  type        String
+  actorName   String
+  summary     String
+  metadata    Json?
+  createdAt   DateTime  @default(now())
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([type, createdAt])
+  @@index([workspaceId, createdAt])
+}
+
+model WorkspaceMember {
+  id            String         @id
+  workspaceId   String
+  email         String
+  name          String
+  role          String         @default("client")
+  status        String         @default("active")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime
+  ClientAccount ClientAccount?
+  Workspace     Workspace      @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, email])
+  @@index([email])
+  @@index([workspaceId, role])
+}
+
+model WorkspaceProject {
+  id          String    @id
+  workspaceId String
+  projectId   Int
+  status      String    @default("active")
+  progress    Int       @default(0)
+  dueDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  Project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, projectId])
+  @@index([projectId])
+  @@index([workspaceId, status])
+}

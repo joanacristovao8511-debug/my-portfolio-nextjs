@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/sqlite-client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Skill {
+  id            Int            @id @default(autoincrement())
+  name          String         @unique
+  category      String
+  order         Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  projectSkills ProjectSkill[]
+
+  @@index([category])
+  @@index([order])
+}
+
+model Project {
+  id            Int            @id @default(autoincrement())
+  title         String
+  slug          String         @unique
+  summary       String
+  description   String
+  url           String?
+  githubUrl     String?
+  imageUrl      String?
+  featured      Boolean        @default(false)
+  status        String         @default("active")
+  tags          String         @default("")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  projectSkills ProjectSkill[]
+
+  @@index([featured])
+  @@index([status])
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([role])
+}
+
+model Profile {
+  id           Int      @id @default(autoincrement())
+  name         String
+  title        String
+  headline     String
+  bio          String
+  email        String?
+  location     String?
+  summary      String
+  availability String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Experience {
+  id           Int      @id @default(autoincrement())
+  name         String   @default("")
+  company      String
+  position     String
+  location     String?
+  startDate    String
+  endDate      String?
+  description  String
+  technologies String   @default("")
+  current      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([current])
+}
+
+model ChatFeedback {
+  id         String   @id @default(cuid())
+  messageId  String   @unique
+  value      String
+  reason     String?
+  comment    String?
+  question   String?
+  answer     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([value])
+  @@index([createdAt])
+}
+
+model ProjectSkill {
+  projectId Int
+  skillId   Int
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  skill   Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, skillId])
+  @@index([skillId])
+}
