@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "my-portfolio-response-store",
+  "name": "my-portfolio-nextjs-response-store",
   "main": "./node_modules/@cloudflare/workers-response-store/dist/service.js",
   "compatibility_date": "2026-09-20",
   "compatibility_flags": [
