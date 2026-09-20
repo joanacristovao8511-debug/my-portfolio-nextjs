@@ -2497,6 +2497,43 @@ function ProjectForm({
         formData: FormData,
     ) => void;
 }) {
+    const [uploading, setUploading] = useState(false);
+    const [uploadError, setUploadError] = useState<string | null>(null);
+
+    async function uploadProjectImage(file: File, form: HTMLFormElement) {
+        setUploading(true);
+        setUploadError(null);
+
+        try {
+            const body = new FormData();
+            body.append("file", file);
+
+            const response = await fetch("/api/admin/uploads", {
+                method: "POST",
+                body,
+            });
+
+            const payload = (await response.json()) as {
+                success?: boolean;
+                error?: string;
+                data?: { url?: string };
+            };
+
+            if (!response.ok || !payload.success || !payload.data?.url) {
+                throw new Error(payload.error || "Image upload failed.");
+            }
+
+            const imageUrl = form.elements.namedItem("imageUrl");
+            if (imageUrl instanceof HTMLInputElement) {
+                imageUrl.value = payload.data.url;
+            }
+        } catch (error) {
+            setUploadError(error instanceof Error ? error.message : "Image upload failed.");
+        } finally {
+            setUploading(false);
+        }
+    }
+
     return (
         <form
             onSubmit={(event) => {
@@ -2606,14 +2643,32 @@ function ProjectForm({
                     className="admin-input"
                 />
 
-                <input
-                    name="imageUrl"
-                    defaultValue={
-                        project?.imageUrl ?? ""
-                    }
-                    placeholder="Project image URL"
-                    className="admin-input md:col-span-2"
-                />
+                <div className="md:col-span-2 grid gap-2 sm:grid-cols-[1fr_auto]">
+                    <input
+                        name="imageUrl"
+                        defaultValue={project?.imageUrl ?? ""}
+                        placeholder="Project image URL or upload an image"
+                        className="admin-input"
+                    />
+                    <label className={`inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold ${dark ? "border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"} ${uploading ? "cursor-wait opacity-60" : ""}`}>
+                        <input
+                            type="file"
+                            accept="image/jpeg,image/png,image/webp,image/avif"
+                            className="sr-only"
+                            disabled={uploading}
+                            onChange={(event) => {
+                                const file = event.currentTarget.files?.[0];
+                                const form = event.currentTarget.form;
+                                if (file && form) void uploadProjectImage(file, form);
+                                event.currentTarget.value = "";
+                            }}
+                        />
+                        {uploading ? "Uploading…" : "Upload to R2"}
+                    </label>
+                    {uploadError && (
+                        <p className="text-[10px] font-medium text-red-500 sm:col-span-2">{uploadError}</p>
+                    )}
+                </div>
 
                 <input
                     name="tags"
