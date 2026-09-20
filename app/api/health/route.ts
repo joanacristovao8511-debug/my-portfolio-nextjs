@@ -6,8 +6,26 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     await prisma.$queryRawUnsafe("SELECT 1");
-    return NextResponse.json({ ok: true, service: "portfolio", database: "ok", timestamp: new Date().toISOString() });
-  } catch {
-    return NextResponse.json({ ok: false, service: "portfolio", database: "error", timestamp: new Date().toISOString() }, { status: 503 });
+
+    return NextResponse.json({
+      ok: true,
+      service: "portfolio",
+      database: "ok",
+      ai: process.env.OPENROUTER_API_KEY ? "configured" : "missing",
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("HEALTH CHECK DATABASE ERROR:", error);
+
+    return NextResponse.json(
+      {
+        ok: false,
+        service: "portfolio",
+        database: "error",
+        ai: process.env.OPENROUTER_API_KEY ? "configured" : "missing",
+        timestamp: new Date().toISOString(),
+      },
+      { status: 503 },
+    );
   }
 }

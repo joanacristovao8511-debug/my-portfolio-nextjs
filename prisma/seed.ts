@@ -1,10 +1,16 @@
-import {
-    PrismaClient,
-} from "@prisma/client";
-
+import { PrismaClient } from "@prisma/client";
+import { PrismaNeon } from "@prisma/adapter-neon";
 import bcrypt from "bcryptjs";
 
-const prisma = new PrismaClient();
+const connectionString = process.env.DATABASE_URL;
+
+if (!connectionString) {
+    throw new Error("DATABASE_URL must be set before running the seed.");
+}
+
+const prisma = new PrismaClient({
+    adapter: new PrismaNeon({ connectionString }),
+} as any);
 
 async function main() {
     console.log("🌱 Starting portfolio database seed...");

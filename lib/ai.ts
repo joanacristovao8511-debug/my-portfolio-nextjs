@@ -1,12 +1,16 @@
 import OpenAI from "openai";
 
 const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENROUTER_API_KEY,
+  baseURL:
+    process.env.OPENROUTER_BASE_URL ||
+    "https://openrouter.ai/api/v1",
+  timeout: 30_000,
 });
 
 const model =
-  process.env.OPENAI_MODEL ||
-  "gpt-5.6-luna";
+  process.env.OPENROUTER_MODEL ||
+  "openrouter/free";
 
 const SYSTEM_PROMPT = `
 You are Frunco Ruiz's professional portfolio assistant.

@@ -55,3 +55,41 @@ The portfolio assistant now stores anonymous answer feedback in the `ChatFeedbac
 After updating an existing database, the application creates the feedback table automatically. For a fresh database, `npm run db:setup` creates it through Prisma.
 
 The admin dashboard has an **AI Feedback** section protected by the existing administrator session.
+
+
+## Cloudflare Workers + Neon + OpenRouter
+
+This project runs with Vinext on Cloudflare Workers. Production database access uses Prisma's Neon driver adapter rather than the default Prisma engine. Cloudflare Worker secrets are read through `process.env` with `nodejs_compat`.
+
+Required Cloudflare secrets:
+
+- `DATABASE_URL` — Neon pooled/runtime connection string
+- `AUTH_SECRET` — Auth.js secret
+- `OPENROUTER_API_KEY` — OpenRouter API key
+- `ADMIN_EMAIL` — bootstrap admin email
+- `ADMIN_PASSWORD` — bootstrap admin password
+
+Optional/plain Worker variables in `wrangler.jsonc`:
+
+- `OPENROUTER_MODEL`
+- `OPENROUTER_BASE_URL`
+
+Set secrets with Wrangler, for example:
+
+```bash
+npx wrangler secret put DATABASE_URL
+npx wrangler secret put AUTH_SECRET
+npx wrangler secret put OPENROUTER_API_KEY
+npx wrangler secret put ADMIN_EMAIL
+npx wrangler secret put ADMIN_PASSWORD
+```
+
+Then deploy:
+
+```bash
+npm install
+npm run build
+npx wrangler deploy
+```
+
+Check the deployed database connection at `/api/health`. A successful response includes `database: "ok"`.

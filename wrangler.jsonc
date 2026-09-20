@@ -10,6 +10,16 @@
     "directory": "dist/client",
     "not_found_handling": "none"
   },
+  "secrets": {
+    "required": [
+      "DATABASE_URL",
+      "DIRECT_URL",
+      "AUTH_SECRET",
+      "OPENROUTER_API_KEY",
+      "ADMIN_EMAIL",
+      "ADMIN_PASSWORD"
+    ]
+  },
   "vars": {
     "NODE_ENV": "production",
     "NEXT_TELEMETRY_DISABLED": "1",

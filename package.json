@@ -29,7 +29,7 @@
     "@auth/prisma-adapter": "^2.7.4",
     "@cloudflare/workers-response-store": "^0.1.0-beta.0",
     "@google/genai": "^2.21.0",
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.19.3",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^13.1.1",
     "lucide-react": "^1.39.0",
@@ -40,7 +40,9 @@
     "react-dom": "^19.3.0",
     "react-server-dom-webpack": "^19.3.0",
     "zod": "^4.5.4",
-    "zustand": "^5.0.15"
+    "zustand": "^5.0.15",
+    "@prisma/adapter-neon": "^6.19.3",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.56.0",
@@ -55,7 +57,7 @@
     "@vitejs/plugin-rsc": "^0.5.35",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
-    "prisma": "^5.22.0",
+    "prisma": "^6.19.3",
     "tailwindcss": "^4.3.3",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.13",
