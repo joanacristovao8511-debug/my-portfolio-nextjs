@@ -10,25 +10,15 @@
     "directory": "dist/client",
     "not_found_handling": "none"
   },
-  "secrets": {
-    "required": [
-      "DATABASE_URL",
-      "DIRECT_URL",
-      "AUTH_SECRET",
-      "OPENROUTER_API_KEY",
-      "ADMIN_EMAIL",
-      "ADMIN_PASSWORD"
-    ]
-  },
   "vars": {
     "NODE_ENV": "production",
     "NEXT_TELEMETRY_DISABLED": "1",
     "OPENROUTER_MODEL": "openrouter/free",
     "OPENROUTER_BASE_URL": "https://openrouter.ai/api/v1"
   }
-  // Environment variables (set via wrangler secret or .env):
-  // - DATABASE_URL: Neon PostgreSQL connection string
-  // - DIRECT_URL: Direct database connection
-  // - AUTH_SECRET: NextAuth secret
-  // - OPENROUTER_API_KEY: OpenRouter API key
+  // Sensitive values are configured as Cloudflare Worker secrets.
+  // They are intentionally not declared in this file so existing dashboard secrets
+  // are preserved when deploying new Worker versions.
+  // Required runtime secrets: DATABASE_URL, AUTH_SECRET, OPENROUTER_API_KEY,
+  // ADMIN_EMAIL, ADMIN_PASSWORD
 }
