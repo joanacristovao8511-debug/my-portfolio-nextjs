@@ -1,4 +1,4 @@
-# My Portfolio
+# My Portfolio V7.3
 
 A full-stack portfolio application built with Next.js, React, TypeScript, Tailwind CSS, Prisma, PostgreSQL, Auth.js/NextAuth credentials authentication, and an AI portfolio assistant.
 
