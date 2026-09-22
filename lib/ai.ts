@@ -1,26 +1,12 @@
 import OpenAI from "openai";
-import { runtimeEnv } from "@/lib/runtime-env";
 
-function getOpenRouterClient() {
-  const env = runtimeEnv();
-  if (!env.OPENROUTER_API_KEY) {
-    throw new Error(
-      "OPENROUTER_API_KEY is not configured. Set it as a Cloudflare Worker secret."
-    );
-  }
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
-  return new OpenAI({
-    apiKey: env.OPENROUTER_API_KEY,
-    baseURL:
-      env.OPENROUTER_BASE_URL ||
-      "https://openrouter.ai/api/v1",
-    timeout: 30_000,
-  });
-}
-
-function getOpenRouterModel() {
-  return runtimeEnv().OPENROUTER_MODEL || "openrouter/free";
-}
+const model =
+  process.env.OPENAI_MODEL ||
+  "gpt-5.6-luna";
 
 const SYSTEM_PROMPT = `
 You are Frunco Ruiz's professional portfolio assistant.
@@ -84,8 +70,8 @@ export async function askPortfolioAI(
   portfolioData: unknown,
 ) {
   const response =
-    await getOpenRouterClient().responses.create({
-      model: getOpenRouterModel(),
+    await client.responses.create({
+      model,
 
       instructions:
         SYSTEM_PROMPT,

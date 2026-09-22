@@ -15,56 +15,38 @@
     "db:studio": "npx prisma studio --schema prisma/schema.prisma",
     "db:seed": "tsx prisma/seed.ts",
     "db:setup": "npm run db:push && npm run db:seed",
-    "db:backfill-project-skills": "tsx scripts/backfill-project-skills.ts",
-    "dev:vinext": "vinext dev --port 3001",
-    "build:vinext": "vinext build",
-    "start:vinext": "wrangler dev --config dist/server/wrangler.json",
-    "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json --experimental-warm-cdn-cache",
-    "deploy:response-store": "wrangler deploy --config wrangler.response-store.jsonc"
+    "db:backfill-project-skills": "tsx scripts/backfill-project-skills.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
-    "@cloudflare/workers-response-store": "^0.1.0-beta.0",
     "@google/genai": "^2.21.0",
-    "@prisma/client": "^6.19.3",
+    "@prisma/client": "^5.22.0",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^13.1.1",
     "lucide-react": "^1.39.0",
     "next": "16.3.4",
     "next-auth": "^5.0.0-beta.32",
     "openai": "^7.9.0",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
-    "react-server-dom-webpack": "^19.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "zod": "^4.5.4",
-    "zustand": "^5.0.15",
-    "@prisma/adapter-neon": "^6.19.3",
-    "dotenv": "^16.4.7"
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.56.0",
     "@tailwindcss/postcss": "^4",
-    "@tailwindcss/vite": "^4.3.3",
     "@types/bcryptjs": "^2.4.3",
     "@types/node": "^20.19.43",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vinext/cloudflare": "^1.0.0-beta.8",
-    "@vitejs/plugin-react": "^6.1.1",
-    "@vitejs/plugin-rsc": "^0.5.35",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
-    "prisma": "^6.19.3",
-    "tailwindcss": "^4.3.3",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.13",
-    "typescript": "^5.9.3",
-    "vinext": "^1.0.0-beta.10",
-    "vite": "^8.3.0",
-    "wrangler": "^4.135.0"
-  },
-  "type": "module"
+    "typescript": "^5.9.3"
+  }
 }

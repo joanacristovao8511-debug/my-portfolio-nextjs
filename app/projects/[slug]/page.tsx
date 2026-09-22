@@ -18,7 +18,6 @@ import { ensureDatabase, prisma } from "@/lib/db";
 import { absoluteUrl, siteConfig } from "@/lib/site-config";
 import { BreadcrumbSchema } from "@/app/schema";
 
-export const dynamic = "force-dynamic";
 export const revalidate = 60;
 
 type PageProps = { params: Promise<{ slug: string }> };

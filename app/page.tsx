@@ -3,7 +3,6 @@ import { PortfolioLanding } from '@/components/portfolio-landing';
 import type { PortfolioContent } from "@/components/portfolio-data";
 
 // Public portfolio content can be cached briefly while still reflecting CMS edits quickly.
-export const dynamic = "force-dynamic";
 export const revalidate = 60;
 
 const fallbackSkills: Array<{ id: number; name: string }> = [

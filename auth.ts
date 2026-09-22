@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { runtimeEnv } from "@/lib/runtime-env";
 
 import { ensureDatabase, prisma } from "@/lib/db";
 import {
@@ -104,7 +103,7 @@ export const {
     signOut,
     auth,
 } = NextAuth({
-    secret: runtimeEnv().AUTH_SECRET,
+    secret: process.env.AUTH_SECRET,
 
     session: {
         strategy: "jwt",

@@ -1,5 +1,4 @@
 import OpenAI from 'openai';
-import { runtimeEnv } from '@/lib/runtime-env';
 
 import { ensureDatabase, prisma } from '@/lib/db';
 import { chatRequestSchema } from '@/lib/chat-validation';
@@ -15,22 +14,19 @@ import {
 |--------------------------------------------------------------------------
 */
 
-function getOpenRouterClient() {
-  const env = runtimeEnv();
-  const apiKey =
-    env.OPENROUTER_API_KEY ||
-    process.env.OPENAI_API_KEY;
+const apiKey =
+  process.env.OPENROUTER_API_KEY ||
+  process.env.OPENAI_API_KEY;
 
-  if (!apiKey) return null;
-
-  return new OpenAI({
-    apiKey,
-    baseURL:
-      env.OPENROUTER_BASE_URL ||
-      'https://openrouter.ai/api/v1',
-    timeout: 30_000,
-  });
-}
+const openrouter = apiKey
+  ? new OpenAI({
+      apiKey,
+      baseURL:
+        process.env.OPENROUTER_BASE_URL ||
+        'https://openrouter.ai/api/v1',
+      timeout: 30_000,
+    })
+  : null;
 
 const MAX_HISTORY = 12;
 const MAX_MESSAGE_LENGTH = 1000;
@@ -40,7 +36,9 @@ const MAX_REQUEST_BYTES = 24_000;
 const RATE_LIMIT = 20;
 const RATE_WINDOW_MS = 60_000;
 
-const DEFAULT_MODEL = 'openrouter/free';
+const DEFAULT_MODEL =
+  process.env.OPENROUTER_MODEL ||
+  'openrouter/free';
 
 const DEFAULT_OWNER_NAME =
   'the portfolio owner';
