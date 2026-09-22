@@ -53,8 +53,7 @@ type FeedbackValue = "up" | "down";
 |--------------------------------------------------------------------------
 */
 
-const CLYDE_IMAGE =
-    "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707a0ea5ddb44cae1dd6b29_clyde_pose_02%201.webp";
+const CLYDE_IMAGE = "/ai-assistant.svg";
 
 const MAX_MESSAGE_LENGTH = 1000;
 const MAX_HISTORY_MESSAGES = 20;
