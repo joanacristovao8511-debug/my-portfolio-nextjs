@@ -1359,7 +1359,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                         </div>
 
                         <h2 className={`max-w-3xl text-4xl font-black leading-[0.98] tracking-[-0.04em] sm:text-5xl ${heading}`}>
-                            Don&apos;t just read my portfolio.
+                            Don't just read my portfolio.
                             <br />
                             <span className="text-sky-500">Ask it.</span>
                         </h2>
@@ -2080,11 +2080,10 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                             </p>
 
                             <h2 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
-                                {content?.ctaTitle || "Let&apos;s turn it into something remarkable."}
+                                {content?.ctaTitle || "Let's turn it into something remarkable."}
                             </h2>
 
                             <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-slate-950/70">
-                                {content?.ctaDescription || "Tell me what you&apos;re building, where you&apos;re stuck, or what you want to improve. Let&apos;s figure out the right next step."}
                             </p>
 
                             <m.a
