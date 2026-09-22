@@ -7,6 +7,7 @@ import {
     ArrowRight, BriefcaseBusiness, Check, ChevronRight, ExternalLink, Eye,
     ArrowUpRight, Bot, Download, FileText, Mail, Menu, Moon, Palette, Server,
     GitBranch, Sparkles, SunMedium, X, Zap, Database, Layers3, Code2,
+    MessageCircle, Send,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 
@@ -17,6 +18,7 @@ const PortfolioChatbot = dynamic(() => import("@/components/portfolio-chatbot"),
 import { ProjectPreview } from "./project-preview";
 import { cardReveal, navItems, parseTags, sectionReveal, type PortfolioLandingProps } from "./portfolio-data";
 import { usePortfolioLandingState } from "./use-portfolio-landing";
+import { siteConfig } from "@/lib/site-config";
 
 export function PortfolioLanding({ profile, skillList, projectList, content }: PortfolioLandingProps) {
     const {
@@ -2237,6 +2239,98 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                     </div>
                 </div>
             </footer>
+
+            {/* =====================================================
+                FLOATING CONTACT BUTTONS
+            ====================================================== */}
+
+            <div
+                aria-label="Contact links"
+                className="fixed bottom-24 left-2 top-auto z-[60] translate-y-0 sm:left-4 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
+            >
+                <m.div
+                    aria-hidden="true"
+                    animate={{ opacity: [0.35, 0.7, 0.35] }}
+                    transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                    className={`absolute left-[27px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-sky-400/80 to-transparent ${isLight ? "" : "shadow-[0_0_18px_rgba(56,189,248,0.8)]"}`}
+                />
+
+                <div className="relative flex flex-col gap-3">
+                    {profile.email && (
+                        <a
+                            href={`mailto:${profile.email}`}
+                            aria-label="Email me on Gmail"
+                            title="Gmail"
+                            className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-white/20 bg-white/90 px-3 text-slate-800 shadow-[0_12px_35px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-red-300/70 hover:bg-white hover:shadow-[0_16px_40px_rgba(239,68,68,0.22)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                        >
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-red-500/15 via-white to-red-500/10 text-red-500 ring-1 ring-red-200/70">
+                                <Mail className="h-5 w-5" />
+                            </span>
+                            <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                <span className="block text-sm font-bold">Gmail</span>
+                                <span className="block text-[10px] font-medium text-slate-500">Send me an email</span>
+                            </span>
+                        </a>
+                    )}
+
+                    {process.env.NEXT_PUBLIC_WHATSAPP_NUMBER && (
+                        <a
+                            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.replace(/\D/g, "")}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="Contact me on WhatsApp"
+                            title="WhatsApp"
+                            className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-emerald-300/40 bg-emerald-500 px-3 text-white shadow-[0_12px_35px_rgba(16,185,129,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_16px_40px_rgba(16,185,129,0.35)] focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                        >
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
+                                <MessageCircle className="h-5 w-5" />
+                            </span>
+                            <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                <span className="block text-sm font-bold">WhatsApp</span>
+                                <span className="block text-[10px] font-medium text-emerald-50/90">Chat with me</span>
+                            </span>
+                        </a>
+                    )}
+
+                    {process.env.NEXT_PUBLIC_TELEGRAM_USERNAME && (
+                        <a
+                            href={`https://t.me/${process.env.NEXT_PUBLIC_TELEGRAM_USERNAME.replace(/^@/, "")}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="Message me on Telegram"
+                            title="Telegram"
+                            className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-sky-300/40 bg-sky-500 px-3 text-white shadow-[0_12px_35px_rgba(14,165,233,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-sky-400 hover:shadow-[0_16px_40px_rgba(14,165,233,0.35)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                        >
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
+                                <Send className="h-5 w-5 -translate-x-px" />
+                            </span>
+                            <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                <span className="block text-sm font-bold">Telegram</span>
+                                <span className="block text-[10px] font-medium text-sky-50/90">Message me</span>
+                            </span>
+                        </a>
+                    )}
+
+                    {siteConfig.github && (
+                        <a
+                            href={siteConfig.github}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="Visit my GitHub"
+                            title="GitHub"
+                            className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-slate-600/70 bg-slate-950/95 px-3 text-white shadow-[0_12px_35px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                        >
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
+                                {/* <Github className="h-5 w-5" /> */}
+                            </span>
+                            <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                <span className="block text-sm font-bold">GitHub</span>
+                                <span className="block text-[10px] font-medium text-slate-400">View my code</span>
+                            </span>
+                        </a>
+                    )}
+                </div>
+            </div>
 
             {/* =====================================================
                 CHATBOT
