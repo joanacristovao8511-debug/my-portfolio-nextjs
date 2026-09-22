@@ -123,7 +123,7 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
   await ensureDatabase();
   const { slug } = await params;
 
-  const project = (await prisma.project.findUnique({
+  const project = (await prisma.project.findFirst({
     where: { slug, status: "active" },
     include: { projectSkills: { include: { skill: true } } },
   })) as ProjectData | null;
