@@ -16,7 +16,7 @@ import {
 
 const apiKey =
   process.env.OPENROUTER_API_KEY ||
-  process.env.OPENAI_API_KEY;
+  process.env.OPENAI_API_KEY; 
 
 const openrouter = apiKey
   ? new OpenAI({
