@@ -67,11 +67,10 @@ function StorySection({
   return (
     <article
       id={id}
-      className={`scroll-mt-28 rounded-[28px] border p-7 sm:p-9 ${
-        tone === "accent"
-          ? "border-sky-400/20 bg-sky-400/[0.07]"
-          : "border-white/10 bg-white/[0.035]"
-      }`}
+      className={`scroll-mt-28 rounded-[28px] border p-7 sm:p-9 ${tone === "accent"
+        ? "border-sky-400/20 bg-sky-400/[0.07]"
+        : "border-white/10 bg-white/[0.035]"
+        }`}
     >
       <div className="flex items-start gap-4">
         <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-sky-400/20 bg-sky-400/10 text-sky-300">
@@ -123,12 +122,26 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
   await ensureDatabase();
   const { slug } = await params;
 
-  const project = (await prisma.project.findFirst({
-    where: { slug, status: "active" },
-    include: { projectSkills: { include: { skill: true } } },
+  const project = (await prisma.project.findUnique({
+    where: { slug },
+    include: {
+      projectSkills: {
+        include: {
+          skill: true,
+        },
+      },
+    },
   })) as ProjectData | null;
 
-  if (!project) notFound();
+  if (!project) {
+    throw new Error(`Project not found for slug: ${slug}`);
+  }
+
+  if (project.status !== "active") {
+    throw new Error(
+      `Project "${project.slug}" exists but status is "${project.status}"`
+    );
+  }
 
   const tags = normalizeTags(project.tags);
   const skills = project.projectSkills.map(({ skill }) => skill);
@@ -206,7 +219,7 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
             {project.githubUrl ? (
               <a href={project.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">
                 {/* <Github className="h-4 w-4" /> */}
-                 Source code
+                Source code
               </a>
             ) : null}
           </div>
