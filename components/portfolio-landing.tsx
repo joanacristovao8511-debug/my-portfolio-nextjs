@@ -151,11 +151,11 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                         backdrop-blur-2xl
                         transition-colors
                         duration-300
-                        shadow-[0_8px_30px_rgba(15,23,42,0.04)]
+                        shadow-[0_8px_24px_rgba(15,23,42,0.04)]
                         ${
                             isLight
-                                ? "border-slate-200/70 bg-white/75"
-                                : "border-slate-800/70 bg-slate-950/75"
+                                ? "border-slate-200/80 bg-white/80"
+                                : "border-slate-800/70 bg-slate-950/80"
                         }
                     `}
                 >
@@ -627,12 +627,12 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     px-3
                                     py-1.5
                                     text-xs
-                                    font-medium
-                                    shadow-[0_10px_30px_rgba(14,165,233,0.12)]
+                                    font-semibold
+                                    shadow-[0_8px_20px_rgba(14,165,233,0.08)]
                                     ${
                                         isLight
                                             ? "border-sky-200 bg-sky-50 text-sky-700"
-                                            : "border-sky-400/30 bg-sky-500/10 text-sky-300"
+                                            : "border-sky-400/30 bg-sky-500/10 text-sky-200"
                                     }
                                 `}
                             >
@@ -670,7 +670,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     font-black
                                     leading-[0.92]
                                     tracking-[-0.055em]
-                                    drop-shadow-[0_12px_24px_rgba(14,165,233,0.08)]
+                                    drop-shadow-[0_8px_18px_rgba(14,165,233,0.05)]
                                     sm:text-5xl
                                     md:text-6xl
                                     lg:text-[82px]
@@ -749,17 +749,17 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         bg-gradient-to-r
                                         from-sky-400
                                         via-sky-500
-                                        to-cyan-400
+                                        to-blue-500
                                         px-6
                                         py-3.5
                                         text-sm
                                         font-bold
                                         text-slate-950
-                                        shadow-[0_18px_40px_rgba(14,165,233,0.28)]
+                                        shadow-[0_12px_30px_rgba(14,165,233,0.22)]
                                         transition
                                         duration-300
                                         hover:-translate-y-0.5
-                                        hover:shadow-[0_22px_45px_rgba(14,165,233,0.35)]
+                                        hover:shadow-[0_16px_34px_rgba(14,165,233,0.28)]
                                         sm:w-auto
                                     "
                                 >
@@ -890,9 +890,9 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         rounded-[32px]
                                         border
                                         p-2
-                                        shadow-[0_35px_80px_rgba(15,23,42,0.18)]
+                                        shadow-[0_25px_60px_rgba(15,23,42,0.12)]
                                         ring-1
-                                        ring-white/10
+                                        ring-slate-200/50
                                         ${
                                             isLight
                                                 ? "border-slate-200 bg-white/90"
@@ -905,7 +905,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                             relative
                                             overflow-hidden
                                             rounded-[26px]
-                                            bg-slate-950
+                                            bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),transparent_28%),linear-gradient(135deg,_#020817_0%,_#0f172a_45%,_#111827_100%)]
                                             p-8
                                             text-white
                                             sm:p-10
@@ -1071,8 +1071,11 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         senior-stat
                                         rounded-2xl
                                         border
+                                        border-slate-200/70
+                                        bg-white/40
                                         p-6
                                         transition
+                                        shadow-[0_10px_24px_rgba(15,23,42,0.03)]
                                         ${panel}
                                     `}
                                 >
