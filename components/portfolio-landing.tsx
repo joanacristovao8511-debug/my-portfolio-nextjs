@@ -20,6 +20,19 @@ import { cardReveal, navItems, parseTags, sectionReveal, type PortfolioLandingPr
 import { usePortfolioLandingState } from "./use-portfolio-landing";
 import { siteConfig } from "@/lib/site-config";
 
+function GitHubIcon({ className = "h-5 w-5" }: { className?: string }) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+            className={className}
+        >
+            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.3 9.4 7.87 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.35-3.87-1.35-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.46.11-3.05 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.5 3.2-1.18 3.2-1.18.63 1.59.23 2.75.11 3.05.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.78 1.08.78 2.18v3.24c0 .31.21.67.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+        </svg>
+    );
+}
+
 export function PortfolioLanding({ profile, skillList, projectList, content }: PortfolioLandingProps) {
     const {
         theme, setTheme, mobileMenu, setMobileMenu, showAllProjects, setShowAllProjects,
@@ -2321,7 +2334,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                             className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-slate-600/70 bg-slate-950/95 px-3 text-white shadow-[0_12px_35px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
                         >
                             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
-                                {/* <Github className="h-5 w-5" /> */}
+                                <GitHubIcon className="h-5 w-5" />
                             </span>
                             <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                                 <span className="block text-sm font-bold">GitHub</span>
