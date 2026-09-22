@@ -151,6 +151,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                         backdrop-blur-2xl
                         transition-colors
                         duration-300
+                        shadow-[0_8px_30px_rgba(15,23,42,0.04)]
                         ${
                             isLight
                                 ? "border-slate-200/70 bg-white/75"
@@ -627,6 +628,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     py-1.5
                                     text-xs
                                     font-medium
+                                    shadow-[0_10px_30px_rgba(14,165,233,0.12)]
                                     ${
                                         isLight
                                             ? "border-sky-200 bg-sky-50 text-sky-700"
@@ -668,6 +670,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     font-black
                                     leading-[0.92]
                                     tracking-[-0.055em]
+                                    drop-shadow-[0_12px_24px_rgba(14,165,233,0.08)]
                                     sm:text-5xl
                                     md:text-6xl
                                     lg:text-[82px]
@@ -743,17 +746,20 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         justify-center
                                         gap-2
                                         rounded-full
-                                        bg-sky-500
+                                        bg-gradient-to-r
+                                        from-sky-400
+                                        via-sky-500
+                                        to-cyan-400
                                         px-6
                                         py-3.5
                                         text-sm
                                         font-bold
                                         text-slate-950
-                                        shadow-xl
-                                        shadow-sky-500/20
+                                        shadow-[0_18px_40px_rgba(14,165,233,0.28)]
                                         transition
+                                        duration-300
                                         hover:-translate-y-0.5
-                                        hover:bg-sky-400
+                                        hover:shadow-[0_22px_45px_rgba(14,165,233,0.35)]
                                         sm:w-auto
                                     "
                                 >
@@ -772,11 +778,14 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         gap-2
                                         rounded-full
                                         border
+                                        bg-white/5
                                         px-6
                                         py-3.5
                                         text-sm
                                         font-semibold
+                                        shadow-[0_10px_28px_rgba(15,23,42,0.06)]
                                         transition
+                                        duration-300
                                         hover:-translate-y-0.5
                                         sm:w-auto
                                         ${secondaryButton}
@@ -881,10 +890,12 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         rounded-[32px]
                                         border
                                         p-2
-                                        shadow-2xl
+                                        shadow-[0_35px_80px_rgba(15,23,42,0.18)]
+                                        ring-1
+                                        ring-white/10
                                         ${
                                             isLight
-                                                ? "border-slate-200 bg-white"
+                                                ? "border-slate-200 bg-white/90"
                                                 : "border-slate-800 bg-slate-900"
                                         }
                                     `}
