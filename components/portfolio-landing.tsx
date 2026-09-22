@@ -165,9 +165,10 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                             max-w-7xl
                             items-center
                             justify-between
-                            px-6
+                            px-4
                             transition-all
                             duration-300
+                            sm:px-6
                             ${
                                 scrolled
                                     ? "h-16"
@@ -182,7 +183,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                             onClick={() =>
                                 setMobileMenu(false)
                             }
-                            className="group flex items-center gap-3"
+                            className="group flex items-center gap-2 sm:gap-3"
                         >
                             <m.div
                                 whileHover={{
@@ -191,8 +192,8 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                 }}
                                 className="
                                     flex
-                                    h-11
-                                    w-11
+                                    h-9
+                                    w-9
                                     items-center
                                     justify-center
                                     rounded-2xl
@@ -200,17 +201,21 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     text-white
                                     shadow-lg
                                     shadow-sky-500/20
+                                    sm:h-11
+                                    sm:w-11
                                 "
                             >
-                                <Code2 className="h-5 w-5" />
+                                <Code2 className="h-4 w-4 sm:h-5 sm:w-5" />
                             </m.div>
 
-                            <div>
+                            <div className="min-w-0">
                                 <p
                                     className={`
-                                        text-sm
+                                        truncate
+                                        text-xs
                                         font-black
                                         tracking-tight
+                                        sm:text-sm
                                         ${heading}
                                     `}
                                 >
@@ -219,9 +224,10 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
 
                                 <p
                                     className={`
-                                        text-[10px]
+                                        text-[9px]
                                         uppercase
-                                        tracking-[0.2em]
+                                        tracking-[0.18em]
+                                        sm:text-[10px]
                                         ${muted}
                                     `}
                                 >
@@ -560,8 +566,8 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                 id="top"
                 className="relative"
             >
-                <div className="senior-hero mx-auto max-w-7xl px-6 pb-24 pt-20 lg:pb-32 lg:pt-28">
-                    <div className="grid items-center gap-16 lg:grid-cols-[1.25fr_0.75fr]">
+                <div className="senior-hero mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:pb-32 lg:pt-28">
+                    <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
                         {/* Hero copy */}
 
                         <m.div
@@ -658,11 +664,12 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                 }}
                                 className={`
                                     max-w-5xl
-                                    text-5xl
+                                    text-4xl
                                     font-black
-                                    leading-[0.94]
+                                    leading-[0.92]
                                     tracking-[-0.055em]
-                                    sm:text-6xl
+                                    sm:text-5xl
+                                    md:text-6xl
                                     lg:text-[82px]
                                     ${heading}
                                 `}
@@ -691,11 +698,13 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     },
                                 }}
                                 className={`
-                                    mt-8
+                                    mt-6
                                     max-w-2xl
-                                    text-base
+                                    text-sm
                                     leading-7
-                                    sm:text-lg
+                                    sm:mt-8
+                                    sm:text-base
+                                    lg:text-lg
                                     ${muted}
                                 `}
                             >
@@ -722,14 +731,16 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         },
                                     },
                                 }}
-                                className="mt-9 flex flex-wrap gap-3"
+                                className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap"
                             >
                                 <a
                                     href="#work"
                                     className="
                                         group
                                         inline-flex
+                                        w-full
                                         items-center
+                                        justify-center
                                         gap-2
                                         rounded-full
                                         bg-sky-500
@@ -743,6 +754,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         transition
                                         hover:-translate-y-0.5
                                         hover:bg-sky-400
+                                        sm:w-auto
                                     "
                                 >
                                     Explore my work
@@ -754,7 +766,9 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     onClick={openChat}
                                     className={`
                                         inline-flex
+                                        w-full
                                         items-center
+                                        justify-center
                                         gap-2
                                         rounded-full
                                         border
@@ -764,6 +778,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                         font-semibold
                                         transition
                                         hover:-translate-y-0.5
+                                        sm:w-auto
                                         ${secondaryButton}
                                     `}
                                 >
@@ -775,7 +790,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     href="/documents/Frunco_Ruiz_Resume.pdf"
                                     target="_blank"
                                     rel="noreferrer"
-                                    className={`inline-flex items-center gap-2 rounded-full border px-5 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 ${secondaryButton}`}
+                                    className={`inline-flex w-full items-center justify-center gap-2 rounded-full border px-5 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 sm:w-auto ${secondaryButton}`}
                                 >
                                     <FileText className="h-4 w-4" aria-hidden="true" />
                                     Resume
@@ -1093,13 +1108,13 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
             >
                 <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-sky-500/[0.07] to-transparent" />
 
-                <div className="mx-auto max-w-7xl px-6 py-24 lg:py-32">
+                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-32">
                     <m.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
                         variants={sectionReveal}
-                        className="relative mb-14 grid gap-8 lg:grid-cols-[1fr_0.55fr] lg:items-end"
+                        className="relative mb-10 grid gap-8 sm:mb-14 lg:grid-cols-[1fr_0.55fr] lg:items-end"
                     >
                         <div>
                             <div className="mb-5 flex items-center gap-3">
@@ -1344,7 +1359,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
             <section className="portfolio-deferred-section relative overflow-hidden border-y border-slate-200/60 dark:border-slate-800/60">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(14,165,233,0.12),transparent_30%),radial-gradient(circle_at_85%_70%,rgba(99,102,241,0.10),transparent_28%)]" />
 
-                <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-24">
+                <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-24">
                     <m.div
                         initial="hidden"
                         whileInView="visible"
@@ -1422,8 +1437,8 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                 id="services"
                 className="scroll-mt-24 portfolio-deferred-section"
             >
-                <div className="mx-auto max-w-7xl px-6 py-24">
-                    <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
+                    <div className="grid gap-8 sm:gap-12 lg:grid-cols-[0.7fr_1.3fr]">
                         <m.div
                             initial="hidden"
                             whileInView="visible"
@@ -1613,7 +1628,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                 id="stack"
                 className="scroll-mt-24 portfolio-deferred-section"
             >
-                <div className="mx-auto max-w-7xl px-6 py-24">
+                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
                     <m.div
                         initial="hidden"
                         whileInView="visible"
@@ -1626,7 +1641,8 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                             overflow-hidden
                             rounded-[32px]
                             border
-                            p-8
+                            p-6
+                            sm:p-8
                             sm:p-10
                             lg:p-12
                             ${panel}
@@ -1785,8 +1801,8 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
             ====================================================== */}
 
             <section>
-                <div className="mx-auto max-w-7xl px-6 py-24">
-                    <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
+                    <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 lg:items-center">
                         <m.div
                             initial="hidden"
                             whileInView="visible"
@@ -1947,7 +1963,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                 id="contact"
                 className="scroll-mt-24"
             >
-                <div className="mx-auto max-w-7xl px-6 pb-16 pt-12">
+                <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 sm:pb-16 sm:pt-12">
                     <m.div
                         initial={{
                             opacity: 0,
