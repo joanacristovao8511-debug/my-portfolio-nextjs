@@ -11,7 +11,7 @@ type LoadingProgressProps = {
 
 const stages = [
   { until: 24, label: "Initializing", detail: "Preparing the portfolio experience…" },
-  { until: 48, label: "Loading content", detail: "Bringing projects, experience, and education into place…" },
+  { until: 48, label: "Loading content", detail: "Bringing projects, experience, and services into place…" },
   { until: 72, label: "Building interface", detail: "Setting up layouts, typography, and responsive interactions…" },
   { until: 90, label: "Polishing experience", detail: "Applying theme, motion, and final visual details…" },
   { until: 100, label: "Almost ready", detail: "Finishing up and getting everything ready for you…" },

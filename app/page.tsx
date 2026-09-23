@@ -141,7 +141,6 @@ export default async function HomePage() {
         technologies: experience.technologies,
         current: experience.current,
       }))}
-      educationList={[]}
       projectList={projects.map((project: typeof projects[number]) => ({
         id: project.id,
         slug: project.slug,

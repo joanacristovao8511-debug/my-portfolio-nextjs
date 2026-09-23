@@ -69,7 +69,7 @@ const welcomeMessage: Message = {
     id: "welcome",
     role: "assistant",
     content:
-        "Hi! I'm Frunco's portfolio assistant. Ask me about his full-stack and AI work, projects, experience, education, or what he can build for your business.",
+        "Hi! I'm Frunco's portfolio assistant. Ask me about his full-stack and AI work, projects, experience, or what he can build for your business.",
 };
 
 /*

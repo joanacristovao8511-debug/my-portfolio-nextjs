@@ -6,7 +6,7 @@ import { ProcessSection } from "./sections/process";
 import { TestimonialsSection } from "./sections/testimonials";
 import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion";
 import {
-    ArrowRight, BriefcaseBusiness, Check, ChevronRight, ExternalLink, Eye,
+    ArrowRight, Check, ChevronRight, ExternalLink, Eye,
     ArrowUpRight, Bot, Download, FileText, Mail, Menu, Moon, Palette, Server,
     GitBranch, Sparkles, SunMedium, X, Zap, Database, Layers3, Code2,
     MessageCircle, Send,
@@ -42,7 +42,6 @@ export function PortfolioLanding({
     projectList,
     content,
     experienceList = [],
-    educationList = [],
 }: PortfolioLandingProps) {
     const [showInitialLoader, setShowInitialLoader] = useState(false);
 
@@ -1361,6 +1360,21 @@ export function PortfolioLanding({
                                                         {project.summary}
                                                     </p>
 
+                                                    <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                                                        <div className={`rounded-2xl border p-4 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/50"}`}>
+                                                            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
+                                                            <p className={`mt-2 text-xs leading-6 ${muted}`}>
+                                                                {project.description || project.summary}
+                                                            </p>
+                                                        </div>
+                                                        <div className={`rounded-2xl border p-4 ${isLight ? "border-slate-200 bg-white/70" : "border-slate-800 bg-slate-950/30"}`}>
+                                                            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
+                                                            <p className={`mt-2 text-xs leading-6 ${muted}`}>
+                                                                {project.solution || project.architecture || project.challenge || "Full-stack product engineering with a focus on usability and maintainability."}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
                                                     {displayTags.length > 0 && (
                                                         <div className="mt-6 flex flex-wrap gap-2">
                                                             {displayTags.slice(0, isFeatured ? 7 : 5).map((tag) => (
@@ -1511,76 +1525,6 @@ export function PortfolioLanding({
                     ) : (
                         <div className={`mt-12 rounded-[28px] border p-8 ${softPanel}`}>
                             <p className={`text-sm ${muted}`}>Experience details are ready to be added from the portfolio admin.</p>
-                        </div>
-                    )}
-                </div>
-            </section>
-
-            {/* =====================================================
-                EDUCATION
-            ====================================================== */}
-
-            <section
-                id="education"
-                className="scroll-mt-24 portfolio-deferred-section"
-            >
-                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
-                    <m.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.15 }}
-                        variants={sectionReveal}
-                        className="max-w-3xl"
-                    >
-                        <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-500">Learning</p>
-                        <h2 className={`mt-3 text-3xl font-black tracking-[-0.04em] sm:text-5xl ${heading}`}>Education</h2>
-                        <p className={`mt-4 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
-                            Academic background and focused learning that support the way I design, engineer and ship digital products.
-                        </p>
-                    </m.div>
-
-                    {educationList.length > 0 ? (
-                        <div className="mt-12 grid gap-5 md:grid-cols-2">
-                            {educationList.map((education, index) => (
-                                <m.article
-                                    key={education.id}
-                                    initial="hidden"
-                                    whileInView="visible"
-                                    viewport={{ once: true, amount: 0.12 }}
-                                    variants={cardReveal}
-                                    transition={{ delay: index * 0.06 }}
-                                    className={`rounded-[28px] border p-7 sm:p-8 ${softPanel}`}
-                                >
-                                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-sky-500">
-                                        {education.startDate || "Education"}{education.endDate ? ` — ${education.endDate}` : ""}
-                                    </p>
-                                    <h3 className={`mt-3 text-2xl font-black tracking-[-0.03em] ${heading}`}>{education.degree}</h3>
-                                    <p className={`mt-2 text-sm font-semibold ${muted}`}>
-                                        {education.institution}{education.field ? ` · ${education.field}` : ""}
-                                    </p>
-                                    {education.description && (
-                                        <p className={`mt-5 text-sm leading-7 ${muted}`}>{education.description}</p>
-                                    )}
-                                </m.article>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className={`mt-12 grid gap-5 md:grid-cols-[1.2fr_0.8fr]`}>
-                            <div className={`rounded-[28px] border p-8 sm:p-10 ${softPanel}`}>
-                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-lg shadow-sky-500/20">
-                                    <BriefcaseBusiness className="h-5 w-5" />
-                                </div>
-                                <h3 className={`mt-6 text-2xl font-black tracking-[-0.03em] ${heading}`}>Education history</h3>
-                                <p className={`mt-3 max-w-xl text-sm leading-7 ${muted}`}>
-                                    Add degrees, certifications or formal training here when you are ready. The section is already wired into the landing page layout.
-                                </p>
-                            </div>
-                            <div className={`rounded-[28px] border p-8 sm:p-10 ${isLight ? "border-sky-100 bg-sky-50/70" : "border-sky-400/20 bg-sky-500/5"}`}>
-                                <p className="text-xs font-black uppercase tracking-[0.18em] text-sky-500">Continuous learning</p>
-                                <p className={`mt-4 text-sm leading-7 ${muted}`}>
-                                    Current learning is reflected throughout the portfolio through the technical stack, projects and AI product work.
-                                </p>
-                            </div>
                         </div>
                     )}
                 </div>
