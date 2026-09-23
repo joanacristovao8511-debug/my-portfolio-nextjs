@@ -80,7 +80,7 @@ async function main() {
             name: "Frunco Ruiz",
 
             title:
-                "Full-Stack Developer & Product Designer",
+                "Full-Stack Developer & AI Product Builder",
 
             headline:
                 "Building intelligent digital products with Full-Stack + AI.",
@@ -95,7 +95,7 @@ async function main() {
                 "United States",
 
             summary:
-                "I design and build modern web applications with a strong focus on usability, performance, maintainability and real business value.",
+                "I build intelligent digital products with Full-Stack + AI, combining frontend architecture, backend systems, APIs, databases, authentication, AI integrations and product-focused UX.",
 
             availability:
                 "Available for selected freelance projects",
@@ -107,7 +107,7 @@ async function main() {
             name: "Frunco Ruiz",
 
             title:
-                "Full-Stack Developer & Product Designer",
+                "Full-Stack Developer & AI Product Builder",
 
             headline:
                 "Building intelligent digital products with Full-Stack + AI.",
@@ -122,7 +122,7 @@ async function main() {
                 "United States",
 
             summary:
-                "I design and build modern web applications with a strong focus on usability, performance, maintainability and real business value.",
+                "I build intelligent digital products with Full-Stack + AI, combining frontend architecture, backend systems, APIs, databases, authentication, AI integrations and product-focused UX.",
 
             availability:
                 "Available for selected freelance projects",
@@ -246,29 +246,44 @@ async function main() {
          * AI
          */
         {
-            name: "AI Integration",
+            name: "Generative AI",
             category: "ai",
             order: 1,
         },
         {
-            name: "AI Assistants",
+            name: "RAG",
             category: "ai",
             order: 2,
         },
         {
-            name: "OpenAI",
+            name: "AI Agent",
             category: "ai",
             order: 3,
         },
         {
-            name: "LLM Integration",
+            name: "AI Integration",
             category: "ai",
             order: 4,
         },
         {
-            name: "AI Automation",
+            name: "AI Assistants",
             category: "ai",
             order: 5,
+        },
+        {
+            name: "OpenAI",
+            category: "ai",
+            order: 6,
+        },
+        {
+            name: "LLM Integration",
+            category: "ai",
+            order: 7,
+        },
+        {
+            name: "AI Automation",
+            category: "ai",
+            order: 8,
         },
 
         /*
@@ -330,143 +345,76 @@ async function main() {
 
     const projects = [
         {
-            title:
-                "AI Portfolio Assistant",
-
-            slug:
-                "ai-portfolio-assistant",
-
-            summary:
-                "A conversational AI assistant that helps visitors explore my skills, projects, experience and services in a natural way.",
-
-            description:
-                "An AI assistant built into the portfolio to make the site easier to explore. It combines a polished floating chat interface with contextual portfolio knowledge, conversation history, suggested questions and an API-driven AI conversation layer, allowing visitors to learn about my work without searching through multiple pages.",
-
+            title: "AI Workflow Automation",
+            slug: "ai-workflow-automation",
+            summary: "An automation system that combines AI capabilities with structured business workflows.",
+            description: "An AI-assisted workflow application designed to reduce repetitive manual tasks by connecting structured application data with intelligent processing and automation flows while keeping the user experience simple.",
             url: null,
-
             githubUrl: null,
-
-            imageUrl:
-                "https://images.openai.com/static-rsc-4/lodg0O4AqbUeWvgtChZVyqx-3wKslyyh_m5-i249BFvE9IiyhSSH1ikKkBsYz0-Di61FlZciEbMo5QjQBNs-IiqR30hCgqgII7LkLc7NVpuxSxAzT0pzPRFqzuobFtm44yibinjG-lMtpAU31it11cfor3-b3l-jo0ZeBq0EMIc?purpose=inline",
-
+            imageUrl: "/projects/ai-workflow-automation.png",
             featured: true,
-
             status: "active",
-
-            tags:
-                "Next.js, React, TypeScript, AI, OpenAI, Tailwind CSS",
+            tags: "AI, Automation, Node.js, APIs, TypeScript",
         },
-
         {
-            title:
-                "SaaS Analytics Dashboard",
-
-            slug:
-                "saas-analytics-dashboard",
-
-            summary:
-                "A modern analytics dashboard for monitoring business performance, users, revenue and operational metrics.",
-
-            description:
-                "A responsive SaaS dashboard designed around information hierarchy and fast decision-making. It includes reusable data visualization components, responsive layouts, filtering patterns and a scalable application architecture.",
-
-            url: null,
-
+            title: "Retrieval-Augmented Generation",
+            slug: "retrieval-augmented-generation",
+            summary: "Production-ready RAG system with enterprise-grade architecture.",
+            description: "A retrieval-augmented generation application focused on grounding AI responses with relevant source context and a production-minded architecture.",
+            url: "https://rag-app.bhaveshg.dev",
             githubUrl: null,
-
-            imageUrl:
-                "https://images.openai.com/static-rsc-4/FCoYrIEYTL2IA7_q7EO4ZrfS5yF1Or5aqVdBqQIrFXSqAa63qe7mTOp3iT84XB-qPPUoFJwNZnPMtt8-Bm9iBplN_pGAEeoIuzy-MinAQ8RpqKDhlGJ2UQURBKR990BSRWsn03N0HfRfJ-CZxDgJg0A21oREAmUqkYsBrNhBtIY?purpose=inline",
-
-            featured: false,
-
+            imageUrl: "/projects/rag2.png",
+            featured: true,
             status: "active",
-
-            tags:
-                "React, Next.js, TypeScript, Tailwind CSS, Dashboard",
+            tags: "Tailwind CSS, TypeScript, Next.js, React, RAG",
         },
-
         {
-            title:
-                "Business Management Platform",
-
-            slug:
-                "business-management-platform",
-
-            summary:
-                "A full-stack business application for managing customers, workflows, records and day-to-day operations.",
-
-            description:
-                "A practical business management platform focused on reducing repetitive work and centralizing operational information. The application uses structured data models, authentication, server-side APIs and a responsive administrative interface.",
-
+            title: "Developer Portfolio CMS",
+            slug: "developer-portfolio-cms",
+            summary: "A content-driven developer portfolio with project management, skills, experience and an admin dashboard.",
+            description: "A database-driven portfolio platform with project, skill, experience and profile management, backed by an authenticated admin dashboard and modern full-stack architecture.",
             url: null,
-
             githubUrl: null,
-
-            imageUrl:
-                "https://images.openai.com/static-rsc-4/otUJZMMKhVdNS5GezA2tGRAE0bST_Sem-SYsOSYLPSxVRtGnfX5bHMM3rgjRjvmhUOLyuIWRJDynBvdmiWpVkk76mEJjAo7KB6WiS7WdMIgYIIQSSALbcM3-gvXhcpZ7aXn55oXpx-h3tWU64SAIE0bfQ85w4FhaAiUMmnj_hmU?purpose=inline",
-
-            featured: false,
-
+            imageUrl: "/projects/portfolio.png",
+            featured: true,
             status: "active",
-
-            tags:
-                "Next.js, Node.js, Prisma, SQLite, REST API",
+            tags: "Next.js, Prisma, PostgreSQL, OpenAI, Vercel",
         },
-
         {
-            title:
-                "AI Workflow Automation",
-
-            slug:
-                "ai-workflow-automation",
-
-            summary:
-                "An automation system that combines AI capabilities with structured business workflows.",
-
-            description:
-                "An AI-assisted workflow application designed to reduce repetitive manual tasks. The system connects structured application data with intelligent processing and automation flows while keeping the user experience simple.",
-
-            url: null,
-
+            title: "Business Management Platform",
+            slug: "business-management-platform",
+            summary: "A full-stack business application for managing customers, workflows, records and day-to-day operations.",
+            description: "A practical business management platform focused on centralizing operational information and improving day-to-day workflows through structured data, responsive interfaces and production-minded full-stack engineering.",
+            url: "https://nellavio.com",
             githubUrl: null,
-
-            imageUrl:
-                "https://images.openai.com/static-rsc-4/zdIMCP2lR9CXDcT7ceSnTRMzOq40179fUdIi1F0ul6TUxJ0mCS5GkBuDmwM_jMz7NJEy7tjYEFspuMDlQhswh1rnAGbLHzwflaOKkaGYu7l0gNezyooqO8nml7PF2rkFte7mD2Og7nXFDOcR4d7sr8exXqP7ugV_k6uk_eZjgVk?purpose=inline",
-
+            imageUrl: "/projects/business-management-platform.png",
             featured: false,
-
             status: "active",
-
-            tags:
-                "AI, Automation, Node.js, APIs, TypeScript",
+            tags: "Next.js, TailwindCSS, OpenGraph, Tubopack, Vercel",
         },
-
         {
-            title:
-                "Developer Portfolio Platform",
-
-            slug:
-                "developer-portfolio-platform",
-
-            summary:
-                "A content-driven developer portfolio with project management, skills, experience and an admin dashboard.",
-
-            description:
-                "A complete portfolio platform built to present technical work professionally while keeping the content manageable through an authenticated admin interface. Portfolio data is stored with Prisma and SQLite.",
-
+            title: "SaaS Analytics Dashboard",
+            slug: "saas-analytics-dashboard",
+            summary: "A modern analytics dashboard for monitoring business performance, users, revenue and operational metrics.",
+            description: "A responsive SaaS dashboard designed around information hierarchy, reusable data visualization patterns and fast decision-making.",
             url: null,
-
             githubUrl: null,
-
-            imageUrl:
-                "https://s3-figma-hubfile-images-production-cdn-cgi.figma.com/cdn-cgi/image/format=auto,quality=85/hub/file/carousel/img/be385a5b5b4013e48acacfc694e60beca2cb013a",
-
+            imageUrl: "/projects/saas_dashboard.png",
             featured: false,
-
             status: "active",
-
-            tags:
-                "Next.js, Prisma, SQLite, NextAuth, TypeScript",
+            tags: "React, Next.js, TypeScript, Tailwind CSS, SaaS, Dashboard",
+        },
+        {
+            title: "AI-Powered Portfolio Assistant",
+            slug: "ai-portfolio-assistant",
+            summary: "A conversational AI assistant that helps visitors explore skills, projects, experience and services naturally.",
+            description: "An AI assistant integrated into the portfolio with contextual portfolio knowledge, conversation history, suggested questions and an API-driven conversation layer.",
+            url: null,
+            githubUrl: null,
+            imageUrl: "/ai-assistant.svg",
+            featured: false,
+            status: "active",
+            tags: "Next.js, React, TypeScript, OpenAI, AI, Tailwind CSS",
         },
     ];
 
@@ -541,86 +489,36 @@ async function main() {
 
     const experiences = [
         {
-            name:
-                "Full-Stack Developer & Product Designer",
-
-            company:
-                "Independent / Freelance",
-
-            position:
-                "Full-Stack Developer & Product Designer",
-
-            location:
-                "Remote",
-
-            startDate:
-                "2023-01",
-
-            endDate:
-                null,
-
-            description:
-                "Designing and building modern web applications for startups, businesses and independent products. Work includes frontend architecture, backend APIs, databases, authentication, dashboards, AI integrations and product-focused UX.",
-
-            technologies:
-                "React, Next.js, TypeScript, Node.js, Express, Prisma, SQLite, PostgreSQL, Tailwind CSS, AI",
-
+            name: "Full-Stack Developer & AI Product Engineer",
+            company: "Independent / Freelance",
+            position: "Full-Stack Developer & AI Product Engineer",
+            location: "Remote",
+            startDate: "2023-05",
+            endDate: null,
+            description: "Leading end-to-end development of AI-powered applications and modern web platforms, spanning frontend architecture, backend services, API design, database systems, authentication, and AI/LLM integrations. Focused on building scalable product foundations, intelligent workflows, and polished user experiences from prototype to production.",
+            technologies: "React, Next.js, TypeScript, Node.js, Express, PostgreSQL, Prisma, Tailwind CSS, OpenAI, RAG, AI Agents, AI Automation",
             current: true,
         },
-
         {
-            name:
-                "Full-Stack Developer — Product Development",
-
-            company:
-                "Product Development",
-
-            position:
-                "Full-Stack Developer",
-
-            location:
-                "Remote",
-
-            startDate:
-                "2021-01",
-
-            endDate:
-                "2022-12",
-
-            description:
-                "Built responsive web applications and internal tools while working across frontend and backend systems. Focused on clean architecture, reusable components, API design and reliable data workflows.",
-
-            technologies:
-                "JavaScript, React, Node.js, Express, REST APIs, PostgreSQL, Git",
-
+            name: "Senior Full-Stack Developer",
+            company: "Product Development",
+            position: "Senior Full-Stack Developer",
+            location: "Remote",
+            startDate: "2021-01",
+            endDate: "2022-04",
+            description: "Led development of modern web platforms and internal business applications across frontend and backend systems. Built reusable component architectures, REST APIs, database-driven workflows, authentication systems, and responsive interfaces while collaborating closely with product and design requirements.",
+            technologies: "React, Next.js, TypeScript, Node.js, Express, REST APIs, PostgreSQL, Git",
             current: false,
         },
-
         {
-            name:
-                "Frontend Developer — Software Development",
-
-            company:
-                "Software Development",
-
-            position:
-                "Frontend Developer",
-
-            location:
-                "Remote",
-
-            startDate:
-                "2019-01",
-
-            endDate:
-                "2020-12",
-
-            description:
-                "Developed responsive user interfaces and interactive web experiences with an emphasis on usability, component reuse and maintainable frontend code.",
-
-            technologies:
-                "JavaScript, React, HTML5, CSS3, Git",
-
+            name: "Frontend Developer",
+            company: "Software Development",
+            position: "Frontend Developer",
+            location: "Remote",
+            startDate: "2019-01",
+            endDate: "2020-12",
+            description: "Developed and maintained responsive, production-grade web interfaces using modern JavaScript frameworks and component-based architectures. Focused on reusable UI systems, performance, accessibility, responsive design, and translating product requirements into polished user experiences.",
+            technologies: "React, JavaScript, HTML5, CSS3, Git",
             current: false,
         },
     ];
@@ -732,6 +630,8 @@ async function main() {
         prisma.adminUser.count(),
         prisma.profile.count(),
     ]);
+
+    console.log("");
     console.log(
         "========================================",
     );

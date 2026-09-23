@@ -44,7 +44,7 @@ const DEFAULT_OWNER_NAME =
   'the portfolio owner';
 
 const DEFAULT_OWNER_HEADLINE =
-  'Full-Stack Developer';
+  'Full-Stack Developer & AI Product Builder';
 
 /*
 |--------------------------------------------------------------------------

@@ -1,5 +1,7 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
+
 import { ProcessSection } from "./sections/process";
 import { TestimonialsSection } from "./sections/testimonials";
 import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion";
@@ -32,6 +34,7 @@ import { ProjectPreview } from "./project-preview";
 import { cardReveal, navItems, parseTags, sectionReveal, type PortfolioLandingProps } from "./portfolio-data";
 import { usePortfolioLandingState } from "./use-portfolio-landing";
 import { siteConfig } from "@/lib/site-config";
+import { LoadingProgress } from "./loading-progress";
 
 export function PortfolioLanding({
     profile,
@@ -41,6 +44,30 @@ export function PortfolioLanding({
     experienceList = [],
     educationList = [],
 }: PortfolioLandingProps) {
+    const [showInitialLoader, setShowInitialLoader] = useState(false);
+
+    useEffect(() => {
+        const storageKey = "portfolio-initial-loader-shown";
+
+        try {
+            if (sessionStorage.getItem(storageKey) === "1") {
+                return;
+            }
+            setShowInitialLoader(true);
+        } catch {
+            setShowInitialLoader(true);
+        }
+    }, []);
+
+    const finishInitialLoader = useCallback(() => {
+        try {
+            sessionStorage.setItem("portfolio-initial-loader-shown", "1");
+        } catch {
+            // Ignore storage restrictions; the loader still completes normally.
+        }
+        setShowInitialLoader(false);
+    }, []);
+
     const {
         theme, setTheme, mobileMenu, setMobileMenu, showAllProjects, setShowAllProjects,
         projectCategory, setProjectCategory, projectCategories,
@@ -56,6 +83,26 @@ export function PortfolioLanding({
     return (
         <LazyMotion features={domAnimation}>
         <>
+            {showInitialLoader && (
+                <div
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--background)]/95 px-6 backdrop-blur-xl"
+                    role="status"
+                    aria-label="Loading portfolio"
+                >
+                    <div className="w-full max-w-xl rounded-[28px] border border-[color-mix(in_srgb,var(--foreground)_10%,transparent)] bg-[color-mix(in_srgb,var(--foreground)_4%,transparent)] p-7 shadow-[0_24px_80px_rgba(15,23,42,0.12)] sm:p-9">
+                        <div className="mb-8 flex items-center gap-3">
+                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-500 text-sm font-black text-white shadow-lg shadow-blue-500/20">
+                                A
+                            </div>
+                            <div>
+                                <p className="text-sm font-semibold tracking-tight text-[color:var(--foreground)]">Portfolio</p>
+                                <p className="text-xs text-[color:var(--muted)]">Full-Stack Developer &amp; AI Product Builder</p>
+                            </div>
+                        </div>
+                        <LoadingProgress durationMs={2600} onComplete={finishInitialLoader} />
+                    </div>
+                </div>
+            )}
             <a href="#main-content" className="skip-link">Skip to main content</a>
         <main
             id="main-content"
@@ -923,116 +970,82 @@ export function PortfolioLanding({
                                     `}
                                 >
                                     <div
-                                        className="
+                                        className={`
                                             relative
+                                            min-h-[430px]
                                             overflow-hidden
                                             rounded-[26px]
-                                            bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),transparent_28%),linear-gradient(135deg,_#020817_0%,_#0f172a_45%,_#111827_100%)]
-                                            p-8
-                                            text-white
-                                            sm:p-10
-                                        "
+                                            border
+                                            ${
+                                                isLight
+                                                    ? "border-slate-200 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.16),transparent_32%),linear-gradient(145deg,#eff6ff_0%,#f8fafc_52%,#dbeafe_100%)]"
+                                                    : "border-slate-800 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.18),transparent_32%),linear-gradient(145deg,#0f172a_0%,#111827_52%,#172554_100%)]"
+                                            }
+                                            sm:min-h-[350px]
+                                        `}
                                     >
-                                        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-sky-500/20 blur-3xl" />
+                                        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.18)_50%,transparent_100%)] opacity-60" />
 
-                                        <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-indigo-500/10 blur-3xl" />
+                                        <div className="absolute -left-12 top-12 h-36 w-36 rounded-full bg-sky-400/20 blur-3xl" />
+                                        <div className="absolute -right-12 bottom-10 h-48 w-48 rounded-full bg-blue-500/20 blur-3xl" />
 
-                                        <div className="relative">
-                                            <div className="flex items-start justify-between">
-                                                <div>
-                                                    <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">
-                                                        Digital product
-                                                        builder
-                                                    </p>
+                                        <img
+                                            src="/hero-developer.png"
+                                            alt="Developer working on a laptop"
+                                            className="absolute inset-0 h-full w-full object-contain object-bottom drop-shadow-[0_28px_35px_rgba(15,23,42,0.22)]"
+                                        />
 
-                                                    <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
-                                                        Frunco
-                                                        <span className="text-sky-400">
-                                                            .
-                                                        </span>
-                                                    </h2>
-                                                </div>
-
-                                                <m.div
-                                                    whileHover={{
-                                                        rotate: 6,
-                                                        scale: 1.05,
-                                                    }}
-                                                    className="
-                                                        flex
-                                                        h-12
-                                                        w-12
-                                                        items-center
-                                                        justify-center
-                                                        rounded-2xl
-                                                        bg-sky-500
-                                                        shadow-lg
-                                                        shadow-sky-500/20
-                                                    "
-                                                >
-                                                    <Code2 className="h-5 w-5 text-white" />
-                                                </m.div>
-                                            </div>
-
-                                            <div className="mt-12">
-                                                <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-                                                    Focus
+                                        {/* <div
+                                            className={`
+                                                absolute left-4 top-4 z-10
+                                                flex items-center gap-3 rounded-2xl border px-4 py-3
+                                                shadow-[0_15px_35px_rgba(15,23,42,0.12)] backdrop-blur-xl
+                                                sm:left-6 sm:top-6
+                                                ${
+                                                    isLight
+                                                        ? "border-white/80 bg-white/85 text-slate-900"
+                                                        : "border-white/10 bg-slate-950/75 text-white"
+                                                }
+                                            `}
+                                        >
+                                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500 text-white shadow-lg shadow-sky-500/20">
+                                                <Sparkles className="h-4 w-4" />
+                                            </span>
+                                            <div>
+                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">
+                                                    AI-powered
                                                 </p>
-
-                                                <p className="mt-3 text-2xl font-bold leading-tight">
-                                                    Products
-                                                    <br />
-                                                    SaaS
-                                                    <br />
-                                                    Dashboards
+                                                <p className="mt-0.5 text-sm font-bold">
+                                                    Digital products
                                                 </p>
-                                            </div>
-
-                                            <div className="mt-10 grid grid-cols-2 gap-3">
-                                                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                                                    <Code2 className="h-4 w-4 text-sky-400" />
-
-                                                    <p className="mt-3 text-xs text-slate-400">
-                                                        Engineering
-                                                    </p>
-
-                                                    <p className="mt-1 text-sm font-semibold">
-                                                        Full Stack
-                                                    </p>
-                                                </div>
-
-                                                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                                                    <Palette className="h-4 w-4 text-sky-400" />
-
-                                                    <p className="mt-3 text-xs text-slate-400">
-                                                        Experience
-                                                    </p>
-
-                                                    <p className="mt-1 text-sm font-semibold">
-                                                        Product Design
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div className="mt-3 flex items-center gap-2 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-xs text-emerald-300">
-                                                <m.span
-                                                    animate={{
-                                                        opacity: [
-                                                            0.5,
-                                                            1,
-                                                            0.5,
-                                                        ],
-                                                    }}
-                                                    transition={{
-                                                        duration: 2,
-                                                        repeat: Infinity,
-                                                    }}
-                                                    className="h-2 w-2 rounded-full bg-emerald-400"
-                                                />
-
-                                                Available for selected projects
                                             </div>
                                         </div>
+
+                                        <div
+                                            className={`
+                                                absolute bottom-4 right-4 z-10 max-w-[220px] rounded-2xl border px-4 py-3
+                                                shadow-[0_15px_35px_rgba(15,23,42,0.12)] backdrop-blur-xl
+                                                sm:bottom-6 sm:right-6
+                                                ${
+                                                    isLight
+                                                        ? "border-white/80 bg-white/90 text-slate-900"
+                                                        : "border-white/10 bg-slate-950/80 text-white"
+                                                }
+                                            `}
+                                        >
+                                            <div className="flex items-start gap-3">
+                                                <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500 shadow-[0_0_0_5px_rgba(16,185,129,0.12)]" />
+                                                <div>
+                                                    <p className={`text-xs font-semibold ${isLight ? "text-slate-500" : "text-slate-400"}`}>
+                                                        Building the next generation
+                                                    </p>
+                                                    <p className="mt-1 text-sm font-bold">
+                                                        of digital products
+                                                    </p>
+                                                </div>
+                                                <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 text-sky-500" />
+                                            </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </m.div>
@@ -1052,7 +1065,7 @@ export function PortfolioLanding({
                                 label: "Technical skills",
                             },
                             {
-                                value: profile.title.includes("Product") ? "Full stack + AI" : "Full-stack delivery",
+                                value: profile.title.includes("Product") ? "Full stack + design" : "Full-stack delivery",
                                 label: "Primary focus",
                             },
                         ].map(
@@ -1448,7 +1461,7 @@ export function PortfolioLanding({
                                                 )}
                                             </div>
                                             <p className={`mt-5 max-w-3xl text-sm leading-7 ${muted}`}>{experience.description}</p>
-                                            {/* {tags.length > 0 && (
+                                            {tags.length > 0 && (
                                                 <div className="mt-6 flex flex-wrap gap-2">
                                                     {tags.map((tag) => (
                                                         <span key={tag} className={`rounded-full border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] ${tagClass}`}>
@@ -1456,7 +1469,7 @@ export function PortfolioLanding({
                                                         </span>
                                                     ))}
                                                 </div>
-                                            )} */}
+                                            )}
                                         </m.article>
                                     );
                                 })}
@@ -1526,7 +1539,7 @@ export function PortfolioLanding({
                                 </div>
                                 <h3 className={`mt-6 text-2xl font-black tracking-[-0.03em] ${heading}`}>Education history</h3>
                                 <p className={`mt-3 max-w-xl text-sm leading-7 ${muted}`}>
-                                    Vietnam National University, Hanoi, Bachelor’s degree in Computer Science
+                                    Add degrees, certifications or formal training here when you are ready. The section is already wired into the landing page layout.
                                 </p>
                             </div>
                             <div className={`rounded-[28px] border p-8 sm:p-10 ${isLight ? "border-sky-100 bg-sky-50/70" : "border-sky-400/20 bg-sky-500/5"}`}>

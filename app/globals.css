@@ -434,6 +434,10 @@ html[data-theme='light'] .project-theme-toggle {
   color: #0f172a !important;
 }
 
+@keyframes loading-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(420%); }
+}
 
 /* Performance: skip expensive rendering for offscreen content */
 .perf-skip-render { content-visibility: auto; contain-intrinsic-size: 800px; }

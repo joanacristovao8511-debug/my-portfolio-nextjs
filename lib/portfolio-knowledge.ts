@@ -19,6 +19,7 @@ export type PortfolioIntent =
   | 'capabilities'
   | 'hiring'
   | 'profile'
+  | 'education'
   | 'general';
 
 function normalize(value: string): string {
@@ -79,6 +80,12 @@ function detectIntent(
     )
   ) {
     return 'skills';
+  }
+
+  if (
+    /\b(education|degree|university|school|academic|study|studied)\b/.test(text)
+  ) {
+    return 'education';
   }
 
   if (
@@ -464,6 +471,31 @@ function formatExperience(
 }
 
 /* ============================================================
+   EDUCATION & SITE CAPABILITIES
+============================================================ */
+
+function formatEducation(): string {
+  return [
+    '## EDUCATION',
+    'Institution: Vietnam National University, Hanoi',
+    "Degree: Bachelor's degree",
+    'Field: Computer Science',
+    'Continuous learning: advanced AI workflows, agent orchestration, system design and distributed applications.',
+  ].join('\n');
+}
+
+function formatCapabilities(): string {
+  return [
+    '## CAPABILITIES',
+    'Launch new products: turn an idea into a polished, production-ready web application around real business goals.',
+    'Modernize existing apps: improve performance, UX, architecture and maintainability without discarding what already works.',
+    'Business dashboards: build internal tools, reporting systems and workflow applications that help teams operate efficiently.',
+    'AI-powered experiences: add AI assistants, intelligent search, automation, RAG and AI-powered workflows to products.',
+    'Approach: business first, clean engineering, and long-term thinking.',
+  ].join('\n');
+}
+
+/* ============================================================
    GENERAL KNOWLEDGE
 ============================================================ */
 
@@ -503,6 +535,10 @@ function buildGeneralKnowledge(
     formatExperience(
       experiences.slice(0, 5),
     ),
+
+    formatEducation(),
+
+    formatCapabilities(),
   ]
     .filter(Boolean)
     .join('\n\n');
@@ -559,6 +595,22 @@ export async function getPortfolioKnowledge(
           profile,
         ) ||
         'No profile information is currently available.',
+    };
+  }
+
+  /* ----------------------------------------------------------
+     EDUCATION
+  ---------------------------------------------------------- */
+
+  if (intent === 'education') {
+    return {
+      intent,
+      knowledge: [
+        formatProfile(profile),
+        formatEducation(),
+      ]
+        .filter(Boolean)
+        .join('\n\n'),
     };
   }
 
