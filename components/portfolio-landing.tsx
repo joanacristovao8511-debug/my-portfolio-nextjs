@@ -10,6 +10,7 @@ import {
     MessageCircle, Send,
 } from "lucide-react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const PortfolioChatbot = dynamic(() => import("@/components/portfolio-chatbot"), {
     ssr: false,
@@ -609,7 +610,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                 }}
                                 className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-sky-500"
                             >
-                                {content?.heroBadge || "Full-Stack AI Developer · Product Builder"}
+                                {content?.heroBadge || "Full-Stack Developer & Problem Solver"}
                             </m.p>
 
                             <m.div
@@ -656,7 +657,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                                 </span>
 
-                                {profile.availability || "Open to selected projects"}
+                                {profile.availability || "Available for selected projects"}
                             </m.div>
 
                             <m.h1
@@ -692,7 +693,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                     ${heading}
                                 `}
                             >
-                                {content?.heroTitle || profile.headline || "Building intelligent digital products with Full-Stack + AI."}
+                                {content?.heroTitle || profile.headline || "I Build Modern Web Apps and Digital Experiences"}
                             </m.h1>
 
                             <m.p
@@ -859,176 +860,63 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                             </m.div>
                         </m.div>
 
-                        {/* Hero visual */}
+                        {/* Hero visual — portrait */}
 
                         <m.div
-                            initial={{
-                                opacity: 0,
-                                scale: 0.94,
-                                y: 18,
-                            }}
-                            animate={{
-                                opacity: 1,
-                                scale: 1,
-                                y: 0,
-                            }}
-                            transition={{
-                                duration: 0.75,
-                                delay: 0.2,
-                                ease: [
-                                    0.16,
-                                    1,
-                                    0.3,
-                                    1,
-                                ] as const,
-                            }}
-                            className="relative"
+                            initial={{ opacity: 0, scale: 0.94, x: 20 }}
+                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.18, ease: [0.16, 1, 0.3, 1] as const }}
+                            className="relative min-h-[390px] sm:min-h-[500px] lg:min-h-[620px]"
                         >
-                            <m.div
-                                animate={{
-                                    y: [0, -8, 0],
-                                }}
-                                transition={{
-                                    duration: 5,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                }}
-                                className="relative"
-                            >
-                                <div className="absolute -inset-6 rounded-[40px] bg-sky-500/10 blur-3xl" />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <m.div
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+                                    className="absolute h-[300px] w-[300px] rounded-full border border-sky-400/20 sm:h-[420px] sm:w-[420px] lg:h-[540px] lg:w-[540px]"
+                                />
+                                <m.div
+                                    animate={{ rotate: -360 }}
+                                    transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
+                                    className="absolute h-[250px] w-[250px] rounded-full border border-dashed border-cyan-300/15 sm:h-[360px] sm:w-[360px] lg:h-[470px] lg:w-[470px]"
+                                />
+                                <div className="absolute h-[280px] w-[280px] rounded-full bg-cyan-500/10 blur-3xl sm:h-[390px] sm:w-[390px] lg:h-[520px] lg:w-[520px]" />
 
-                                <div
-                                    className={`
-                                        senior-hero-card
-                                        relative
-                                        overflow-hidden
-                                        rounded-[32px]
-                                        border
-                                        p-2
-                                        shadow-[0_25px_60px_rgba(15,23,42,0.12)]
-                                        ring-1
-                                        ring-slate-200/50
-                                        ${
-                                            isLight
-                                                ? "border-slate-200 bg-white/90"
-                                                : "border-slate-800 bg-slate-900"
-                                        }
-                                    `}
-                                >
-                                    <div
-                                        className="
-                                            relative
-                                            overflow-hidden
-                                            rounded-[26px]
-                                            bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),transparent_28%),linear-gradient(135deg,_#020817_0%,_#0f172a_45%,_#111827_100%)]
-                                            p-8
-                                            text-white
-                                            sm:p-10
-                                        "
-                                    >
-                                        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-sky-500/20 blur-3xl" />
-
-                                        <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-indigo-500/10 blur-3xl" />
-
-                                        <div className="relative">
-                                            <div className="flex items-start justify-between">
-                                                <div>
-                                                    <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">
-                                                        Digital product
-                                                        builder
-                                                    </p>
-
-                                                    <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
-                                                        Frunco
-                                                        <span className="text-sky-400">
-                                                            .
-                                                        </span>
-                                                    </h2>
-                                                </div>
-
-                                                <m.div
-                                                    whileHover={{
-                                                        rotate: 6,
-                                                        scale: 1.05,
-                                                    }}
-                                                    className="
-                                                        flex
-                                                        h-12
-                                                        w-12
-                                                        items-center
-                                                        justify-center
-                                                        rounded-2xl
-                                                        bg-sky-500
-                                                        shadow-lg
-                                                        shadow-sky-500/20
-                                                    "
-                                                >
-                                                    <Code2 className="h-5 w-5 text-white" />
-                                                </m.div>
-                                            </div>
-
-                                            <div className="mt-12">
-                                                <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-                                                    Focus
-                                                </p>
-
-                                                <p className="mt-3 text-2xl font-bold leading-tight">
-                                                    Products
-                                                    <br />
-                                                    SaaS
-                                                    <br />
-                                                    Dashboards
-                                                </p>
-                                            </div>
-
-                                            <div className="mt-10 grid grid-cols-2 gap-3">
-                                                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                                                    <Code2 className="h-4 w-4 text-sky-400" />
-
-                                                    <p className="mt-3 text-xs text-slate-400">
-                                                        Engineering
-                                                    </p>
-
-                                                    <p className="mt-1 text-sm font-semibold">
-                                                        Full Stack
-                                                    </p>
-                                                </div>
-
-                                                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                                                    <Palette className="h-4 w-4 text-sky-400" />
-
-                                                    <p className="mt-3 text-xs text-slate-400">
-                                                        Experience
-                                                    </p>
-
-                                                    <p className="mt-1 text-sm font-semibold">
-                                                        Product Design
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div className="mt-3 flex items-center gap-2 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-xs text-emerald-300">
-                                                <m.span
-                                                    animate={{
-                                                        opacity: [
-                                                            0.5,
-                                                            1,
-                                                            0.5,
-                                                        ],
-                                                    }}
-                                                    transition={{
-                                                        duration: 2,
-                                                        repeat: Infinity,
-                                                    }}
-                                                    className="h-2 w-2 rounded-full bg-emerald-400"
-                                                />
-
-                                                Available for selected projects
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div className="relative h-[390px] w-full max-w-[520px] overflow-hidden rounded-[2.5rem] sm:h-[500px] lg:h-[620px]">
+                                    <Image
+                                        src="/hero-portrait.png"
+                                        alt={profile.name}
+                                        fill
+                                        priority
+                                        sizes="(max-width: 1024px) 90vw, 520px"
+                                        className="object-cover object-[center_top]"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+                                    <div className="absolute inset-x-8 bottom-8 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
                                 </div>
-                            </m.div>
+
+                                <m.div
+                                    animate={{ y: [0, -8, 0] }}
+                                    transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
+                                    className="absolute right-0 top-16 rounded-2xl border border-cyan-300/20 bg-slate-950/75 px-3 py-2 shadow-xl backdrop-blur-xl sm:right-2 sm:top-20"
+                                >
+                                    <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-cyan-300">AI / LLM</p>
+                                    <p className="mt-1 text-xs font-semibold text-white">Intelligent systems</p>
+                                </m.div>
+
+                                <m.div
+                                    animate={{ y: [0, 8, 0] }}
+                                    transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                                    className="absolute left-0 bottom-16 rounded-2xl border border-sky-300/20 bg-slate-950/75 px-3 py-2 shadow-xl backdrop-blur-xl sm:left-2 sm:bottom-24"
+                                >
+                                    <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-sky-300">FULL STACK</p>
+                                    <p className="mt-1 text-xs font-semibold text-white">Web applications</p>
+                                </m.div>
+                            </div>
+
+                            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-slate-950/60 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 shadow-xl backdrop-blur-xl sm:bottom-8">
+                                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
+                                Building with code + AI
+                            </div>
                         </m.div>
                     </div>
 
@@ -1045,7 +933,7 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                                 label: "Technical skills",
                             },
                             {
-                                value: profile.title.includes("Product") ? "Full stack + design" : "Full-stack delivery",
+                                value: profile.title.includes("Product") ? "Full stack + AI" : "Full-stack delivery",
                                 label: "Primary focus",
                             },
                         ].map(
