@@ -39,37 +39,37 @@ import { LoadingProgress } from "./loading-progress";
 const projectCardFallbacks: Record<string, {
     built: string;
     focus: string;
-    outcome: string;
+    role: string;
 }> = {
     "ai-workflow-automation": {
         built: "AI-assisted workflow automation that connects structured business data with intelligent processing flows.",
         focus: "AI automation · APIs · TypeScript · workflow orchestration",
-        outcome: "",
+        role: "",
     },
     "retrieval-augmented-generation": {
         built: "A knowledge assistant that grounds AI responses in relevant source context instead of relying only on model memory.",
         focus: "RAG · retrieval · source grounding · Next.js · TypeScript",
-        outcome: "",
+        role: "",
     },
     "developer-portfolio-cms": {
         built: "A database-driven portfolio platform with project, skill, experience and profile management.",
         focus: "Next.js · Prisma · PostgreSQL · admin UX · AI integration",
-        outcome: "",
+        role: "",
     },
     "business-management-platform": {
         built: "A full-stack business platform for centralizing customers, records, workflows and day-to-day operations.",
         focus: "Full-stack architecture · dashboards · structured data · responsive UX",
-        outcome: "",
+        role: "",
     },
     "saas-analytics-dashboard": {
         built: "A SaaS analytics interface for monitoring business performance, users, revenue and operational metrics.",
         focus: "React · Next.js · TypeScript · data visualization · dashboard UX",
-        outcome: "",
+        role: "",
     },
     "ai-portfolio-assistant": {
         built: "A conversational AI layer that lets visitors explore portfolio knowledge through natural-language questions.",
         focus: "OpenAI · contextual knowledge · conversation UX · Next.js",
-        outcome: "",
+        role: "",
     },
 };
 
@@ -78,7 +78,7 @@ function getProjectCardContent(project: PortfolioLandingProps["projectList"][num
     return {
         built: project.description?.trim() || fallback?.built || project.summary,
         focus: project.architecture?.trim() || fallback?.focus || parseTags(project.tags).slice(0, 5).join(" · "),
-        outcome: project.impact?.trim() || fallback?.outcome || "",
+        role: project.role?.trim() || fallback?.role || "",
     };
 }
 
@@ -1401,32 +1401,22 @@ export function PortfolioLanding({
                                                                         <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
                                                                         <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.built}</p>
                                                                     </div>
+                                                                    {
+                                                                        cardContent.role !== "" && (
+                                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
+                                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">My role</p>
+                                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.role}</p>
+                                                                            </div>
+                                                                        )
+                                                                    }
                                                                     <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-white" : "border-slate-800 bg-slate-900/50"}`}>
                                                                         <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
                                                                         <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.focus}</p>
                                                                     </div>
-                                                                    {
-                                                                        cardContent.outcome !== "" && (
-                                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
-                                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Outcome</p>
-                                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.outcome}</p>
-                                                                            </div>
-                                                                        )
-                                                                    }
 
                                                                 </div>
                                                             );
                                                         })()}
-
-                                                        {displayTags.length > 0 && (
-                                                            <div className="mt-5 flex flex-wrap gap-1.5">
-                                                                {displayTags.slice(0, 5).map((tag) => (
-                                                                    <span key={tag} className={`rounded-full border px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.11em] ${tagClass}`}>
-                                                                        {tag}
-                                                                    </span>
-                                                                ))}
-                                                            </div>
-                                                        )}
                                                     </div>
 
                                                     <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-200/60 pt-5 dark:border-slate-800/70">
