@@ -314,3 +314,122 @@ button[aria-label="Open portfolio assistant"] {
   min-height: 44px;
   min-width: 44px;
 }
+
+/* ============================================================
+   Project case-study theme surface
+   Reuses the landing page's portfolio-theme variables so project
+   pages follow the same light/dark preference.
+   ============================================================ */
+.project-page {
+  position: relative;
+  isolation: isolate;
+  background: var(--background);
+  color: var(--foreground);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.project-page__glow {
+  background:
+    radial-gradient(circle at 15% 5%, rgba(14, 165, 233, 0.16), transparent 28%),
+    radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.12), transparent 28%);
+  opacity: 1;
+}
+
+html[data-theme='light'] .project-page__glow {
+  opacity: 0.7;
+}
+
+.project-heading {
+  color: var(--foreground);
+}
+
+.project-body,
+.project-muted {
+  color: var(--muted);
+}
+
+.project-card {
+  border-color: var(--border);
+  background: var(--panel);
+  box-shadow: var(--ui-shadow);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  box-shadow: var(--ui-shadow-hover);
+}
+
+.project-card--accent {
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+  background: color-mix(in srgb, var(--accent) 7%, var(--panel));
+}
+
+.project-secondary-button {
+  border-color: var(--border);
+  background: var(--button);
+  color: var(--foreground);
+}
+
+.project-secondary-button:hover {
+  background: var(--button-hover);
+}
+
+.project-preview-frame {
+  border-color: var(--border);
+  background: var(--panel-strong);
+  box-shadow: var(--ui-shadow-hover);
+}
+
+.project-browser-bar {
+  border-color: var(--border);
+}
+
+.project-browser-address {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--foreground) 4%, transparent);
+}
+
+.project-empty-preview,
+.project-image-placeholder {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(14, 165, 233, 0.18), transparent 35%),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), var(--panel-strong));
+  color: var(--accent-strong);
+}
+
+.project-nav-link {
+  color: var(--muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.project-nav-link:hover {
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  color: var(--foreground);
+}
+
+.project-tech {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--foreground) 4%, transparent);
+  color: var(--muted);
+}
+
+.project-related,
+.project-page footer {
+  border-color: var(--border);
+}
+
+.project-theme-toggle {
+  border-color: var(--border) !important;
+  background: var(--button) !important;
+  color: var(--foreground) !important;
+  box-shadow: none !important;
+}
+
+.project-theme-toggle:hover {
+  background: var(--button-hover) !important;
+}
+
+html[data-theme='light'] .project-theme-toggle {
+  color: #0f172a !important;
+}

@@ -17,6 +17,7 @@ import {
 import { ensureDatabase, prisma } from "@/lib/db";
 import { absoluteUrl, siteConfig } from "@/lib/site-config";
 import { BreadcrumbSchema } from "@/app/schema";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const revalidate = 60;
 
@@ -67,10 +68,7 @@ function StorySection({
   return (
     <article
       id={id}
-      className={`scroll-mt-28 rounded-[28px] border p-7 sm:p-9 ${tone === "accent"
-        ? "border-sky-400/20 bg-sky-400/[0.07]"
-        : "border-white/10 bg-white/[0.035]"
-        }`}
+      className={`project-card scroll-mt-28 rounded-[28px] border p-7 sm:p-9 ${tone === "accent" ? "project-card--accent" : ""}`}
     >
       <div className="flex items-start gap-4">
         <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-sky-400/20 bg-sky-400/10 text-sky-300">
@@ -78,10 +76,10 @@ function StorySection({
         </div>
         <div>
           <p className="text-[10px] font-black uppercase tracking-[0.24em] text-sky-400">{eyebrow}</p>
-          <h2 className="mt-2 text-2xl font-black tracking-[-0.03em] text-white sm:text-3xl">{title}</h2>
+          <h2 className="project-heading mt-2 text-2xl font-black tracking-[-0.03em] sm:text-3xl">{title}</h2>
         </div>
       </div>
-      <p className="mt-6 max-w-3xl text-base leading-8 text-slate-300 whitespace-pre-line">{text}</p>
+      <p className="project-body mt-6 max-w-3xl text-base leading-8 whitespace-pre-line">{text}</p>
     </article>
   );
 }
@@ -186,29 +184,32 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
   };
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#070b12] text-white">
+    <main className="project-page min-h-screen overflow-hidden">
       <BreadcrumbSchema items={breadcrumbItems} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
       />
-      <div className="pointer-events-none fixed inset-0 -z-0 bg-[radial-gradient(circle_at_15%_5%,rgba(14,165,233,0.16),transparent_28%),radial-gradient(circle_at_85%_30%,rgba(99,102,241,0.12),transparent_28%)]" />
+      <div className="project-page__glow pointer-events-none fixed inset-0 -z-0" />
       <div className="relative mx-auto max-w-7xl px-5 py-7 sm:px-8 sm:py-10">
-        <Link href="/#work" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition hover:text-white">
-          <ArrowLeft className="h-4 w-4" /> Back to selected work
-        </Link>
+        <div className="flex items-center justify-between gap-4">
+          <Link href="/#work" className="project-muted inline-flex items-center gap-2 text-sm font-semibold transition hover:text-[var(--foreground)]">
+            <ArrowLeft className="h-4 w-4" /> Back to selected work
+          </Link>
+          <ThemeToggle className="project-theme-toggle h-10 w-10 !justify-center !px-0 !py-0" />
+        </div>
 
         <header className="mt-12 max-w-5xl sm:mt-16">
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-sky-300">
               {project.category || "Project"}
             </span>
-            {project.status && <span className="text-xs font-semibold capitalize text-slate-500">{project.status}</span>}
+            {project.status && <span className="project-muted text-xs font-semibold capitalize">{project.status}</span>}
             {project.featured && <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-emerald-300">Featured work</span>}
           </div>
 
-          <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[0.94] tracking-[-0.055em] sm:text-7xl">{project.title}</h1>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">{project.summary}</p>
+          <h1 className="project-heading mt-6 max-w-4xl text-5xl font-black leading-[0.94] tracking-[-0.055em] sm:text-7xl">{project.title}</h1>
+          <p className="project-body mt-7 max-w-3xl text-lg leading-8 sm:text-xl">{project.summary}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             {project.url ? (
@@ -217,7 +218,7 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
               </a>
             ) : null}
             {project.githubUrl ? (
-              <a href={project.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">
+              <a href={project.githubUrl} target="_blank" rel="noreferrer" className="project-secondary-button inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-bold transition">
                 {/* <Github className="h-4 w-4" /> */}
                 Source code
               </a>
@@ -225,17 +226,17 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
           </div>
         </header>
 
-        <div className="mt-12 overflow-hidden rounded-[30px] border border-white/10 bg-slate-950 p-2 shadow-2xl shadow-black/30 sm:mt-14">
-          <div className="flex h-10 items-center gap-1.5 border-b border-white/10 px-4">
+        <div className="project-preview-frame mt-12 overflow-hidden rounded-[30px] border p-2 shadow-2xl sm:mt-14">
+          <div className="project-browser-bar flex h-10 items-center gap-1.5 border-b px-4">
             <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" /><span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
-            <div className="mx-auto h-5 w-2/5 rounded-md border border-white/10 bg-white/[0.04]" />
+            <div className="project-browser-address mx-auto h-5 w-2/5 rounded-md border" />
           </div>
           {project.imageUrl ? (
             <div className="max-h-[720px] overflow-auto">
               <img src={project.imageUrl} alt={`${project.title} product preview`} loading="eager" decoding="async" className="block h-auto min-h-full w-full object-contain" />
             </div>
           ) : (
-            <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-sky-500/20 via-slate-900 to-slate-950 text-sm font-semibold text-sky-300">Project preview not available yet.</div>
+            <div className="project-empty-preview flex aspect-video items-center justify-center text-sm font-semibold">Project preview not available yet.</div>
           )}
         </div>
 
@@ -250,43 +251,43 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
           </div>
 
           <aside className="lg:sticky lg:top-24 lg:space-y-5">
-            <div className="rounded-[24px] border border-white/10 bg-white/[0.035] p-6">
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-500">Case study map</p>
+            <div className="project-card rounded-[24px] border p-6">
+              <p className="project-muted text-[10px] font-black uppercase tracking-[0.22em]">Case study map</p>
               <nav className="mt-4 space-y-1">
-                <a href="#overview" className="block rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 hover:bg-white/5 hover:text-white">Overview</a>
-                {sections.map((section) => <a key={section.id} href={`#${section.id}`} className="block rounded-lg px-3 py-2 text-sm font-semibold text-slate-400 hover:bg-white/5 hover:text-white">{section.label}</a>)}
+                <a href="#overview" className="project-nav-link block rounded-lg px-3 py-2 text-sm font-semibold">Overview</a>
+                {sections.map((section) => <a key={section.id} href={`#${section.id}`} className="project-nav-link block rounded-lg px-3 py-2 text-sm font-semibold">{section.label}</a>)}
               </nav>
             </div>
 
-            <div className="rounded-[24px] border border-white/10 bg-white/[0.035] p-6">
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-500">Technology</p>
+            <div className="project-card rounded-[24px] border p-6">
+              <p className="project-muted text-[10px] font-black uppercase tracking-[0.22em]">Technology</p>
               <div className="mt-4 flex flex-wrap gap-2">
-                {technologies.map((tech) => <span key={tech.name} className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-slate-300">{tech.name}</span>)}
+                {technologies.map((tech) => <span key={tech.name} className="project-tech rounded-full border px-3 py-1.5 text-xs font-semibold">{tech.name}</span>)}
               </div>
             </div>
           </aside>
         </div>
 
         {related.length > 0 && (
-          <section className="mt-20 border-t border-white/10 pt-12">
+          <section className="project-related mt-20 border-t pt-12">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div><p className="text-[10px] font-black uppercase tracking-[0.24em] text-sky-400">Continue exploring</p><h2 className="mt-2 text-3xl font-black tracking-[-0.04em]">More selected work</h2></div>
-              <Link href="/#work" className="inline-flex items-center gap-2 text-sm font-bold text-slate-300 hover:text-white">View all <ArrowUpRight className="h-4 w-4" /></Link>
+              <Link href="/#work" className="project-muted inline-flex items-center gap-2 text-sm font-bold hover:text-[var(--foreground)]">View all <ArrowUpRight className="h-4 w-4" /></Link>
             </div>
             <div className="mt-7 grid gap-5 md:grid-cols-3">
               {related.map((item) => (
-                <Link key={item.slug} href={`/projects/${item.slug}`} className="group overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.035] transition hover:-translate-y-1 hover:border-sky-400/25">
-                  {item.imageUrl ? <img src={item.imageUrl} alt={`${item.title} project preview`} loading="lazy" decoding="async" className="aspect-video w-full object-cover" /> : <div className="aspect-video bg-slate-900" />}
-                  <div className="p-5"><p className="text-[10px] font-black uppercase tracking-[0.18em] text-sky-400">{item.category || "Project"}</p><h3 className="mt-2 text-lg font-black">{item.title}</h3><p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-400">{item.summary}</p><span className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-slate-300 group-hover:text-white">Read case study <ArrowUpRight className="h-3.5 w-3.5" /></span></div>
+                <Link key={item.slug} href={`/projects/${item.slug}`} className="project-card group overflow-hidden rounded-[24px] border transition hover:-translate-y-1 hover:border-sky-400/25">
+                  {item.imageUrl ? <img src={item.imageUrl} alt={`${item.title} project preview`} loading="lazy" decoding="async" className="aspect-video w-full object-cover" /> : <div className="project-image-placeholder aspect-video" />}
+                  <div className="p-5"><p className="text-[10px] font-black uppercase tracking-[0.18em] text-sky-500">{item.category || "Project"}</p><h3 className="project-heading mt-2 text-lg font-black">{item.title}</h3><p className="project-muted mt-2 line-clamp-2 text-sm leading-6">{item.summary}</p><span className="project-muted mt-4 inline-flex items-center gap-1 text-xs font-bold group-hover:text-[var(--foreground)]">Read case study <ArrowUpRight className="h-3.5 w-3.5" /></span></div>
                 </Link>
               ))}
             </div>
           </section>
         )}
 
-        <footer className="mt-16 flex flex-wrap items-center justify-between gap-5 border-t border-white/10 pt-8">
-          <Link href="/#work" className="inline-flex items-center gap-2 text-sm font-bold text-slate-300 hover:text-white"><ArrowLeft className="h-4 w-4" /> Explore more work</Link>
-          <Link href="/#contact" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 hover:bg-slate-200">Discuss a project <ArrowUpRight className="h-4 w-4" /></Link>
+        <footer className="mt-16 flex flex-wrap items-center justify-between gap-5 border-t pt-8">
+          <Link href="/#work" className="project-muted inline-flex items-center gap-2 text-sm font-bold hover:text-[var(--foreground)]"><ArrowLeft className="h-4 w-4" /> Explore more work</Link>
+          <Link href="/#contact" className="inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-bold text-[var(--background)] transition hover:opacity-85">Discuss a project <ArrowUpRight className="h-4 w-4" /></Link>
         </footer>
       </div>
     </main>
