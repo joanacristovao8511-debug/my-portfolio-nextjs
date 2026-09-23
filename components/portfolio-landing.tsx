@@ -1448,7 +1448,7 @@ export function PortfolioLanding({
                                                 )}
                                             </div>
                                             <p className={`mt-5 max-w-3xl text-sm leading-7 ${muted}`}>{experience.description}</p>
-                                            {tags.length > 0 && (
+                                            {/* {tags.length > 0 && (
                                                 <div className="mt-6 flex flex-wrap gap-2">
                                                     {tags.map((tag) => (
                                                         <span key={tag} className={`rounded-full border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] ${tagClass}`}>
@@ -1456,7 +1456,7 @@ export function PortfolioLanding({
                                                         </span>
                                                     ))}
                                                 </div>
-                                            )}
+                                            )} */}
                                         </m.article>
                                     );
                                 })}
