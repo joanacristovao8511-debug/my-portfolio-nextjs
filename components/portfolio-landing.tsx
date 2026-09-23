@@ -44,32 +44,32 @@ const projectCardFallbacks: Record<string, {
     "ai-workflow-automation": {
         built: "AI-assisted workflow automation that connects structured business data with intelligent processing flows.",
         focus: "AI automation · APIs · TypeScript · workflow orchestration",
-        outcome: "Designed to reduce repetitive manual work while keeping business workflows structured and understandable.",
+        outcome: "",
     },
     "retrieval-augmented-generation": {
         built: "A knowledge assistant that grounds AI responses in relevant source context instead of relying only on model memory.",
         focus: "RAG · retrieval · source grounding · Next.js · TypeScript",
-        outcome: "Focused on useful, context-aware answers with a production-minded application architecture.",
+        outcome: "",
     },
     "developer-portfolio-cms": {
         built: "A database-driven portfolio platform with project, skill, experience and profile management.",
         focus: "Next.js · Prisma · PostgreSQL · admin UX · AI integration",
-        outcome: "Turns portfolio content into a maintainable product instead of a collection of hard-coded pages.",
+        outcome: "",
     },
     "business-management-platform": {
         built: "A full-stack business platform for centralizing customers, records, workflows and day-to-day operations.",
         focus: "Full-stack architecture · dashboards · structured data · responsive UX",
-        outcome: "Designed to give teams a clearer operational workspace and reduce fragmented business processes.",
+        outcome: "",
     },
     "saas-analytics-dashboard": {
         built: "A SaaS analytics interface for monitoring business performance, users, revenue and operational metrics.",
         focus: "React · Next.js · TypeScript · data visualization · dashboard UX",
-        outcome: "Built around information hierarchy so important metrics can be understood quickly and acted on.",
+        outcome: "",
     },
     "ai-portfolio-assistant": {
         built: "A conversational AI layer that lets visitors explore portfolio knowledge through natural-language questions.",
         focus: "OpenAI · contextual knowledge · conversation UX · Next.js",
-        outcome: "Makes the portfolio interactive while keeping core experience, projects and services discoverable without the assistant.",
+        outcome: "",
     },
 };
 
