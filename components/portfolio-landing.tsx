@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 
 import { ProcessSection } from "./sections/process";
 import { TestimonialsSection } from "./sections/testimonials";
@@ -289,7 +289,7 @@ export function PortfolioLanding({
                                 {/* Logo */}
 
                                 <a
-                                    href="#main-content"
+                                    href="#home"
                                     onClick={() =>
                                         setMobileMenu(false)
                                     }
@@ -669,8 +669,8 @@ export function PortfolioLanding({
             ====================================================== */}
 
                     <section
-                        id="top"
-                        className="relative"
+                        id="home"
+                        className="relative scroll-mt-20"
                     >
                         <div className="senior-hero mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:pb-32 lg:pt-28">
                             <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
@@ -1365,6 +1365,9 @@ export function PortfolioLanding({
                             ) : (
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                                     {visibleProjects.map((project, index) => {
+                                        const previousProject = visibleProjects[index - 1];
+                                        const showFeaturedHeading = index === 0 && project.featured;
+                                        const showShippedHeading = !project.featured && (index === 0 || previousProject?.featured);
                                         const tags = parseTags(project.tags);
                                         const skillNames = (project.skills ?? []).map((skill) => skill.name);
                                         const displayTags = Array.from(new Set([...skillNames, ...tags]));

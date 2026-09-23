@@ -80,6 +80,7 @@ export type PortfolioLandingProps = {
 };
 
 export const navItems = [
+    { label: "Home", href: "#home", id: "home" },
     { label: "Work", href: "#work", id: "work" },
     { label: "Experience", href: "#experience", id: "experience" },
     { label: "Services", href: "#services", id: "services" },
