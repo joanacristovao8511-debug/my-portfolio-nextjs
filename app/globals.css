@@ -433,3 +433,7 @@ html[data-theme='light'] .project-page__glow {
 html[data-theme='light'] .project-theme-toggle {
   color: #0f172a !important;
 }
+
+
+/* Performance: skip expensive rendering for offscreen content */
+.perf-skip-render { content-visibility: auto; contain-intrinsic-size: 800px; }

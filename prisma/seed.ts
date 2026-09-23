@@ -732,8 +732,6 @@ async function main() {
         prisma.adminUser.count(),
         prisma.profile.count(),
     ]);
-
-    console.log("");
     console.log(
         "========================================",
     );

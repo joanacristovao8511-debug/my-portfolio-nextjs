@@ -40,8 +40,6 @@ async function main(): Promise<void> {
 
         linked += matches.length;
     }
-
-    console.log(`Linked ${linked} project skills.`);
 }
 
 main()
