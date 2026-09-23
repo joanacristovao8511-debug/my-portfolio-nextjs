@@ -78,7 +78,7 @@ function getProjectCardContent(project: PortfolioLandingProps["projectList"][num
     return {
         built: project.description?.trim() || fallback?.built || project.summary,
         focus: project.architecture?.trim() || fallback?.focus || parseTags(project.tags).slice(0, 5).join(" · "),
-        outcome: project.impact?.trim() || fallback?.outcome || "Built with a focus on usability, maintainability and real product value.",
+        outcome: project.impact?.trim() || fallback?.outcome || "",
     };
 }
 
@@ -127,31 +127,31 @@ export function PortfolioLanding({
 
     return (
         <LazyMotion features={domAnimation}>
-        <>
-            {showInitialLoader && (
-                <div
-                    className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--background)]/95 px-6 backdrop-blur-xl"
-                    role="status"
-                    aria-label="Loading portfolio"
-                >
-                    <div className="w-full max-w-xl rounded-[28px] border border-[color-mix(in_srgb,var(--foreground)_10%,transparent)] bg-[color-mix(in_srgb,var(--foreground)_4%,transparent)] p-7 shadow-[0_24px_80px_rgba(15,23,42,0.12)] sm:p-9">
-                        <div className="mb-8 flex items-center gap-3">
-                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-500 text-sm font-black text-white shadow-lg shadow-blue-500/20">
-                                A
+            <>
+                {showInitialLoader && (
+                    <div
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--background)]/95 px-6 backdrop-blur-xl"
+                        role="status"
+                        aria-label="Loading portfolio"
+                    >
+                        <div className="w-full max-w-xl rounded-[28px] border border-[color-mix(in_srgb,var(--foreground)_10%,transparent)] bg-[color-mix(in_srgb,var(--foreground)_4%,transparent)] p-7 shadow-[0_24px_80px_rgba(15,23,42,0.12)] sm:p-9">
+                            <div className="mb-8 flex items-center gap-3">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-500 text-sm font-black text-white shadow-lg shadow-blue-500/20">
+                                    A
+                                </div>
+                                <div>
+                                    <p className="text-sm font-semibold tracking-tight text-[color:var(--foreground)]">Portfolio</p>
+                                    <p className="text-xs text-[color:var(--muted)]">Full-Stack Developer &amp; AI Product Builder</p>
+                                </div>
                             </div>
-                            <div>
-                                <p className="text-sm font-semibold tracking-tight text-[color:var(--foreground)]">Portfolio</p>
-                                <p className="text-xs text-[color:var(--muted)]">Full-Stack Developer &amp; AI Product Builder</p>
-                            </div>
+                            <LoadingProgress durationMs={2600} onComplete={finishInitialLoader} />
                         </div>
-                        <LoadingProgress durationMs={2600} onComplete={finishInitialLoader} />
                     </div>
-                </div>
-            )}
-            <a href="#main-content" className="skip-link">Skip to main content</a>
-        <main
-            id="main-content"
-            className={`
+                )}
+                <a href="#main-content" className="skip-link">Skip to main content</a>
+                <main
+                    id="main-content"
+                    className={`
                 senior-shell
                 min-h-screen
                 overflow-x-clip
@@ -159,31 +159,31 @@ export function PortfolioLanding({
                 duration-500
                 ${pageClass}
             `}
-        >
-            {/* =====================================================
+                >
+                    {/* =====================================================
                 ATMOSPHERIC BACKGROUND
             ====================================================== */}
 
-            <div
-                className="
+                    <div
+                        className="
                     pointer-events-none
                     fixed
                     inset-0
                     -z-10
                     overflow-hidden
                 "
-            >
-                <m.div
-                    animate={{
-                        x: [0, 25, 0],
-                        y: [0, 20, 0],
-                    }}
-                    transition={{
-                        duration: 14,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                    }}
-                    className={`
+                    >
+                        <m.div
+                            animate={{
+                                x: [0, 25, 0],
+                                y: [0, 20, 0],
+                            }}
+                            transition={{
+                                duration: 14,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                            }}
+                            className={`
                         absolute
                         left-[-15%]
                         top-[-10%]
@@ -191,25 +191,24 @@ export function PortfolioLanding({
                         w-[500px]
                         rounded-full
                         blur-3xl
-                        ${
-                            isLight
-                                ? "bg-sky-200/40"
-                                : "bg-sky-950/30"
-                        }
+                        ${isLight
+                                    ? "bg-sky-200/40"
+                                    : "bg-sky-950/30"
+                                }
                     `}
-                />
+                        />
 
-                <m.div
-                    animate={{
-                        x: [0, -20, 0],
-                        y: [0, 25, 0],
-                    }}
-                    transition={{
-                        duration: 17,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                    }}
-                    className={`
+                        <m.div
+                            animate={{
+                                x: [0, -20, 0],
+                                y: [0, 25, 0],
+                            }}
+                            transition={{
+                                duration: 17,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                            }}
+                            className={`
                         absolute
                         right-[-10%]
                         top-[25%]
@@ -217,64 +216,61 @@ export function PortfolioLanding({
                         w-[450px]
                         rounded-full
                         blur-3xl
-                        ${
-                            isLight
-                                ? "bg-blue-100/40"
-                                : "bg-blue-950/20"
-                        }
+                        ${isLight
+                                    ? "bg-blue-100/40"
+                                    : "bg-blue-950/20"
+                                }
                     `}
-                />
+                        />
 
-                <div
-                    className={`
+                        <div
+                            className={`
                         absolute
                         inset-0
-                        ${
-                            isLight
-                                ? "opacity-[0.22]"
-                                : "opacity-[0.1]"
-                        }
+                        ${isLight
+                                    ? "opacity-[0.22]"
+                                    : "opacity-[0.1]"
+                                }
                     `}
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(rgba(100,116,139,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(100,116,139,0.12) 1px, transparent 1px)",
-                        backgroundSize:
-                            "48px 48px",
-                        maskImage:
-                            "linear-gradient(to bottom, black, transparent 75%)",
-                    }}
-                />
-            </div>
+                            style={{
+                                backgroundImage:
+                                    "linear-gradient(rgba(100,116,139,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(100,116,139,0.12) 1px, transparent 1px)",
+                                backgroundSize:
+                                    "48px 48px",
+                                maskImage:
+                                    "linear-gradient(to bottom, black, transparent 75%)",
+                            }}
+                        />
+                    </div>
 
-            {/* =====================================================
+                    {/* =====================================================
                 NAVIGATION
             ====================================================== */}
 
-            <header className="sticky top-0 z-50">
-                <m.div
-                    animate={{
-                        boxShadow: scrolled
-                            ? isLight
-                                ? "0 10px 35px rgba(15,23,42,0.07)"
-                                : "0 10px 35px rgba(0,0,0,0.22)"
-                            : "0 0 0 rgba(0,0,0,0)",
-                    }}
-                    className={`
+                    <header className="sticky top-0 z-50">
+                        <m.div
+                            animate={{
+                                boxShadow: scrolled
+                                    ? isLight
+                                        ? "0 10px 35px rgba(15,23,42,0.07)"
+                                        : "0 10px 35px rgba(0,0,0,0.22)"
+                                    : "0 0 0 rgba(0,0,0,0)",
+                            }}
+                            className={`
                         senior-header
                         border-b
                         backdrop-blur-2xl
                         transition-colors
                         duration-300
                         shadow-[0_8px_24px_rgba(15,23,42,0.04)]
-                        ${
-                            isLight
-                                ? "border-slate-200/80 bg-white/80"
-                                : "border-slate-800/70 bg-slate-950/80"
-                        }
+                        ${isLight
+                                    ? "border-slate-200/80 bg-white/80"
+                                    : "border-slate-800/70 bg-slate-950/80"
+                                }
                     `}
-                >
-                    <div
-                        className={`
+                        >
+                            <div
+                                className={`
                             mx-auto
                             flex
                             max-w-7xl
@@ -284,28 +280,27 @@ export function PortfolioLanding({
                             transition-all
                             duration-300
                             sm:px-6
-                            ${
-                                scrolled
-                                    ? "h-16"
-                                    : "h-20"
-                            }
+                            ${scrolled
+                                        ? "h-16"
+                                        : "h-20"
+                                    }
                         `}
-                    >
-                        {/* Logo */}
+                            >
+                                {/* Logo */}
 
-                        <a
-                            href="#main-content"
-                            onClick={() =>
-                                setMobileMenu(false)
-                            }
-                            className="group flex items-center gap-2 sm:gap-3"
-                        >
-                            <m.div
-                                whileHover={{
-                                    rotate: -4,
-                                    scale: 1.05,
-                                }}
-                                className="
+                                <a
+                                    href="#main-content"
+                                    onClick={() =>
+                                        setMobileMenu(false)
+                                    }
+                                    className="group flex items-center gap-2 sm:gap-3"
+                                >
+                                    <m.div
+                                        whileHover={{
+                                            rotate: -4,
+                                            scale: 1.05,
+                                        }}
+                                        className="
                                     flex
                                     h-9
                                     w-9
@@ -319,13 +314,13 @@ export function PortfolioLanding({
                                     sm:h-11
                                     sm:w-11
                                 "
-                            >
-                                <Code2 className="h-4 w-4 sm:h-5 sm:w-5" />
-                            </m.div>
+                                    >
+                                        <Code2 className="h-4 w-4 sm:h-5 sm:w-5" />
+                                    </m.div>
 
-                            <div className="min-w-0">
-                                <p
-                                    className={`
+                                    <div className="min-w-0">
+                                        <p
+                                            className={`
                                         truncate
                                         text-xs
                                         font-black
@@ -333,39 +328,39 @@ export function PortfolioLanding({
                                         sm:text-sm
                                         ${heading}
                                     `}
-                                >
-                                    {profile.name}
-                                </p>
+                                        >
+                                            {profile.name}
+                                        </p>
 
-                                <p
-                                    className={`
+                                        <p
+                                            className={`
                                         text-[9px]
                                         uppercase
                                         tracking-[0.18em]
                                         sm:text-[10px]
                                         ${muted}
                                     `}
-                                >
-                                    {profile.title}
-                                </p>
-                            </div>
-                        </a>
+                                        >
+                                            {profile.title}
+                                        </p>
+                                    </div>
+                                </a>
 
-                        {/* Desktop navigation */}
+                                {/* Desktop navigation */}
 
-                        <nav aria-label="Primary navigation" className="hidden items-center gap-2 md:flex">
-                            {navItems.map((item) => {
-                                const active =
-                                    activeSection ===
-                                    item.id;
+                                <nav aria-label="Primary navigation" className="hidden items-center gap-2 md:flex">
+                                    {navItems.map((item) => {
+                                        const active =
+                                            activeSection ===
+                                            item.id;
 
-                                return (
-                                    <a
-                                        key={item.id}
-                                        href={
-                                            item.href
-                                        }
-                                        className={`
+                                        return (
+                                            <a
+                                                key={item.id}
+                                                href={
+                                                    item.href
+                                                }
+                                                className={`
                                             relative
                                             rounded-full
                                             px-4
@@ -373,58 +368,56 @@ export function PortfolioLanding({
                                             text-sm
                                             font-medium
                                             transition
-                                            ${
-                                                active
-                                                    ? isLight
-                                                        ? "text-slate-950"
-                                                        : "text-white"
-                                                    : muted
-                                            }
+                                            ${active
+                                                        ? isLight
+                                                            ? "text-slate-950"
+                                                            : "text-white"
+                                                        : muted
+                                                    }
                                         `}
-                                    >
-                                        {active && (
-                                            <m.span
-                                                layoutId="active-nav"
-                                                className={`
+                                            >
+                                                {active && (
+                                                    <m.span
+                                                        layoutId="active-nav"
+                                                        className={`
                                                     absolute
                                                     inset-0
                                                     -z-10
                                                     rounded-full
-                                                    ${
-                                                        isLight
-                                                            ? "bg-slate-100"
-                                                            : "bg-white/10"
-                                                    }
+                                                    ${isLight
+                                                                ? "bg-slate-100"
+                                                                : "bg-white/10"
+                                                            }
                                                 `}
-                                                transition={{
-                                                    type: "spring",
-                                                    stiffness: 400,
-                                                    damping: 30,
-                                                }}
-                                            />
-                                        )}
+                                                        transition={{
+                                                            type: "spring",
+                                                            stiffness: 400,
+                                                            damping: 30,
+                                                        }}
+                                                    />
+                                                )}
 
-                                        <span className="transition-colors hover:text-sky-500">
-                                            {item.label}
-                                        </span>
-                                    </a>
-                                );
-                            })}
-                        </nav>
+                                                <span className="transition-colors hover:text-sky-500">
+                                                    {item.label}
+                                                </span>
+                                            </a>
+                                        );
+                                    })}
+                                </nav>
 
-                        {/* Actions */}
+                                {/* Actions */}
 
-                        <div className="flex items-center gap-2">
-                            <button
-                                type="button"
-                                onClick={() =>
-                                    setTheme(
-                                        isLight
-                                            ? "dark"
-                                            : "light",
-                                    )
-                                }
-                                className={`
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setTheme(
+                                                isLight
+                                                    ? "dark"
+                                                    : "light",
+                                            )
+                                        }
+                                        className={`
                                     flex
                                     h-10
                                     w-10
@@ -435,42 +428,42 @@ export function PortfolioLanding({
                                     transition
                                     ${secondaryButton}
                                 `}
-                                aria-label="Toggle color theme"
-                            >
-                                <AnimatePresence
-                                    mode="wait"
-                                    initial={false}
-                                >
-                                    <m.span
-                                        key={theme}
-                                        initial={{
-                                            opacity: 0,
-                                            rotate: -30,
-                                            scale: 0.7,
-                                        }}
-                                        animate={{
-                                            opacity: 1,
-                                            rotate: 0,
-                                            scale: 1,
-                                        }}
-                                        exit={{
-                                            opacity: 0,
-                                            rotate: 30,
-                                            scale: 0.7,
-                                        }}
+                                        aria-label="Toggle color theme"
                                     >
-                                        {isLight ? (
-                                            <Moon className="h-4 w-4" />
-                                        ) : (
-                                            <SunMedium className="h-4 w-4 text-amber-400" />
-                                        )}
-                                    </m.span>
-                                </AnimatePresence>
-                            </button>
+                                        <AnimatePresence
+                                            mode="wait"
+                                            initial={false}
+                                        >
+                                            <m.span
+                                                key={theme}
+                                                initial={{
+                                                    opacity: 0,
+                                                    rotate: -30,
+                                                    scale: 0.7,
+                                                }}
+                                                animate={{
+                                                    opacity: 1,
+                                                    rotate: 0,
+                                                    scale: 1,
+                                                }}
+                                                exit={{
+                                                    opacity: 0,
+                                                    rotate: 30,
+                                                    scale: 0.7,
+                                                }}
+                                            >
+                                                {isLight ? (
+                                                    <Moon className="h-4 w-4" />
+                                                ) : (
+                                                    <SunMedium className="h-4 w-4 text-amber-400" />
+                                                )}
+                                            </m.span>
+                                        </AnimatePresence>
+                                    </button>
 
-                            <a
-                                href="/admin"
-                                className="
+                                    <a
+                                        href="/admin"
+                                        className="
                                     hidden
                                     rounded-full
                                     bg-sky-500
@@ -484,19 +477,19 @@ export function PortfolioLanding({
                                     hover:bg-sky-400
                                     sm:block
                                 "
-                            >
-                                Admin
-                            </a>
+                                    >
+                                        Admin
+                                    </a>
 
-                            <button
-                                type="button"
-                                onClick={() =>
-                                    setMobileMenu(
-                                        (current) =>
-                                            !current,
-                                    )
-                                }
-                                className={`
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setMobileMenu(
+                                                (current) =>
+                                                    !current,
+                                            )
+                                        }
+                                        className={`
                                     flex
                                     h-11
                                     w-11
@@ -507,116 +500,115 @@ export function PortfolioLanding({
                                     md:hidden
                                     ${secondaryButton}
                                 `}
-                                aria-label={mobileMenu ? "Close navigation menu" : "Open navigation menu"}
-                                aria-controls="mobile-navigation"
-                                aria-expanded={mobileMenu}
-                            >
-                                <AnimatePresence
-                                    mode="wait"
-                                    initial={false}
-                                >
-                                    <m.span
-                                        key={
-                                            mobileMenu
-                                                ? "close"
-                                                : "menu"
-                                        }
-                                        initial={{
-                                            opacity: 0,
-                                            rotate: -45,
-                                        }}
-                                        animate={{
-                                            opacity: 1,
-                                            rotate: 0,
-                                        }}
-                                        exit={{
-                                            opacity: 0,
-                                            rotate: 45,
-                                        }}
+                                        aria-label={mobileMenu ? "Close navigation menu" : "Open navigation menu"}
+                                        aria-controls="mobile-navigation"
+                                        aria-expanded={mobileMenu}
                                     >
-                                        {mobileMenu ? (
-                                            <X className="h-5 w-5" />
-                                        ) : (
-                                            <Menu className="h-5 w-5" />
-                                        )}
-                                    </m.span>
-                                </AnimatePresence>
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Mobile menu */}
-
-                    <AnimatePresence>
-                        {mobileMenu && (
-                            <m.div
-                                initial={{
-                                    opacity: 0,
-                                    height: 0,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    height: "auto",
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    height: 0,
-                                }}
-                                id="mobile-navigation"
-                                role="region"
-                                aria-label="Mobile navigation"
-                                className={`
-                                    overflow-hidden
-                                    border-t
-                                    md:hidden
-                                    ${
-                                        isLight
-                                            ? "border-slate-200 bg-white"
-                                            : "border-slate-800 bg-slate-950"
-                                    }
-                                `}
-                            >
-                                <m.div
-                                    initial={{
-                                        y: -8,
-                                    }}
-                                    animate={{
-                                        y: 0,
-                                    }}
-                                    className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4"
-                                >
-                                    <nav aria-label="Mobile primary navigation">
-                                    {navItems.map(
-                                        (
-                                            item,
-                                            index,
-                                        ) => (
-                                            <m.a
+                                        <AnimatePresence
+                                            mode="wait"
+                                            initial={false}
+                                        >
+                                            <m.span
                                                 key={
-                                                    item.id
-                                                }
-                                                href={
-                                                    item.href
+                                                    mobileMenu
+                                                        ? "close"
+                                                        : "menu"
                                                 }
                                                 initial={{
                                                     opacity: 0,
-                                                    x: -8,
+                                                    rotate: -45,
                                                 }}
                                                 animate={{
                                                     opacity: 1,
-                                                    x: 0,
+                                                    rotate: 0,
                                                 }}
-                                                transition={{
-                                                    delay:
-                                                        index *
-                                                        0.04,
+                                                exit={{
+                                                    opacity: 0,
+                                                    rotate: 45,
                                                 }}
-                                                onClick={() =>
-                                                    setMobileMenu(
-                                                        false,
-                                                    )
-                                                }
-                                                className={`
+                                            >
+                                                {mobileMenu ? (
+                                                    <X className="h-5 w-5" />
+                                                ) : (
+                                                    <Menu className="h-5 w-5" />
+                                                )}
+                                            </m.span>
+                                        </AnimatePresence>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Mobile menu */}
+
+                            <AnimatePresence>
+                                {mobileMenu && (
+                                    <m.div
+                                        initial={{
+                                            opacity: 0,
+                                            height: 0,
+                                        }}
+                                        animate={{
+                                            opacity: 1,
+                                            height: "auto",
+                                        }}
+                                        exit={{
+                                            opacity: 0,
+                                            height: 0,
+                                        }}
+                                        id="mobile-navigation"
+                                        role="region"
+                                        aria-label="Mobile navigation"
+                                        className={`
+                                    overflow-hidden
+                                    border-t
+                                    md:hidden
+                                    ${isLight
+                                                ? "border-slate-200 bg-white"
+                                                : "border-slate-800 bg-slate-950"
+                                            }
+                                `}
+                                    >
+                                        <m.div
+                                            initial={{
+                                                y: -8,
+                                            }}
+                                            animate={{
+                                                y: 0,
+                                            }}
+                                            className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4"
+                                        >
+                                            <nav aria-label="Mobile primary navigation">
+                                                {navItems.map(
+                                                    (
+                                                        item,
+                                                        index,
+                                                    ) => (
+                                                        <m.a
+                                                            key={
+                                                                item.id
+                                                            }
+                                                            href={
+                                                                item.href
+                                                            }
+                                                            initial={{
+                                                                opacity: 0,
+                                                                x: -8,
+                                                            }}
+                                                            animate={{
+                                                                opacity: 1,
+                                                                x: 0,
+                                                            }}
+                                                            transition={{
+                                                                delay:
+                                                                    index *
+                                                                    0.04,
+                                                            }}
+                                                            onClick={() =>
+                                                                setMobileMenu(
+                                                                    false,
+                                                                )
+                                                            }
+                                                            className={`
                                                     flex
                                                     items-center
                                                     justify-between
@@ -626,33 +618,32 @@ export function PortfolioLanding({
                                                     text-sm
                                                     font-medium
                                                     transition
-                                                    ${
-                                                        activeSection ===
-                                                        item.id
-                                                            ? "bg-sky-50 text-sky-600"
-                                                            : muted
-                                                    }
+                                                    ${activeSection ===
+                                                                    item.id
+                                                                    ? "bg-sky-50 text-sky-600"
+                                                                    : muted
+                                                                }
                                                 `}
-                                            >
-                                                {
-                                                    item.label
+                                                        >
+                                                            {
+                                                                item.label
+                                                            }
+
+                                                            <ChevronRight className="h-4 w-4" />
+                                                        </m.a>
+                                                    ),
+                                                )}
+
+                                            </nav>
+
+                                            <a
+                                                href="/admin"
+                                                onClick={() =>
+                                                    setMobileMenu(
+                                                        false,
+                                                    )
                                                 }
-
-                                                <ChevronRight className="h-4 w-4" />
-                                            </m.a>
-                                        ),
-                                    )}
-
-                                    </nav>
-
-                                    <a
-                                        href="/admin"
-                                        onClick={() =>
-                                            setMobileMenu(
-                                                false,
-                                            )
-                                        }
-                                        className="
+                                                className="
                                             mt-2
                                             rounded-2xl
                                             bg-sky-500
@@ -663,75 +654,75 @@ export function PortfolioLanding({
                                             font-bold
                                             text-slate-950
                                         "
-                                    >
-                                        Admin
-                                    </a>
-                                </m.div>
-                            </m.div>
-                        )}
-                    </AnimatePresence>
-                </m.div>
-            </header>
+                                            >
+                                                Admin
+                                            </a>
+                                        </m.div>
+                                    </m.div>
+                                )}
+                            </AnimatePresence>
+                        </m.div>
+                    </header>
 
-            {/* =====================================================
+                    {/* =====================================================
                 HERO
             ====================================================== */}
 
-            <section
-                id="top"
-                className="relative"
-            >
-                <div className="senior-hero mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:pb-32 lg:pt-28">
-                    <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
-                        {/* Hero copy */}
+                    <section
+                        id="top"
+                        className="relative"
+                    >
+                        <div className="senior-hero mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:pb-32 lg:pt-28">
+                            <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+                                {/* Hero copy */}
 
-                        <m.div
-                            initial="hidden"
-                            animate="visible"
-                            variants={{
-                                hidden: {},
-                                visible: {
-                                    transition: {
-                                        staggerChildren: 0.09,
-                                    },
-                                },
-                            }}
-                        >
-                            <m.p
-                                variants={{
-                                    hidden: { opacity: 0, y: 14 },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: { duration: 0.5 },
-                                    },
-                                }}
-                                className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-sky-500"
-                            >
-                                {content?.heroBadge || "Full-Stack AI Developer · Product Builder"}
-                            </m.p>
-
-                            <m.div
-                                variants={{
-                                    hidden: {
-                                        opacity: 0,
-                                        y: 18,
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: {
-                                            duration: 0.55,
-                                            ease: [
-                                                0.16,
-                                                1,
-                                                0.3,
-                                                1,
-                                            ] as const,
+                                <m.div
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={{
+                                        hidden: {},
+                                        visible: {
+                                            transition: {
+                                                staggerChildren: 0.09,
+                                            },
                                         },
-                                    },
-                                }}
-                                className={`
+                                    }}
+                                >
+                                    <m.p
+                                        variants={{
+                                            hidden: { opacity: 0, y: 14 },
+                                            visible: {
+                                                opacity: 1,
+                                                y: 0,
+                                                transition: { duration: 0.5 },
+                                            },
+                                        }}
+                                        className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-sky-500"
+                                    >
+                                        {content?.heroBadge || "Full-Stack AI Developer · Product Builder"}
+                                    </m.p>
+
+                                    <m.div
+                                        variants={{
+                                            hidden: {
+                                                opacity: 0,
+                                                y: 18,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                y: 0,
+                                                transition: {
+                                                    duration: 0.55,
+                                                    ease: [
+                                                        0.16,
+                                                        1,
+                                                        0.3,
+                                                        1,
+                                                    ] as const,
+                                                },
+                                            },
+                                        }}
+                                        className={`
                                     mb-7
                                     inline-flex
                                     items-center
@@ -743,42 +734,41 @@ export function PortfolioLanding({
                                     text-xs
                                     font-semibold
                                     shadow-[0_8px_20px_rgba(14,165,233,0.08)]
-                                    ${
-                                        isLight
-                                            ? "border-sky-200 bg-sky-50 text-sky-700"
-                                            : "border-sky-400/30 bg-sky-500/10 text-sky-200"
-                                    }
+                                    ${isLight
+                                                ? "border-sky-200 bg-sky-50 text-sky-700"
+                                                : "border-sky-400/30 bg-sky-500/10 text-sky-200"
+                                            }
                                 `}
-                            >
-                                <span className="relative flex h-2 w-2">
-                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                                </span>
+                                    >
+                                        <span className="relative flex h-2 w-2">
+                                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                                            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                                        </span>
 
-                                {profile.availability || "Open to selected projects"}
-                            </m.div>
+                                        {profile.availability || "Open to selected projects"}
+                                    </m.div>
 
-                            <m.h1
-                                variants={{
-                                    hidden: {
-                                        opacity: 0,
-                                        y: 24,
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: {
-                                            duration: 0.7,
-                                            ease: [
-                                                0.16,
-                                                1,
-                                                0.3,
-                                                1,
-                                            ] as const,
-                                        },
-                                    },
-                                }}
-                                className={`
+                                    <m.h1
+                                        variants={{
+                                            hidden: {
+                                                opacity: 0,
+                                                y: 24,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                y: 0,
+                                                transition: {
+                                                    duration: 0.7,
+                                                    ease: [
+                                                        0.16,
+                                                        1,
+                                                        0.3,
+                                                        1,
+                                                    ] as const,
+                                                },
+                                            },
+                                        }}
+                                        className={`
                                     max-w-5xl
                                     text-4xl
                                     font-black
@@ -790,31 +780,31 @@ export function PortfolioLanding({
                                     lg:text-[82px]
                                     ${heading}
                                 `}
-                            >
-                                {content?.heroTitle || profile.headline || "Building intelligent digital products with Full-Stack + AI."}
-                            </m.h1>
+                                    >
+                                        {content?.heroTitle || profile.headline || "Building intelligent digital products with Full-Stack + AI."}
+                                    </m.h1>
 
-                            <m.p
-                                variants={{
-                                    hidden: {
-                                        opacity: 0,
-                                        y: 18,
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: {
-                                            duration: 0.6,
-                                            ease: [
-                                                0.16,
-                                                1,
-                                                0.3,
-                                                1,
-                                            ] as const,
-                                        },
-                                    },
-                                }}
-                                className={`
+                                    <m.p
+                                        variants={{
+                                            hidden: {
+                                                opacity: 0,
+                                                y: 18,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                y: 0,
+                                                transition: {
+                                                    duration: 0.6,
+                                                    ease: [
+                                                        0.16,
+                                                        1,
+                                                        0.3,
+                                                        1,
+                                                    ] as const,
+                                                },
+                                            },
+                                        }}
+                                        className={`
                                     mt-6
                                     max-w-2xl
                                     text-sm
@@ -824,35 +814,35 @@ export function PortfolioLanding({
                                     lg:text-lg
                                     ${muted}
                                 `}
-                            >
-                                {content?.heroDescription || profile.bio || profile.summary}
-                            </m.p>
+                                    >
+                                        {content?.heroDescription || profile.bio || profile.summary}
+                                    </m.p>
 
-                            <m.div
-                                variants={{
-                                    hidden: {
-                                        opacity: 0,
-                                        y: 18,
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: {
-                                            duration: 0.55,
-                                            ease: [
-                                                0.16,
-                                                1,
-                                                0.3,
-                                                1,
-                                            ] as const,
-                                        },
-                                    },
-                                }}
-                                className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap"
-                            >
-                                <a
-                                    href="#work"
-                                    className="
+                                    <m.div
+                                        variants={{
+                                            hidden: {
+                                                opacity: 0,
+                                                y: 18,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                y: 0,
+                                                transition: {
+                                                    duration: 0.55,
+                                                    ease: [
+                                                        0.16,
+                                                        1,
+                                                        0.3,
+                                                        1,
+                                                    ] as const,
+                                                },
+                                            },
+                                        }}
+                                        className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap"
+                                    >
+                                        <a
+                                            href="#work"
+                                            className="
                                         group
                                         inline-flex
                                         w-full
@@ -876,15 +866,15 @@ export function PortfolioLanding({
                                         hover:shadow-[0_16px_34px_rgba(14,165,233,0.28)]
                                         sm:w-auto
                                     "
-                                >
-                                    Explore my work
-                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                                </a>
+                                        >
+                                            Explore my work
+                                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                                        </a>
 
-                                <button
-                                    type="button"
-                                    onClick={openChat}
-                                    className={`
+                                        <button
+                                            type="button"
+                                            onClick={openChat}
+                                            className={`
                                         inline-flex
                                         w-full
                                         items-center
@@ -904,132 +894,132 @@ export function PortfolioLanding({
                                         sm:w-auto
                                         ${secondaryButton}
                                     `}
-                                >
-                                    <Bot className="h-4 w-4" />
-                                    Ask my AI assistant
-                                </button>
+                                        >
+                                            <Bot className="h-4 w-4" />
+                                            Ask my AI assistant
+                                        </button>
 
-                                <a
-                                    href="/documents/Frunco_Ruiz_Resume.pdf"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={`inline-flex w-full items-center justify-center gap-2 rounded-full border px-5 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 sm:w-auto ${secondaryButton}`}
-                                >
-                                    <FileText className="h-4 w-4" aria-hidden="true" />
-                                    Resume
-                                    <Download className="h-3.5 w-3.5" aria-hidden="true" />
-                                </a>
-                            </m.div>
+                                        <a
+                                            href="/documents/Frunco_Ruiz_Resume.pdf"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className={`inline-flex w-full items-center justify-center gap-2 rounded-full border px-5 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 sm:w-auto ${secondaryButton}`}
+                                        >
+                                            <FileText className="h-4 w-4" aria-hidden="true" />
+                                            Resume
+                                            <Download className="h-3.5 w-3.5" aria-hidden="true" />
+                                        </a>
+                                    </m.div>
 
-                            <m.div
-                                variants={{
-                                    hidden: {
-                                        opacity: 0,
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        transition: {
-                                            duration: 0.5,
-                                        },
-                                    },
-                                }}
-                                className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3"
-                            >
-                                {[
-                                    "Full-stack development",
-                                    "Product design",
-                                    "AI integration",
-                                ].map((item) => (
-                                    <div
-                                        key={item}
-                                        className={`
+                                    <m.div
+                                        variants={{
+                                            hidden: {
+                                                opacity: 0,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                transition: {
+                                                    duration: 0.5,
+                                                },
+                                            },
+                                        }}
+                                        className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3"
+                                    >
+                                        {[
+                                            "Full-stack development",
+                                            "Product design",
+                                            "AI integration",
+                                        ].map((item) => (
+                                            <div
+                                                key={item}
+                                                className={`
                                             flex
                                             items-center
                                             gap-2
                                             text-xs
                                             ${muted}
                                         `}
-                                    >
-                                        <Check className="h-3.5 w-3.5 text-emerald-500" />
+                                            >
+                                                <Check className="h-3.5 w-3.5 text-emerald-500" />
 
-                                        {item}
-                                    </div>
-                                ))}
-                            </m.div>
-                        </m.div>
-
-                        {/* Hero visual */}
-
-                        <m.div
-                            initial={{
-                                opacity: 0,
-                                scale: 0.94,
-                                y: 18,
-                            }}
-                            animate={{
-                                opacity: 1,
-                                scale: 1,
-                                y: 0,
-                            }}
-                            transition={{
-                                duration: 0.75,
-                                delay: 0.2,
-                                ease: [
-                                    0.16,
-                                    1,
-                                    0.3,
-                                    1,
-                                ] as const,
-                            }}
-                            className="relative"
-                        >
-                            <m.div
-                                animate={{
-                                    y: [0, -8, 0],
-                                }}
-                                transition={{
-                                    duration: 5,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                }}
-                                className="relative"
-                            >
-                                <m.div
-                                    aria-hidden="true"
-                                    className="pointer-events-none absolute -inset-4 rounded-[40px] border border-sky-400/20"
-                                    animate={{
-                                        rotate: [0, 1.5, 0, -1.5, 0],
-                                        scale: [1, 1.015, 1, 1.015, 1],
-                                        opacity: [0.4, 0.75, 0.4, 0.7, 0.4],
-                                    }}
-                                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                                />
-
-                                <m.div
-                                    aria-hidden="true"
-                                    className="pointer-events-none absolute -inset-7 rounded-[46px] bg-sky-400/10 blur-2xl"
-                                    animate={{ scale: [0.96, 1.04, 0.96], opacity: [0.3, 0.65, 0.3] }}
-                                    transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-                                />
-
-                                <m.div
-                                    aria-hidden="true"
-                                    className="pointer-events-none absolute -inset-2 rounded-[36px]"
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-                                >
-                                    <div className="absolute inset-0 rounded-[36px] bg-[conic-gradient(from_0deg,transparent_0deg,rgba(56,189,248,0.35)_70deg,transparent_140deg,rgba(59,130,246,0.25)_230deg,transparent_310deg)]" />
+                                                {item}
+                                            </div>
+                                        ))}
+                                    </m.div>
                                 </m.div>
 
-                                <div className="absolute -inset-6 rounded-[40px] bg-sky-500/10 blur-3xl" />
+                                {/* Hero visual */}
 
                                 <m.div
-                                    whileHover={{ y: -6, scale: 1.008 }}
-                                    transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                                    initial={{
+                                        opacity: 0,
+                                        scale: 0.94,
+                                        y: 18,
+                                    }}
+                                    animate={{
+                                        opacity: 1,
+                                        scale: 1,
+                                        y: 0,
+                                    }}
+                                    transition={{
+                                        duration: 0.75,
+                                        delay: 0.2,
+                                        ease: [
+                                            0.16,
+                                            1,
+                                            0.3,
+                                            1,
+                                        ] as const,
+                                    }}
                                     className="relative"
                                 >
-                                <div
-                                    className={`
+                                    <m.div
+                                        animate={{
+                                            y: [0, -8, 0],
+                                        }}
+                                        transition={{
+                                            duration: 5,
+                                            repeat: Infinity,
+                                            ease: "easeInOut",
+                                        }}
+                                        className="relative"
+                                    >
+                                        <m.div
+                                            aria-hidden="true"
+                                            className="pointer-events-none absolute -inset-4 rounded-[40px] border border-sky-400/20"
+                                            animate={{
+                                                rotate: [0, 1.5, 0, -1.5, 0],
+                                                scale: [1, 1.015, 1, 1.015, 1],
+                                                opacity: [0.4, 0.75, 0.4, 0.7, 0.4],
+                                            }}
+                                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                                        />
+
+                                        <m.div
+                                            aria-hidden="true"
+                                            className="pointer-events-none absolute -inset-7 rounded-[46px] bg-sky-400/10 blur-2xl"
+                                            animate={{ scale: [0.96, 1.04, 0.96], opacity: [0.3, 0.65, 0.3] }}
+                                            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                                        />
+
+                                        <m.div
+                                            aria-hidden="true"
+                                            className="pointer-events-none absolute -inset-2 rounded-[36px]"
+                                            animate={{ rotate: 360 }}
+                                            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+                                        >
+                                            <div className="absolute inset-0 rounded-[36px] bg-[conic-gradient(from_0deg,transparent_0deg,rgba(56,189,248,0.35)_70deg,transparent_140deg,rgba(59,130,246,0.25)_230deg,transparent_310deg)]" />
+                                        </m.div>
+
+                                        <div className="absolute -inset-6 rounded-[40px] bg-sky-500/10 blur-3xl" />
+
+                                        <m.div
+                                            whileHover={{ y: -6, scale: 1.008 }}
+                                            transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                                            className="relative"
+                                        >
+                                            <div
+                                                className={`
                                         senior-hero-card
                                         relative
                                         overflow-hidden
@@ -1039,40 +1029,38 @@ export function PortfolioLanding({
                                         shadow-[0_25px_60px_rgba(15,23,42,0.12)]
                                         ring-1
                                         ring-slate-200/50
-                                        ${
-                                            isLight
-                                                ? "border-slate-200 bg-white/90"
-                                                : "border-slate-800 bg-slate-900"
-                                        }
+                                        ${isLight
+                                                        ? "border-slate-200 bg-white/90"
+                                                        : "border-slate-800 bg-slate-900"
+                                                    }
                                     `}
-                                >
-                                    <div
-                                        className={`
+                                            >
+                                                <div
+                                                    className={`
                                             relative
                                             min-h-[430px]
                                             overflow-hidden
                                             rounded-[26px]
                                             border
-                                            ${
-                                                isLight
-                                                    ? "border-slate-200 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.16),transparent_32%),linear-gradient(145deg,#eff6ff_0%,#f8fafc_52%,#dbeafe_100%)]"
-                                                    : "border-slate-800 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.18),transparent_32%),linear-gradient(145deg,#0f172a_0%,#111827_52%,#172554_100%)]"
-                                            }
+                                            ${isLight
+                                                            ? "border-slate-200 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.16),transparent_32%),linear-gradient(145deg,#eff6ff_0%,#f8fafc_52%,#dbeafe_100%)]"
+                                                            : "border-slate-800 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.18),transparent_32%),linear-gradient(145deg,#0f172a_0%,#111827_52%,#172554_100%)]"
+                                                        }
                                             sm:min-h-[350px]
                                         `}
-                                    >
-                                        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.18)_50%,transparent_100%)] opacity-60" />
+                                                >
+                                                    <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.18)_50%,transparent_100%)] opacity-60" />
 
-                                        <div className="absolute -left-12 top-12 h-36 w-36 rounded-full bg-sky-400/20 blur-3xl" />
-                                        <div className="absolute -right-12 bottom-10 h-48 w-48 rounded-full bg-blue-500/20 blur-3xl" />
+                                                    <div className="absolute -left-12 top-12 h-36 w-36 rounded-full bg-sky-400/20 blur-3xl" />
+                                                    <div className="absolute -right-12 bottom-10 h-48 w-48 rounded-full bg-blue-500/20 blur-3xl" />
 
-                                        <img
-                                            src="/hero-developer.png"
-                                            alt="Developer working on a laptop"
-                                            className="absolute inset-0 h-full w-full object-contain object-bottom drop-shadow-[0_28px_35px_rgba(15,23,42,0.22)]"
-                                        />
+                                                    <img
+                                                        src="/hero-developer.png"
+                                                        alt="Developer working on a laptop"
+                                                        className="absolute inset-0 h-full w-full object-contain object-bottom drop-shadow-[0_28px_35px_rgba(15,23,42,0.22)]"
+                                                    />
 
-                                        {/* <div
+                                                    {/* <div
                                             className={`
                                                 absolute left-4 top-4 z-10
                                                 flex items-center gap-3 rounded-2xl border px-4 py-3
@@ -1123,64 +1111,64 @@ export function PortfolioLanding({
                                                 <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 text-sky-500" />
                                             </div>
                                         </div> */}
-                                    </div>
-                                </div>
+                                                </div>
+                                            </div>
+                                        </m.div>
+                                    </m.div>
                                 </m.div>
-                            </m.div>
-                        </m.div>
-                    </div>
+                            </div>
 
-                    {/* Hero stats */}
+                            {/* Hero stats */}
 
-                    <div className="mt-20 grid gap-4 sm:grid-cols-3">
-                        {[
-                            {
-                                value: `${featuredCount || projectList.length}`,
-                                label: featuredCount ? "Featured projects" : "Projects",
-                            },
-                            {
-                                value: `${skillList.length}+`,
-                                label: "Technical skills",
-                            },
-                            {
-                                value: profile.title.includes("Product") ? "Full stack + AI" : "Full-stack delivery",
-                                label: "Primary focus",
-                            },
-                        ].map(
-                            (
-                                stat,
-                                index,
-                            ) => (
-                                <m.div
-                                    key={
-                                        stat.label
-                                    }
-                                    initial={{
-                                        opacity: 0,
-                                        y: 15,
-                                    }}
-                                    animate={{
-                                        opacity: 1,
-                                        y: 0,
-                                    }}
-                                    transition={{
-                                        delay:
-                                            0.45 +
-                                            index *
-                                                0.1,
-                                        duration:
-                                            0.5,
-                                        ease: [
-                                            0.16,
-                                            1,
-                                            0.3,
-                                            1,
-                                        ] as const,
-                                    }}
-                                    whileHover={{
-                                        y: -3,
-                                    }}
-                                    className={`
+                            <div className="mt-20 grid gap-4 sm:grid-cols-3">
+                                {[
+                                    {
+                                        value: `${featuredCount || projectList.length}`,
+                                        label: featuredCount ? "Featured projects" : "Projects",
+                                    },
+                                    {
+                                        value: `${skillList.length}+`,
+                                        label: "Technical skills",
+                                    },
+                                    {
+                                        value: profile.title.includes("Product") ? "Full stack + AI" : "Full-stack delivery",
+                                        label: "Primary focus",
+                                    },
+                                ].map(
+                                    (
+                                        stat,
+                                        index,
+                                    ) => (
+                                        <m.div
+                                            key={
+                                                stat.label
+                                            }
+                                            initial={{
+                                                opacity: 0,
+                                                y: 15,
+                                            }}
+                                            animate={{
+                                                opacity: 1,
+                                                y: 0,
+                                            }}
+                                            transition={{
+                                                delay:
+                                                    0.45 +
+                                                    index *
+                                                    0.1,
+                                                duration:
+                                                    0.5,
+                                                ease: [
+                                                    0.16,
+                                                    1,
+                                                    0.3,
+                                                    1,
+                                                ] as const,
+                                            }}
+                                            whileHover={{
+                                                y: -3,
+                                            }}
+                                            className={`
                                         senior-stat
                                         rounded-2xl
                                         border
@@ -1191,359 +1179,364 @@ export function PortfolioLanding({
                                         shadow-[0_10px_24px_rgba(15,23,42,0.03)]
                                         ${panel}
                                     `}
-                                >
-                                    <p
-                                        className={`
+                                        >
+                                            <p
+                                                className={`
                                             text-3xl
                                             font-black
                                             tracking-tight
                                             ${heading}
                                         `}
-                                    >
-                                        {
-                                            stat.value
-                                        }
-                                    </p>
+                                            >
+                                                {
+                                                    stat.value
+                                                }
+                                            </p>
 
-                                    <p
-                                        className={`
+                                            <p
+                                                className={`
                                             mt-2
                                             text-xs
                                             uppercase
                                             tracking-[0.15em]
                                             ${muted}
                                         `}
-                                    >
-                                        {
-                                            stat.label
-                                        }
-                                    </p>
-                                </m.div>
-                            ),
-                        )}
-                    </div>
-                </div>
-            </section>
+                                            >
+                                                {
+                                                    stat.label
+                                                }
+                                            </p>
+                                        </m.div>
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    </section>
 
-            {/* =====================================================
+                    {/* =====================================================
                 WORK
             ====================================================== */}
 
-            <section
-                id="work"
-                className="relative scroll-mt-24 overflow-hidden border-t border-slate-200/60 dark:border-slate-800/60"
-            >
-                <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-sky-500/[0.07] to-transparent" />
-
-                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-32">
-                    <m.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionReveal}
-                        className="relative mb-10 grid gap-8 sm:mb-14 lg:grid-cols-[1fr_0.55fr] lg:items-end"
+                    <section
+                        id="work"
+                        className="relative scroll-mt-24 overflow-hidden border-t border-slate-200/60 dark:border-slate-800/60"
                     >
-                        <div>
-                            <div className="mb-5 flex items-center gap-3">
-                                <span className="h-px w-10 bg-sky-500" />
-                                <p className="text-xs font-bold uppercase tracking-[0.28em] text-sky-500">
-                                    Selected work
-                                </p>
-                            </div>
+                        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-sky-500/[0.07] to-transparent" />
 
-                            <h2 className={`max-w-4xl text-4xl font-black leading-[0.98] tracking-[-0.04em] sm:text-6xl ${heading}`}>
-                                Built to look sharp.
-                                <br />
-                                <span className="text-sky-500">Engineered to matter.</span>
-                            </h2>
-                        </div>
-
-                        <div className="lg:pb-1">
-                            <p className={`max-w-lg text-sm leading-7 ${muted}`}>
-                                A curated set of product concepts and full-stack builds focused on real workflows, thoughtful interfaces and production-minded engineering.
-                            </p>
-                            <div className="mt-5 flex flex-wrap gap-2">
-                                <span className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] ${tagClass}`}>
-                                    {projects.length} published {projects.length === 1 ? "build" : "builds"}
-                                </span>
-                                <span className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] ${tagClass}`}>
-                                    Full-stack
-                                </span>
-                                <span className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] ${tagClass}`}>
-                                    AI + product
-                                </span>
-                            </div>
-                        </div>
-                    </m.div>
-
-                    {projects.length > 0 && (
-                        <div className="mb-8 flex flex-wrap items-center gap-2" aria-label="Filter projects by category">
-                            <span className={`mr-1 text-xs font-semibold ${muted}`}>Browse by:</span>
-                            {["all", ...projectCategories].map((category) => {
-                                const active = projectCategory === category;
-                                const label = category === "all" ? "All work" : category;
-                                return (
-                                    <button
-                                        key={category}
-                                        type="button"
-                                        aria-pressed={active}
-                                        onClick={() => {
-                                            setProjectCategory(category);
-                                            setShowAllProjects(false);
-                                        }}
-                                        className={`min-h-10 rounded-full border px-4 py-2 text-xs font-bold transition ${active ? "border-sky-500 bg-sky-500 text-slate-950" : secondaryButton}`}
-                                    >
-                                        {label}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    )}
-
-                    {!projects.length ? (
-                        <m.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={sectionReveal}
-                            className={`rounded-[32px] border border-dashed p-12 text-center ${softPanel}`}
-                        >
-                            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-sky-500/20 bg-sky-500/10">
-                                <Code2 className="h-7 w-7 text-sky-500" aria-hidden="true" />
-                            </div>
-                            <p className="mt-5 text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">Selected work</p>
-                            <h3 className={`mt-2 text-xl font-bold ${heading}`}>Published work is being updated.</h3>
-                            <p className={`mx-auto mt-2 max-w-md text-sm leading-6 ${muted}`}>
-                                No project case studies are currently published. Check back as new work is added, or start a conversation about what you are building.
-                            </p>
-                            <button
-                                type="button"
-                                onClick={openChat}
-                                className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-sky-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/30"
+                        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-32">
+                            <m.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.2 }}
+                                variants={sectionReveal}
+                                className="relative mb-10 grid gap-8 sm:mb-14 lg:grid-cols-[1fr_0.55fr] lg:items-end"
                             >
-                                Ask about my work
-                                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                            </button>
-                        </m.div>
-                    ) : filteredProjects.length === 0 ? (
-                        <div className={`rounded-[32px] border border-dashed p-12 text-center ${softPanel}`}>
-                            <Code2 className="mx-auto h-8 w-8 text-sky-500" aria-hidden="true" />
-                            <h3 className={`mt-4 text-xl font-bold ${heading}`}>No projects in this category yet.</h3>
-                            <p className={`mx-auto mt-2 max-w-md text-sm leading-6 ${muted}`}>Try another category or browse all published work.</p>
-                            <button type="button" onClick={() => setProjectCategory("all")} className="mt-6 min-h-11 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-sky-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/30">
-                                View all work
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                            {visibleProjects.map((project, index) => {
-                                const tags = parseTags(project.tags);
-                                const skillNames = (project.skills ?? []).map((skill) => skill.name);
-                                const displayTags = Array.from(new Set([...skillNames, ...tags]));
-                                const isFeatured = project.featured === true;
-                                const hasLiveUrl = Boolean(project.url);
-                                const hasGithub = Boolean(project.githubUrl);
+                                <div>
+                                    <div className="mb-5 flex items-center gap-3">
+                                        <span className="h-px w-10 bg-sky-500" />
+                                        <p className="text-xs font-bold uppercase tracking-[0.28em] text-sky-500">
+                                            Selected work
+                                        </p>
+                                    </div>
 
-                                return (
-                                    <m.article
-                                        key={project.id}
-                                        initial="hidden"
-                                        whileInView="visible"
-                                        viewport={{ once: true, amount: 0.12 }}
-                                        variants={cardReveal}
-                                        transition={{ delay: Math.min(index * 0.06, 0.25) }}
-                                        className={`senior-card group relative flex h-full flex-col overflow-hidden rounded-[28px] border ${panel} transition duration-300 hover:-translate-y-1 ${isFeatured ? "border-sky-400/30 shadow-xl shadow-sky-950/20" : ""}`}
-                                    >
-                                        <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-slate-950">
-                                            <div className="absolute inset-0 bg-slate-950" />
-                                            <div className="absolute -inset-16 bg-[radial-gradient(circle_at_30%_20%,rgba(14,165,233,0.28),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(99,102,241,0.18),transparent_30%)]" />
+                                    <h2 className={`max-w-4xl text-4xl font-black leading-[0.98] tracking-[-0.04em] sm:text-6xl ${heading}`}>
+                                        Built to look sharp.
+                                        <br />
+                                        <span className="text-sky-500">Engineered to matter.</span>
+                                    </h2>
+                                </div>
 
-                                            <m.div
-                                                whileHover={{ scale: 1.025 }}
-                                                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                                                className="absolute inset-3 overflow-hidden rounded-[18px] border border-white/10 bg-slate-900 shadow-2xl"
+                                <div className="lg:pb-1">
+                                    <p className={`max-w-lg text-sm leading-7 ${muted}`}>
+                                        A curated set of product concepts and full-stack builds focused on real workflows, thoughtful interfaces and production-minded engineering.
+                                    </p>
+                                    <div className="mt-5 flex flex-wrap gap-2">
+                                        <span className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] ${tagClass}`}>
+                                            {projects.length} published {projects.length === 1 ? "build" : "builds"}
+                                        </span>
+                                        <span className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] ${tagClass}`}>
+                                            Full-stack
+                                        </span>
+                                        <span className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] ${tagClass}`}>
+                                            AI + product
+                                        </span>
+                                    </div>
+                                </div>
+                            </m.div>
+
+                            {projects.length > 0 && (
+                                <div className="mb-8 flex flex-wrap items-center gap-2" aria-label="Filter projects by category">
+                                    <span className={`mr-1 text-xs font-semibold ${muted}`}>Browse by:</span>
+                                    {["all", ...projectCategories].map((category) => {
+                                        const active = projectCategory === category;
+                                        const label = category === "all" ? "All work" : category;
+                                        return (
+                                            <button
+                                                key={category}
+                                                type="button"
+                                                aria-pressed={active}
+                                                onClick={() => {
+                                                    setProjectCategory(category);
+                                                    setShowAllProjects(false);
+                                                }}
+                                                className={`min-h-10 rounded-full border px-4 py-2 text-xs font-bold transition ${active ? "border-sky-500 bg-sky-500 text-slate-950" : secondaryButton}`}
                                             >
-                                                <div className="flex h-8 items-center gap-1.5 border-b border-white/10 bg-slate-950/90 px-3.5">
-                                                    <span className="h-2 w-2 rounded-full bg-red-400/70" />
-                                                    <span className="h-2 w-2 rounded-full bg-amber-400/70" />
-                                                    <span className="h-2 w-2 rounded-full bg-emerald-400/70" />
-                                                    <div className="mx-auto h-4 w-2/5 rounded-md border border-white/10 bg-white/[0.04]" />
-                                                </div>
-                                                <ProjectPreview project={project} />
-                                            </m.div>
+                                                {label}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            )}
 
-                                            {isFeatured && (
-                                                <div className="absolute left-6 top-6 z-20 inline-flex items-center gap-1.5 rounded-full border border-sky-300/20 bg-sky-500 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.16em] text-slate-950 shadow-lg shadow-sky-500/20">
-                                                    <Sparkles className="h-3 w-3" aria-hidden="true" />
-                                                    Featured
-                                                </div>
-                                            )}
+                            {!projects.length ? (
+                                <m.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
+                                    variants={sectionReveal}
+                                    className={`rounded-[32px] border border-dashed p-12 text-center ${softPanel}`}
+                                >
+                                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-sky-500/20 bg-sky-500/10">
+                                        <Code2 className="h-7 w-7 text-sky-500" aria-hidden="true" />
+                                    </div>
+                                    <p className="mt-5 text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">Selected work</p>
+                                    <h3 className={`mt-2 text-xl font-bold ${heading}`}>Published work is being updated.</h3>
+                                    <p className={`mx-auto mt-2 max-w-md text-sm leading-6 ${muted}`}>
+                                        No project case studies are currently published. Check back as new work is added, or start a conversation about what you are building.
+                                    </p>
+                                    <button
+                                        type="button"
+                                        onClick={openChat}
+                                        className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-sky-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/30"
+                                    >
+                                        Ask about my work
+                                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                                    </button>
+                                </m.div>
+                            ) : filteredProjects.length === 0 ? (
+                                <div className={`rounded-[32px] border border-dashed p-12 text-center ${softPanel}`}>
+                                    <Code2 className="mx-auto h-8 w-8 text-sky-500" aria-hidden="true" />
+                                    <h3 className={`mt-4 text-xl font-bold ${heading}`}>No projects in this category yet.</h3>
+                                    <p className={`mx-auto mt-2 max-w-md text-sm leading-6 ${muted}`}>Try another category or browse all published work.</p>
+                                    <button type="button" onClick={() => setProjectCategory("all")} className="mt-6 min-h-11 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-sky-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/30">
+                                        View all work
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+                                    {visibleProjects.map((project, index) => {
+                                        const tags = parseTags(project.tags);
+                                        const skillNames = (project.skills ?? []).map((skill) => skill.name);
+                                        const displayTags = Array.from(new Set([...skillNames, ...tags]));
+                                        const isFeatured = project.featured === true;
+                                        const hasLiveUrl = Boolean(project.url);
+                                        const hasGithub = Boolean(project.githubUrl);
 
-                                            <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
-                                                <Eye className="h-3 w-3" />
-                                                Product preview
-                                            </div>
-                                        </div>
+                                        return (
+                                            <m.article
+                                                key={project.id}
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={{ once: true, amount: 0.12 }}
+                                                variants={cardReveal}
+                                                transition={{ delay: Math.min(index * 0.06, 0.25) }}
+                                                className={`senior-card group relative flex h-full flex-col overflow-hidden rounded-[28px] border ${panel} transition duration-300 hover:-translate-y-1 ${isFeatured ? "border-sky-400/30 shadow-xl shadow-sky-950/20" : ""}`}
+                                            >
+                                                <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-slate-950">
+                                                    <div className="absolute inset-0 bg-slate-950" />
+                                                    <div className="absolute -inset-16 bg-[radial-gradient(circle_at_30%_20%,rgba(14,165,233,0.28),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(99,102,241,0.18),transparent_30%)]" />
 
-                                        <div className="flex flex-1 flex-col p-6 sm:p-7">
-                                            <div>
-                                                <div className="flex items-center gap-3">
-                                                    <span className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">
-                                                        {String(index + 1).padStart(2, "0")}
-                                                    </span>
-                                                    <span className={`h-px w-7 ${isLight ? "bg-slate-200" : "bg-slate-700"}`} />
-                                                    <span className={`rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.14em] ${tagClass}`}>
-                                                        {project.status || "Build"}
-                                                    </span>
-                                                </div>
-
-                                                <h3 className={`mt-5 text-2xl font-black leading-tight tracking-[-0.03em] ${heading}`}>
-                                                    {project.title}
-                                                </h3>
-
-                                                <p className={`mt-3 text-sm leading-6 ${muted}`}>
-                                                    {project.summary}
-                                                </p>
-
-                                                {(() => {
-                                                    const cardContent = getProjectCardContent(project);
-                                                    return (
-                                                        <div className="mt-5 space-y-3">
-                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
-                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
-                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.built}</p>
-                                                            </div>
-                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-white" : "border-slate-800 bg-slate-900/50"}`}>
-                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
-                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.focus}</p>
-                                                            </div>
-                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
-                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Outcome</p>
-                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.outcome}</p>
-                                                            </div>
+                                                    <m.div
+                                                        whileHover={{ scale: 1.025 }}
+                                                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                                                        className="absolute inset-3 overflow-hidden rounded-[18px] border border-white/10 bg-slate-900 shadow-2xl"
+                                                    >
+                                                        <div className="flex h-8 items-center gap-1.5 border-b border-white/10 bg-slate-950/90 px-3.5">
+                                                            <span className="h-2 w-2 rounded-full bg-red-400/70" />
+                                                            <span className="h-2 w-2 rounded-full bg-amber-400/70" />
+                                                            <span className="h-2 w-2 rounded-full bg-emerald-400/70" />
+                                                            <div className="mx-auto h-4 w-2/5 rounded-md border border-white/10 bg-white/[0.04]" />
                                                         </div>
-                                                    );
-                                                })()}
+                                                        <ProjectPreview project={project} />
+                                                    </m.div>
 
-                                                {displayTags.length > 0 && (
-                                                    <div className="mt-5 flex flex-wrap gap-1.5">
-                                                        {displayTags.slice(0, 5).map((tag) => (
-                                                            <span key={tag} className={`rounded-full border px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.11em] ${tagClass}`}>
-                                                                {tag}
-                                                            </span>
-                                                        ))}
+                                                    {isFeatured && (
+                                                        <div className="absolute left-6 top-6 z-20 inline-flex items-center gap-1.5 rounded-full border border-sky-300/20 bg-sky-500 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.16em] text-slate-950 shadow-lg shadow-sky-500/20">
+                                                            <Sparkles className="h-3 w-3" aria-hidden="true" />
+                                                            Featured
+                                                        </div>
+                                                    )}
+
+                                                    <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
+                                                        <Eye className="h-3 w-3" />
+                                                        Product preview
                                                     </div>
-                                                )}
-                                            </div>
+                                                </div>
 
-                                            <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-200/60 pt-5 dark:border-slate-800/70">
-                                                <a href={`/projects/${project.slug}`} className="group/link inline-flex items-center gap-1.5 rounded-full bg-slate-950 px-3.5 py-2.5 text-[11px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
-                                                    Case study
-                                                    <ArrowUpRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                                                </a>
+                                                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                                                    <div>
+                                                        <div className="flex items-center gap-3">
+                                                            <span className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">
+                                                                {String(index + 1).padStart(2, "0")}
+                                                            </span>
+                                                            <span className={`h-px w-7 ${isLight ? "bg-slate-200" : "bg-slate-700"}`} />
+                                                            <span className={`rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.14em] ${tagClass}`}>
+                                                                {project.status || "Build"}
+                                                            </span>
+                                                        </div>
 
-                                                {hasLiveUrl ? (
-                                                    <a href={project.url!} target="_blank" rel="noreferrer" className="group/link inline-flex items-center gap-1.5 rounded-full bg-sky-500 px-3.5 py-2.5 text-[11px] font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-sky-400">
-                                                        Live demo
-                                                        <ExternalLink className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5" />
-                                                    </a>
-                                                ) : (
-                                                    <span className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2.5 text-[11px] font-semibold ${tagClass}`}>
-                                                        <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                                                        Not deployed
-                                                    </span>
-                                                )}
+                                                        <h3 className={`mt-5 text-2xl font-black leading-tight tracking-[-0.03em] ${heading}`}>
+                                                            {project.title}
+                                                        </h3>
 
-                                                {hasGithub && (
-                                                    <a href={project.githubUrl!} target="_blank" rel="noreferrer" className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2.5 text-[11px] font-bold transition hover:-translate-y-0.5 ${secondaryButton}`}>
-                                                        <GithubIcon className="h-3.5 w-3.5" />
-                                                        Source
-                                                    </a>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </m.article>
-                                );
-                            })}
+                                                        <p className={`mt-3 text-sm leading-6 ${muted}`}>
+                                                            {project.summary}
+                                                        </p>
+
+                                                        {(() => {
+                                                            const cardContent = getProjectCardContent(project);
+                                                            return (
+                                                                <div className="mt-5 space-y-3">
+                                                                    <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
+                                                                        <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
+                                                                        <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.built}</p>
+                                                                    </div>
+                                                                    <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-white" : "border-slate-800 bg-slate-900/50"}`}>
+                                                                        <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
+                                                                        <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.focus}</p>
+                                                                    </div>
+                                                                    {
+                                                                        cardContent.outcome !== "" && (
+                                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
+                                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Outcome</p>
+                                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.outcome}</p>
+                                                                            </div>
+                                                                        )
+                                                                    }
+
+                                                                </div>
+                                                            );
+                                                        })()}
+
+                                                        {displayTags.length > 0 && (
+                                                            <div className="mt-5 flex flex-wrap gap-1.5">
+                                                                {displayTags.slice(0, 5).map((tag) => (
+                                                                    <span key={tag} className={`rounded-full border px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.11em] ${tagClass}`}>
+                                                                        {tag}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </div>
+
+                                                    <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-200/60 pt-5 dark:border-slate-800/70">
+                                                        <a href={`/projects/${project.slug}`} className="group/link inline-flex items-center gap-1.5 rounded-full bg-slate-950 px-3.5 py-2.5 text-[11px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
+                                                            Case study
+                                                            <ArrowUpRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                                                        </a>
+
+                                                        {hasLiveUrl ? (
+                                                            <a href={project.url!} target="_blank" rel="noreferrer" className="group/link inline-flex items-center gap-1.5 rounded-full bg-sky-500 px-3.5 py-2.5 text-[11px] font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-sky-400">
+                                                                Live demo
+                                                                <ExternalLink className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5" />
+                                                            </a>
+                                                        ) : (
+                                                            <span className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2.5 text-[11px] font-semibold ${tagClass}`}>
+                                                                <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                                                                Not deployed
+                                                            </span>
+                                                        )}
+
+                                                        {hasGithub && (
+                                                            <a href={project.githubUrl!} target="_blank" rel="noreferrer" className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2.5 text-[11px] font-bold transition hover:-translate-y-0.5 ${secondaryButton}`}>
+                                                                <GithubIcon className="h-3.5 w-3.5" />
+                                                                Source
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </m.article>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                            {hasMoreProjects && (
+                                <div className="mt-10 flex justify-center">
+                                    <m.button
+                                        type="button"
+                                        whileHover={{ y: -2 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        onClick={() => setShowAllProjects((current) => !current)}
+                                        className={`rounded-full border px-6 py-3 text-sm font-semibold transition ${secondaryButton}`}
+                                    >
+                                        {showAllProjects ? "Show less" : `Show all ${projects.length} projects`}
+                                    </m.button>
+                                </div>
+                            )}
                         </div>
-                    )}
-                    {hasMoreProjects && (
-                        <div className="mt-10 flex justify-center">
-                            <m.button
-                                type="button"
-                                whileHover={{ y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={() => setShowAllProjects((current) => !current)}
-                                className={`rounded-full border px-6 py-3 text-sm font-semibold transition ${secondaryButton}`}
-                            >
-                                {showAllProjects ? "Show less" : `Show all ${projects.length} projects`}
-                            </m.button>
-                        </div>
-                    )}
-                </div>
-            </section>
+                    </section>
 
-            {/* =====================================================
+                    {/* =====================================================
                 EXPERIENCE
             ====================================================== */}
 
-            <section
-                id="experience"
-                className="scroll-mt-24 portfolio-deferred-section border-t border-slate-200/60 dark:border-slate-800/60"
-            >
-                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
-                    <m.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.15 }}
-                        variants={sectionReveal}
-                        className="max-w-3xl"
+                    <section
+                        id="experience"
+                        className="scroll-mt-24 portfolio-deferred-section border-t border-slate-200/60 dark:border-slate-800/60"
                     >
-                        <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-500">Career</p>
-                        <h2 className={`mt-3 text-3xl font-black tracking-[-0.04em] sm:text-5xl ${heading}`}>Experience</h2>
-                        <p className={`mt-4 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
-                            A snapshot of the roles, products and engineering work that shaped my approach to building software.
-                        </p>
-                    </m.div>
+                        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
+                            <m.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.15 }}
+                                variants={sectionReveal}
+                                className="max-w-3xl"
+                            >
+                                <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-500">Career</p>
+                                <h2 className={`mt-3 text-3xl font-black tracking-[-0.04em] sm:text-5xl ${heading}`}>Experience</h2>
+                                <p className={`mt-4 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
+                                    A snapshot of the roles, products and engineering work that shaped my approach to building software.
+                                </p>
+                            </m.div>
 
-                    {experienceList.length > 0 ? (
-                        <div className="relative mt-12">
-                            <div className="absolute bottom-4 left-[11px] top-4 hidden w-px bg-slate-200 dark:bg-slate-800 sm:block" />
-                            <div className="space-y-6">
-                                {experienceList.map((experience, index) => {
-                                    const tags = parseTags(experience.technologies);
-                                    return (
-                                        <m.article
-                                            key={experience.id}
-                                            initial="hidden"
-                                            whileInView="visible"
-                                            viewport={{ once: true, amount: 0.12 }}
-                                            variants={cardReveal}
-                                            transition={{ delay: index * 0.06 }}
-                                            className={`relative rounded-[28px] border p-6 sm:ml-10 sm:p-8 ${softPanel}`}
-                                        >
-                                            <span className="absolute -left-[39px] top-8 hidden h-3 w-3 rounded-full border-4 border-sky-500 bg-white shadow-sm dark:bg-slate-950 sm:block" />
-                                            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                                                <div>
-                                                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-sky-500">
-                                                        {experience.startDate} — {experience.current ? "Present" : experience.endDate || ""}
-                                                    </p>
-                                                    <h3 className={`mt-2 text-xl font-black tracking-[-0.025em] ${heading}`}>
-                                                        {experience.position}
-                                                    </h3>
-                                                    <p className={`mt-1 text-sm font-semibold ${muted}`}>
-                                                        {experience.company}{experience.location ? ` · ${experience.location}` : ""}
-                                                    </p>
-                                                </div>
-                                                {experience.current && (
-                                                    <span className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-300">
-                                                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                                                        Current
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <p className={`mt-5 max-w-3xl text-sm leading-7 ${muted}`}>{experience.description}</p>
-                                            {/* {tags.length > 0 && (
+                            {experienceList.length > 0 ? (
+                                <div className="relative mt-12">
+                                    <div className="absolute bottom-4 left-[11px] top-4 hidden w-px bg-slate-200 dark:bg-slate-800 sm:block" />
+                                    <div className="space-y-6">
+                                        {experienceList.map((experience, index) => {
+                                            const tags = parseTags(experience.technologies);
+                                            return (
+                                                <m.article
+                                                    key={experience.id}
+                                                    initial="hidden"
+                                                    whileInView="visible"
+                                                    viewport={{ once: true, amount: 0.12 }}
+                                                    variants={cardReveal}
+                                                    transition={{ delay: index * 0.06 }}
+                                                    className={`relative rounded-[28px] border p-6 sm:ml-10 sm:p-8 ${softPanel}`}
+                                                >
+                                                    <span className="absolute -left-[39px] top-8 hidden h-3 w-3 rounded-full border-4 border-sky-500 bg-white shadow-sm dark:bg-slate-950 sm:block" />
+                                                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                                                        <div>
+                                                            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-sky-500">
+                                                                {experience.startDate} — {experience.current ? "Present" : experience.endDate || ""}
+                                                            </p>
+                                                            <h3 className={`mt-2 text-xl font-black tracking-[-0.025em] ${heading}`}>
+                                                                {experience.position}
+                                                            </h3>
+                                                            <p className={`mt-1 text-sm font-semibold ${muted}`}>
+                                                                {experience.company}{experience.location ? ` · ${experience.location}` : ""}
+                                                            </p>
+                                                        </div>
+                                                        {experience.current && (
+                                                            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-300">
+                                                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                                                Current
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <p className={`mt-5 max-w-3xl text-sm leading-7 ${muted}`}>{experience.description}</p>
+                                                    {/* {tags.length > 0 && (
                                                 <div className="mt-6 flex flex-wrap gap-2">
                                                     {tags.map((tag) => (
                                                         <span key={tag} className={`rounded-full border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] ${tagClass}`}>
@@ -1552,243 +1545,243 @@ export function PortfolioLanding({
                                                     ))}
                                                 </div>
                                             )} */}
+                                                </m.article>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className={`mt-12 rounded-[28px] border p-8 ${softPanel}`}>
+                                    <p className={`text-sm ${muted}`}>Experience details are ready to be added from the portfolio admin.</p>
+                                </div>
+                            )}
+                        </div>
+                    </section>
+
+                    {/* =====================================================
+                AI ASSISTANT SHOWCASE
+            ====================================================== */}
+
+                    <section className="portfolio-deferred-section relative overflow-hidden border-y border-slate-200/60 dark:border-slate-800/60">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(14,165,233,0.12),transparent_30%),radial-gradient(circle_at_85%_70%,rgba(99,102,241,0.10),transparent_28%)]" />
+
+                        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-24">
+                            <m.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.2 }}
+                                variants={sectionReveal}
+                            >
+                                <div className="mb-5 flex items-center gap-3">
+                                    <span className="h-px w-10 bg-sky-500" />
+                                    <p className="text-xs font-bold uppercase tracking-[0.28em] text-sky-500">
+                                        Built into the portfolio
+                                    </p>
+                                </div>
+
+                                <h2 className={`max-w-3xl text-4xl font-black leading-[0.98] tracking-[-0.04em] sm:text-5xl ${heading}`}>
+                                    Don't just read my portfolio.
+                                    <br />
+                                    <span className="text-sky-500">Ask it.</span>
+                                </h2>
+
+                                <p className={`mt-5 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
+                                    My AI portfolio assistant can help visitors explore my skills, projects, experience and the kind of products I build.
+                                </p>
+
+                                <div className="mt-7 flex flex-wrap gap-3">
+                                    <button
+                                        type="button"
+                                        onClick={openChat}
+                                        className="group inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-sky-500/15 transition hover:-translate-y-0.5 hover:bg-sky-400"
+                                    >
+                                        <Bot className="h-4 w-4" />
+                                        Start a conversation
+                                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                                    </button>
+                                </div>
+                            </m.div>
+
+                            <m.div
+                                initial={{ opacity: 0, y: 24, rotate: 1 }}
+                                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                                className={`senior-card relative overflow-hidden rounded-[28px] border p-5 shadow-2xl ${panel}`}
+                            >
+                                <div className="flex items-center gap-3 border-b border-slate-200/70 pb-4 dark:border-slate-800/70">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-lg shadow-sky-500/20">
+                                        <Bot className="h-5 w-5" />
+                                    </div>
+                                    <div>
+                                        <p className={`text-sm font-black ${heading}`}>Portfolio AI</p>
+                                        <p className="text-xs text-emerald-500">Online · Ready to answer</p>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-3 py-5">
+                                    <div className="ml-auto max-w-[82%] rounded-2xl rounded-br-md bg-sky-500 px-4 py-3 text-sm font-medium text-slate-950">
+                                        What kind of products can you build?
+                                    </div>
+                                    <div className={`max-w-[88%] rounded-2xl rounded-bl-md border px-4 py-3 text-sm leading-6 ${softPanel}`}>
+                                        Full-stack web apps, SaaS dashboards, business platforms and AI-powered experiences — with a focus on usability, performance and maintainable architecture.
+                                    </div>
+                                </div>
+
+                                <div className={`rounded-2xl border px-4 py-3 text-xs ${tagClass}`}>
+                                    Try asking about projects, skills, architecture or experience →
+                                </div>
+                            </m.div>
+                        </div>
+                    </section>
+
+                    {/* =====================================================
+                SERVICES
+            ====================================================== */}
+
+                    <section
+                        id="services"
+                        className="scroll-mt-24 portfolio-deferred-section"
+                    >
+                        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
+                            <div className="mb-10 flex flex-col gap-6 lg:mb-12 lg:flex-row lg:items-end lg:justify-between">
+                                <m.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, amount: 0.2 }}
+                                    variants={sectionReveal}
+                                    className="max-w-2xl"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className="h-px w-8 bg-sky-500" />
+                                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
+                                            Services
+                                        </p>
+                                    </div>
+                                    <h2 className={`mt-4 text-4xl font-black tracking-tight sm:text-5xl ${heading}`}>
+                                        Built around your<br className="hidden sm:block" /> problem, not a template.
+                                    </h2>
+                                    <p className={`mt-5 max-w-xl text-sm leading-7 sm:text-base ${muted}`}>
+                                        From product architecture to polished interfaces and AI integrations, I focus on shipping useful software that is clear to use and practical to maintain.
+                                    </p>
+                                </m.div>
+
+                                <m.a
+                                    href="#contact"
+                                    initial={{ opacity: 0, y: 14 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, amount: 0.2 }}
+                                    transition={{ duration: 0.5, delay: 0.12 }}
+                                    className={`group inline-flex shrink-0 items-center gap-2 self-start rounded-full border px-5 py-3 text-sm font-bold transition hover:-translate-y-0.5 lg:self-auto ${softPanel} ${heading}`}
+                                >
+                                    Start a conversation
+                                    <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                </m.a>
+                            </div>
+
+                            <div className="grid gap-4 md:grid-cols-2">
+                                {services.map((service, index) => {
+                                    const Icon = service.icon;
+                                    return (
+                                        <m.article
+                                            key={service.number}
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            viewport={{ once: true, amount: 0.15 }}
+                                            variants={{
+                                                ...cardReveal,
+                                                visible: {
+                                                    opacity: 1,
+                                                    y: 0,
+                                                    transition: {
+                                                        duration: 0.5,
+                                                        delay: index * 0.08,
+                                                        ease: [0.16, 1, 0.3, 1] as const,
+                                                    },
+                                                },
+                                            }}
+                                            whileHover={{ y: -5 }}
+                                            className={`group senior-card rounded-[28px] border p-6 sm:p-7 ${softPanel}`}
+                                        >
+                                            <div className="flex items-start justify-between gap-5">
+                                                <div className="flex items-center gap-3">
+                                                    <div className={`flex h-11 w-11 items-center justify-center rounded-2xl ${isLight ? "bg-sky-50 text-sky-600" : "bg-sky-500/10 text-sky-400"}`}>
+                                                        <Icon className="h-5 w-5" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[11px] font-black uppercase tracking-[0.18em] text-sky-500">
+                                                            {service.label}
+                                                        </p>
+                                                        <p className={`mt-1 text-xs font-semibold ${muted}`}>
+                                                            Service {service.number}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <ArrowUpRight className={`h-5 w-5 shrink-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 ${muted}`} />
+                                            </div>
+
+                                            <h3 className={`mt-7 text-2xl font-black tracking-tight ${heading}`}>
+                                                {service.title}
+                                            </h3>
+                                            <p className={`mt-3 max-w-xl text-sm leading-7 ${muted}`}>
+                                                {service.text}
+                                            </p>
+
+                                            <div className="mt-6 flex flex-wrap gap-2">
+                                                {(service.tags ?? []).map((tag: string) => (
+                                                    <span
+                                                        key={tag}
+                                                        className={`rounded-full border px-3 py-1.5 text-[11px] font-bold ${tagClass}`}
+                                                    >
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+
+                                            <div className={`mt-6 border-t pt-5 ${isLight ? "border-slate-200/80" : "border-slate-800/80"}`}>
+                                                <div className="grid gap-4 sm:grid-cols-2">
+                                                    <div>
+                                                        <p className="text-[10px] font-black uppercase tracking-[0.16em] text-sky-500">Indicative investment</p>
+                                                        <p className={`mt-1 text-sm font-bold ${heading}`}>{service.investment ?? "Scoped per project"}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[10px] font-black uppercase tracking-[0.16em] text-sky-500">Typical timeline</p>
+                                                        <p className={`mt-1 text-sm font-bold ${heading}`}>{service.timeline ?? "Scoped per project"}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="mt-4 flex items-start gap-3">
+                                                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-sky-500" />
+                                                    <div>
+                                                        <p className={`text-xs font-black uppercase tracking-[0.16em] ${heading}`}>Scope</p>
+                                                        <p className={`mt-1 text-sm leading-6 ${muted}`}>{service.includes}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </m.article>
                                     );
                                 })}
                             </div>
                         </div>
-                    ) : (
-                        <div className={`mt-12 rounded-[28px] border p-8 ${softPanel}`}>
-                            <p className={`text-sm ${muted}`}>Experience details are ready to be added from the portfolio admin.</p>
-                        </div>
-                    )}
-                </div>
-            </section>
+                    </section>
 
-            {/* =====================================================
-                AI ASSISTANT SHOWCASE
-            ====================================================== */}
-
-            <section className="portfolio-deferred-section relative overflow-hidden border-y border-slate-200/60 dark:border-slate-800/60">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(14,165,233,0.12),transparent_30%),radial-gradient(circle_at_85%_70%,rgba(99,102,241,0.10),transparent_28%)]" />
-
-                <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-24">
-                    <m.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionReveal}
-                    >
-                        <div className="mb-5 flex items-center gap-3">
-                            <span className="h-px w-10 bg-sky-500" />
-                            <p className="text-xs font-bold uppercase tracking-[0.28em] text-sky-500">
-                                Built into the portfolio
-                            </p>
-                        </div>
-
-                        <h2 className={`max-w-3xl text-4xl font-black leading-[0.98] tracking-[-0.04em] sm:text-5xl ${heading}`}>
-                            Don't just read my portfolio.
-                            <br />
-                            <span className="text-sky-500">Ask it.</span>
-                        </h2>
-
-                        <p className={`mt-5 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
-                            My AI portfolio assistant can help visitors explore my skills, projects, experience and the kind of products I build.
-                        </p>
-
-                        <div className="mt-7 flex flex-wrap gap-3">
-                            <button
-                                type="button"
-                                onClick={openChat}
-                                className="group inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-sky-500/15 transition hover:-translate-y-0.5 hover:bg-sky-400"
-                            >
-                                <Bot className="h-4 w-4" />
-                                Start a conversation
-                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                            </button>
-                        </div>
-                    </m.div>
-
-                    <m.div
-                        initial={{ opacity: 0, y: 24, rotate: 1 }}
-                        whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                        className={`senior-card relative overflow-hidden rounded-[28px] border p-5 shadow-2xl ${panel}`}
-                    >
-                        <div className="flex items-center gap-3 border-b border-slate-200/70 pb-4 dark:border-slate-800/70">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-lg shadow-sky-500/20">
-                                <Bot className="h-5 w-5" />
-                            </div>
-                            <div>
-                                <p className={`text-sm font-black ${heading}`}>Portfolio AI</p>
-                                <p className="text-xs text-emerald-500">Online · Ready to answer</p>
-                            </div>
-                        </div>
-
-                        <div className="space-y-3 py-5">
-                            <div className="ml-auto max-w-[82%] rounded-2xl rounded-br-md bg-sky-500 px-4 py-3 text-sm font-medium text-slate-950">
-                                What kind of products can you build?
-                            </div>
-                            <div className={`max-w-[88%] rounded-2xl rounded-bl-md border px-4 py-3 text-sm leading-6 ${softPanel}`}>
-                                Full-stack web apps, SaaS dashboards, business platforms and AI-powered experiences — with a focus on usability, performance and maintainable architecture.
-                            </div>
-                        </div>
-
-                        <div className={`rounded-2xl border px-4 py-3 text-xs ${tagClass}`}>
-                            Try asking about projects, skills, architecture or experience →
-                        </div>
-                    </m.div>
-                </div>
-            </section>
-
-            {/* =====================================================
-                SERVICES
-            ====================================================== */}
-
-            <section
-                id="services"
-                className="scroll-mt-24 portfolio-deferred-section"
-            >
-                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
-                    <div className="mb-10 flex flex-col gap-6 lg:mb-12 lg:flex-row lg:items-end lg:justify-between">
-                        <m.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.2 }}
-                            variants={sectionReveal}
-                            className="max-w-2xl"
-                        >
-                            <div className="flex items-center gap-3">
-                                <span className="h-px w-8 bg-sky-500" />
-                                <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
-                                    Services
-                                </p>
-                            </div>
-                            <h2 className={`mt-4 text-4xl font-black tracking-tight sm:text-5xl ${heading}`}>
-                                Built around your<br className="hidden sm:block" /> problem, not a template.
-                            </h2>
-                            <p className={`mt-5 max-w-xl text-sm leading-7 sm:text-base ${muted}`}>
-                                From product architecture to polished interfaces and AI integrations, I focus on shipping useful software that is clear to use and practical to maintain.
-                            </p>
-                        </m.div>
-
-                        <m.a
-                            href="#contact"
-                            initial={{ opacity: 0, y: 14 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.2 }}
-                            transition={{ duration: 0.5, delay: 0.12 }}
-                            className={`group inline-flex shrink-0 items-center gap-2 self-start rounded-full border px-5 py-3 text-sm font-bold transition hover:-translate-y-0.5 lg:self-auto ${softPanel} ${heading}`}
-                        >
-                            Start a conversation
-                            <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </m.a>
-                    </div>
-
-                    <div className="grid gap-4 md:grid-cols-2">
-                        {services.map((service, index) => {
-                            const Icon = service.icon;
-                            return (
-                                <m.article
-                                    key={service.number}
-                                    initial="hidden"
-                                    whileInView="visible"
-                                    viewport={{ once: true, amount: 0.15 }}
-                                    variants={{
-                                        ...cardReveal,
-                                        visible: {
-                                            opacity: 1,
-                                            y: 0,
-                                            transition: {
-                                                duration: 0.5,
-                                                delay: index * 0.08,
-                                                ease: [0.16, 1, 0.3, 1] as const,
-                                            },
-                                        },
-                                    }}
-                                    whileHover={{ y: -5 }}
-                                    className={`group senior-card rounded-[28px] border p-6 sm:p-7 ${softPanel}`}
-                                >
-                                    <div className="flex items-start justify-between gap-5">
-                                        <div className="flex items-center gap-3">
-                                            <div className={`flex h-11 w-11 items-center justify-center rounded-2xl ${isLight ? "bg-sky-50 text-sky-600" : "bg-sky-500/10 text-sky-400"}`}>
-                                                <Icon className="h-5 w-5" />
-                                            </div>
-                                            <div>
-                                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-sky-500">
-                                                    {service.label}
-                                                </p>
-                                                <p className={`mt-1 text-xs font-semibold ${muted}`}>
-                                                    Service {service.number}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <ArrowUpRight className={`h-5 w-5 shrink-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 ${muted}`} />
-                                    </div>
-
-                                    <h3 className={`mt-7 text-2xl font-black tracking-tight ${heading}`}>
-                                        {service.title}
-                                    </h3>
-                                    <p className={`mt-3 max-w-xl text-sm leading-7 ${muted}`}>
-                                        {service.text}
-                                    </p>
-
-                                    <div className="mt-6 flex flex-wrap gap-2">
-                                        {(service.tags ?? []).map((tag: string) => (
-                                            <span
-                                                key={tag}
-                                                className={`rounded-full border px-3 py-1.5 text-[11px] font-bold ${tagClass}`}
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    <div className={`mt-6 border-t pt-5 ${isLight ? "border-slate-200/80" : "border-slate-800/80"}`}>
-                                        <div className="grid gap-4 sm:grid-cols-2">
-                                            <div>
-                                                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-sky-500">Indicative investment</p>
-                                                <p className={`mt-1 text-sm font-bold ${heading}`}>{service.investment ?? "Scoped per project"}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-sky-500">Typical timeline</p>
-                                                <p className={`mt-1 text-sm font-bold ${heading}`}>{service.timeline ?? "Scoped per project"}</p>
-                                            </div>
-                                        </div>
-                                        <div className="mt-4 flex items-start gap-3">
-                                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-sky-500" />
-                                            <div>
-                                                <p className={`text-xs font-black uppercase tracking-[0.16em] ${heading}`}>Scope</p>
-                                                <p className={`mt-1 text-sm leading-6 ${muted}`}>{service.includes}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </m.article>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
-
-            {/* =====================================================
+                    {/* =====================================================
                 STACK
             ====================================================== */}
 
-            <section
-                id="stack"
-                className="scroll-mt-24 portfolio-deferred-section"
-            >
-                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
-                    <m.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{
-                            once: true,
-                            amount: 0.15,
-                        }}
-                        variants={sectionReveal}
-                        className={`
+                    <section
+                        id="stack"
+                        className="scroll-mt-24 portfolio-deferred-section"
+                    >
+                        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
+                            <m.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{
+                                    once: true,
+                                    amount: 0.15,
+                                }}
+                                variants={sectionReveal}
+                                className={`
                             overflow-hidden
                             rounded-[32px]
                             border
@@ -1798,15 +1791,15 @@ export function PortfolioLanding({
                             lg:p-12
                             ${panel}
                         `}
-                    >
-                        <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-                            <div>
-                                <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
-                                    Engineering stack
-                                </p>
+                            >
+                                <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
+                                            Engineering stack
+                                        </p>
 
-                                <h2
-                                    className={`
+                                        <h2
+                                            className={`
                                         mt-4
                                         text-3xl
                                         font-black
@@ -1814,113 +1807,113 @@ export function PortfolioLanding({
                                         sm:text-4xl
                                         ${heading}
                                     `}
-                                >
-                                    Tools that turn
-                                    <br />
-                                    ideas into products.
-                                </h2>
+                                        >
+                                            Tools that turn
+                                            <br />
+                                            ideas into products.
+                                        </h2>
 
-                                <p
-                                    className={`
+                                        <p
+                                            className={`
                                         mt-4
                                         max-w-md
                                         text-sm
                                         leading-7
                                         ${muted}
                                     `}
-                                >
-                                    A modern, practical
-                                    stack focused on
-                                    maintainability,
-                                    performance and great
-                                    user experiences.
-                                </p>
-                            </div>
+                                        >
+                                            A modern, practical
+                                            stack focused on
+                                            maintainability,
+                                            performance and great
+                                            user experiences.
+                                        </p>
+                                    </div>
 
-                            <div className="grid gap-4 sm:grid-cols-2">
-                                {[
-                                    {
-                                        title: "Frontend",
-                                        icon: Code2,
-                                        items:
-                                            groupedSkills.frontend,
-                                    },
-                                    {
-                                        title: "Backend",
-                                        icon: Server,
-                                        items:
-                                            groupedSkills.backend,
-                                    },
-                                    {
-                                        title: "DataBase",
-                                        icon: Database,
-                                        items:
-                                            groupedSkills.database,
-                                    },
-                                    {
-                                        title: "AI & Automation",
-                                        icon: Sparkles,
-                                        items:
-                                            groupedSkills.ai,
-                                    },
-                                    {
-                                        title: "DevOps",
-                                        icon: GitBranch,
-                                        items:
-                                            groupedSkills.devops,
-                                    },
-                                ].map(
-                                    (
-                                        group,
-                                    ) => {
-                                        const Icon =
-                                            group.icon;
+                                    <div className="grid gap-4 sm:grid-cols-2">
+                                        {[
+                                            {
+                                                title: "Frontend",
+                                                icon: Code2,
+                                                items:
+                                                    groupedSkills.frontend,
+                                            },
+                                            {
+                                                title: "Backend",
+                                                icon: Server,
+                                                items:
+                                                    groupedSkills.backend,
+                                            },
+                                            {
+                                                title: "DataBase",
+                                                icon: Database,
+                                                items:
+                                                    groupedSkills.database,
+                                            },
+                                            {
+                                                title: "AI & Automation",
+                                                icon: Sparkles,
+                                                items:
+                                                    groupedSkills.ai,
+                                            },
+                                            {
+                                                title: "DevOps",
+                                                icon: GitBranch,
+                                                items:
+                                                    groupedSkills.devops,
+                                            },
+                                        ].map(
+                                            (
+                                                group,
+                                            ) => {
+                                                const Icon =
+                                                    group.icon;
 
-                                        return (
-                                            <m.div
-                                                key={
-                                                    group.title
-                                                }
-                                                whileHover={{
-                                                    y: -3,
-                                                }}
-                                                className={`
+                                                return (
+                                                    <m.div
+                                                        key={
+                                                            group.title
+                                                        }
+                                                        whileHover={{
+                                                            y: -3,
+                                                        }}
+                                                        className={`
                                                     rounded-2xl
                                                     border
                                                     p-5
                                                     transition
                                                     ${softPanel}
                                                 `}
-                                            >
-                                                <div className="flex items-center gap-3">
-                                                    <Icon className="h-4 w-4 text-sky-500" />
+                                                    >
+                                                        <div className="flex items-center gap-3">
+                                                            <Icon className="h-4 w-4 text-sky-500" />
 
-                                                    <h3
-                                                        className={`
+                                                            <h3
+                                                                className={`
                                                             text-sm
                                                             font-bold
                                                             ${heading}
                                                         `}
-                                                    >
-                                                        {
-                                                            group.title
-                                                        }
-                                                    </h3>
-                                                </div>
-
-                                                <div className="mt-4 flex flex-wrap gap-2">
-                                                    {group.items.map(
-                                                        (
-                                                            skill,
-                                                        ) => (
-                                                            <m.span
-                                                                key={
-                                                                    skill
+                                                            >
+                                                                {
+                                                                    group.title
                                                                 }
-                                                                whileHover={{
-                                                                    y: -1,
-                                                                }}
-                                                                className={`
+                                                            </h3>
+                                                        </div>
+
+                                                        <div className="mt-4 flex flex-wrap gap-2">
+                                                            {group.items.map(
+                                                                (
+                                                                    skill,
+                                                                ) => (
+                                                                    <m.span
+                                                                        key={
+                                                                            skill
+                                                                        }
+                                                                        whileHover={{
+                                                                            y: -1,
+                                                                        }}
+                                                                        className={`
                                                                     rounded-full
                                                                     border
                                                                     px-3
@@ -1929,46 +1922,46 @@ export function PortfolioLanding({
                                                                     font-medium
                                                                     ${tagClass}
                                                                 `}
-                                                            >
-                                                                {
-                                                                    skill
-                                                                }
-                                                            </m.span>
-                                                        ),
-                                                    )}
-                                                </div>
-                                            </m.div>
-                                        );
-                                    },
-                                )}
-                            </div>
+                                                                    >
+                                                                        {
+                                                                            skill
+                                                                        }
+                                                                    </m.span>
+                                                                ),
+                                                            )}
+                                                        </div>
+                                                    </m.div>
+                                                );
+                                            },
+                                        )}
+                                    </div>
+                                </div>
+                            </m.div>
                         </div>
-                    </m.div>
-                </div>
-            </section>
+                    </section>
 
-            {/* =====================================================
+                    {/* =====================================================
                 PHILOSOPHY
             ====================================================== */}
 
-            <section>
-                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
-                    <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 lg:items-center">
-                        <m.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{
-                                once: true,
-                                amount: 0.2,
-                            }}
-                            variants={sectionReveal}
-                        >
-                            <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
-                                How I work
-                            </p>
+                    <section>
+                        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
+                            <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 lg:items-center">
+                                <m.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{
+                                        once: true,
+                                        amount: 0.2,
+                                    }}
+                                    variants={sectionReveal}
+                                >
+                                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
+                                        How I work
+                                    </p>
 
-                            <h2
-                                className={`
+                                    <h2
+                                        className={`
                                     mt-4
                                     text-4xl
                                     font-black
@@ -1976,98 +1969,98 @@ export function PortfolioLanding({
                                     sm:text-5xl
                                     ${heading}
                                 `}
-                            >
-                                Good software
-                                <br />
-                                starts with clarity.
-                            </h2>
+                                    >
+                                        Good software
+                                        <br />
+                                        starts with clarity.
+                                    </h2>
 
-                            <p
-                                className={`
+                                    <p
+                                        className={`
                                     mt-5
                                     max-w-xl
                                     text-base
                                     leading-7
                                     ${muted}
                                 `}
-                            >
-                                I reduce uncertainty before writing too much code — then ship in small, testable increments.
-                            </p>
+                                    >
+                                        I reduce uncertainty before writing too much code — then ship in small, testable increments.
+                                    </p>
 
-                            <div className="mt-7 grid max-w-xl grid-cols-3 gap-3">
-                                {[
-                                    ["01", "Clarify", "Goals & constraints"],
-                                    ["02", "Build", "Small, testable slices"],
-                                    ["03", "Improve", "Measure & iterate"],
-                                ].map(([number, title, text]) => (
-                                    <div key={number} className={`rounded-2xl border p-4 ${softPanel}`}>
-                                        <p className="text-[10px] font-black tracking-[0.16em] text-sky-500">{number}</p>
-                                        <p className={`mt-2 text-sm font-black ${heading}`}>{title}</p>
-                                        <p className={`mt-1 text-xs leading-5 ${muted}`}>{text}</p>
+                                    <div className="mt-7 grid max-w-xl grid-cols-3 gap-3">
+                                        {[
+                                            ["01", "Clarify", "Goals & constraints"],
+                                            ["02", "Build", "Small, testable slices"],
+                                            ["03", "Improve", "Measure & iterate"],
+                                        ].map(([number, title, text]) => (
+                                            <div key={number} className={`rounded-2xl border p-4 ${softPanel}`}>
+                                                <p className="text-[10px] font-black tracking-[0.16em] text-sky-500">{number}</p>
+                                                <p className={`mt-2 text-sm font-black ${heading}`}>{title}</p>
+                                                <p className={`mt-1 text-xs leading-5 ${muted}`}>{text}</p>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
-                        </m.div>
+                                </m.div>
 
-                        <div className="space-y-3">
-                            {[
-                                {
-                                    number: "01",
-                                    title: "Discover the real problem",
-                                    text: "Align on users, constraints, success criteria and the smallest version worth shipping.",
-                                },
-                                {
-                                    number: "02",
-                                    title: "Design the system",
-                                    text: "Choose the architecture, data model, and UX around the product — not the other way around.",
-                                },
-                                {
-                                    number: "03",
-                                    title: "Build in vertical slices",
-                                    text: "Ship working slices early, validate assumptions, and keep the system easy to change as we learn.",
-                                },
-                                {
-                                    number: "04",
-                                    title: "Harden before launch",
-                                    text: "Test critical paths, improve performance, document key decisions, and leave the product ready to operate and extend.",
-                                },
-                            ].map(
-                                (
-                                    item,
-                                    index,
-                                ) => (
-                                    <m.div
-                                        key={
-                                            item.number
-                                        }
-                                        initial={{
-                                            opacity: 0,
-                                            x: 20,
-                                        }}
-                                        whileInView={{
-                                            opacity: 1,
-                                            x: 0,
-                                        }}
-                                        viewport={{
-                                            once: true,
-                                            amount: 0.15,
-                                        }}
-                                        transition={{
-                                            duration: 0.5,
-                                            delay:
-                                                index *
-                                                0.08,
-                                            ease: [
-                                                0.16,
-                                                1,
-                                                0.3,
-                                                1,
-                                            ] as const,
-                                        }}
-                                        whileHover={{
-                                            x: 4,
-                                        }}
-                                        className={`
+                                <div className="space-y-3">
+                                    {[
+                                        {
+                                            number: "01",
+                                            title: "Discover the real problem",
+                                            text: "Align on users, constraints, success criteria and the smallest version worth shipping.",
+                                        },
+                                        {
+                                            number: "02",
+                                            title: "Design the system",
+                                            text: "Choose the architecture, data model, and UX around the product — not the other way around.",
+                                        },
+                                        {
+                                            number: "03",
+                                            title: "Build in vertical slices",
+                                            text: "Ship working slices early, validate assumptions, and keep the system easy to change as we learn.",
+                                        },
+                                        {
+                                            number: "04",
+                                            title: "Harden before launch",
+                                            text: "Test critical paths, improve performance, document key decisions, and leave the product ready to operate and extend.",
+                                        },
+                                    ].map(
+                                        (
+                                            item,
+                                            index,
+                                        ) => (
+                                            <m.div
+                                                key={
+                                                    item.number
+                                                }
+                                                initial={{
+                                                    opacity: 0,
+                                                    x: 20,
+                                                }}
+                                                whileInView={{
+                                                    opacity: 1,
+                                                    x: 0,
+                                                }}
+                                                viewport={{
+                                                    once: true,
+                                                    amount: 0.15,
+                                                }}
+                                                transition={{
+                                                    duration: 0.5,
+                                                    delay:
+                                                        index *
+                                                        0.08,
+                                                    ease: [
+                                                        0.16,
+                                                        1,
+                                                        0.3,
+                                                        1,
+                                                    ] as const,
+                                                }}
+                                                whileHover={{
+                                                    x: 4,
+                                                }}
+                                                className={`
                                             senior-card
                                             group
                                             flex
@@ -2078,78 +2071,78 @@ export function PortfolioLanding({
                                             transition
                                             ${softPanel}
                                         `}
-                                    >
-                                        <span className="pt-1 text-xs font-black text-sky-500">
-                                            {
-                                                item.number
-                                            }
-                                        </span>
+                                            >
+                                                <span className="pt-1 text-xs font-black text-sky-500">
+                                                    {
+                                                        item.number
+                                                    }
+                                                </span>
 
-                                        <div>
-                                            <h3
-                                                className={`
+                                                <div>
+                                                    <h3
+                                                        className={`
                                                     font-bold
                                                     ${heading}
                                                 `}
-                                            >
-                                                {
-                                                    item.title
-                                                }
-                                            </h3>
+                                                    >
+                                                        {
+                                                            item.title
+                                                        }
+                                                    </h3>
 
-                                            <p
-                                                className={`
+                                                    <p
+                                                        className={`
                                                     mt-1
                                                     text-sm
                                                     leading-6
                                                     ${muted}
                                                 `}
-                                            >
-                                                {
-                                                    item.text
-                                                }
-                                            </p>
-                                        </div>
-                                    </m.div>
-                                ),
-                            )}
+                                                    >
+                                                        {
+                                                            item.text
+                                                        }
+                                                    </p>
+                                                </div>
+                                            </m.div>
+                                        ),
+                                    )}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </section>
 
-            {/* =====================================================
+                    {/* =====================================================
                 CONTACT
             ====================================================== */}
 
-            <section
-                id="contact"
-                className="scroll-mt-24"
-            >
-                <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 sm:pb-16 sm:pt-12">
-                    <m.div
-                        initial={{
-                            opacity: 0,
-                            y: 24,
-                        }}
-                        whileInView={{
-                            opacity: 1,
-                            y: 0,
-                        }}
-                        viewport={{
-                            once: true,
-                            amount: 0.2,
-                        }}
-                        transition={{
-                            duration: 0.7,
-                            ease: [
-                                0.16,
-                                1,
-                                0.3,
-                                1,
-                            ] as const,
-                        }}
-                        className="
+                    <section
+                        id="contact"
+                        className="scroll-mt-24"
+                    >
+                        <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 sm:pb-16 sm:pt-12">
+                            <m.div
+                                initial={{
+                                    opacity: 0,
+                                    y: 24,
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    y: 0,
+                                }}
+                                viewport={{
+                                    once: true,
+                                    amount: 0.2,
+                                }}
+                                transition={{
+                                    duration: 0.7,
+                                    ease: [
+                                        0.16,
+                                        1,
+                                        0.3,
+                                        1,
+                                    ] as const,
+                                }}
+                                className="
                             relative
                             overflow-hidden
                             rounded-[36px]
@@ -2166,20 +2159,20 @@ export function PortfolioLanding({
                             sm:p-12
                             lg:p-16
                         "
-                    >
-                        {/* Atmospheric lights */}
+                            >
+                                {/* Atmospheric lights */}
 
-                        <m.div
-                            animate={{
-                                x: [0, 20, 0],
-                                y: [0, -15, 0],
-                            }}
-                            transition={{
-                                duration: 8,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                            className="
+                                <m.div
+                                    animate={{
+                                        x: [0, 20, 0],
+                                        y: [0, -15, 0],
+                                    }}
+                                    transition={{
+                                        duration: 8,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                    className="
                                 absolute
                                 -left-24
                                 -top-24
@@ -2189,19 +2182,19 @@ export function PortfolioLanding({
                                 bg-white/15
                                 blur-3xl
                             "
-                        />
+                                />
 
-                        <m.div
-                            animate={{
-                                x: [0, -20, 0],
-                                y: [0, 15, 0],
-                            }}
-                            transition={{
-                                duration: 9,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                            className="
+                                <m.div
+                                    animate={{
+                                        x: [0, -20, 0],
+                                        y: [0, 15, 0],
+                                    }}
+                                    transition={{
+                                        duration: 9,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                    className="
                                 absolute
                                 -bottom-24
                                 -right-24
@@ -2211,34 +2204,34 @@ export function PortfolioLanding({
                                 bg-blue-950/10
                                 blur-3xl
                             "
-                        />
+                                />
 
-                        {/* Fine grid */}
+                                {/* Fine grid */}
 
-                        <div
-                            className="
+                                <div
+                                    className="
                                 pointer-events-none
                                 absolute
                                 inset-0
                                 opacity-[0.08]
                             "
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-                                backgroundSize:
-                                    "40px 40px",
-                                maskImage:
-                                    "linear-gradient(to bottom, black, transparent)",
-                            }}
-                        />
+                                    style={{
+                                        backgroundImage:
+                                            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+                                        backgroundSize:
+                                            "40px 40px",
+                                        maskImage:
+                                            "linear-gradient(to bottom, black, transparent)",
+                                    }}
+                                />
 
-                        <div className="relative">
-                            <m.div
-                                whileHover={{
-                                    scale: 1.05,
-                                    rotate: -3,
-                                }}
-                                className="
+                                <div className="relative">
+                                    <m.div
+                                        whileHover={{
+                                            scale: 1.05,
+                                            rotate: -3,
+                                        }}
+                                        className="
                                     mx-auto
                                     flex
                                     h-12
@@ -2250,31 +2243,31 @@ export function PortfolioLanding({
                                     text-white
                                     shadow-xl
                                 "
-                            >
-                                <Mail className="h-5 w-5" />
-                            </m.div>
+                                    >
+                                        <Mail className="h-5 w-5" />
+                                    </m.div>
 
-                            <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-slate-950/60">
-                                {content?.ctaTitle || "Have an idea worth building?"}
-                            </p>
+                                    <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-slate-950/60">
+                                        {content?.ctaTitle || "Have an idea worth building?"}
+                                    </p>
 
-                            <h2 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
-                                {content?.ctaTitle || "Let's turn it into something remarkable."}
-                            </h2>
+                                    <h2 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+                                        {content?.ctaTitle || "Let's turn it into something remarkable."}
+                                    </h2>
 
-                            <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-slate-950/70">
-                            </p>
+                                    <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-slate-950/70">
+                                    </p>
 
-                            <m.a
-                                href={profile.email ? `mailto:${profile.email}` : "#contact"}
-                                whileHover={{
-                                    y: -2,
-                                    scale: 1.01,
-                                }}
-                                whileTap={{
-                                    scale: 0.98,
-                                }}
-                                className="
+                                    <m.a
+                                        href={profile.email ? `mailto:${profile.email}` : "#contact"}
+                                        whileHover={{
+                                            y: -2,
+                                            scale: 1.01,
+                                        }}
+                                        whileTap={{
+                                            scale: 0.98,
+                                        }}
+                                        className="
                                     mt-8
                                     inline-flex
                                     items-center
@@ -2290,202 +2283,202 @@ export function PortfolioLanding({
                                     transition
                                     hover:bg-slate-800
                                 "
-                            >
-                                <Mail className="h-4 w-4" />
+                                    >
+                                        <Mail className="h-4 w-4" />
 
-                                {content?.ctaPrimaryText || "Start a conversation"}
+                                        {content?.ctaPrimaryText || "Start a conversation"}
 
-                                <ArrowRight className="h-4 w-4" />
-                            </m.a>
+                                        <ArrowRight className="h-4 w-4" />
+                                    </m.a>
+                                </div>
+                            </m.div>
                         </div>
-                    </m.div>
-                </div>
-            </section>
+                    </section>
 
-            {/* =====================================================
+                    {/* =====================================================
                 FOOTER
             ====================================================== */}
 
-            <footer>
-                <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <p
-                            className={`
+                    <footer>
+                        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p
+                                    className={`
                                 text-sm
                                 font-bold
                                 ${heading}
                             `}
-                        >
-                            {profile.name}
-                        </p>
+                                >
+                                    {profile.name}
+                                </p>
 
-                        <p
-                            className={`
+                                <p
+                                    className={`
                                 mt-1
                                 text-xs
                                 ${muted}
                             `}
-                        >
-                            {profile.title}.
-                        </p>
-                    </div>
+                                >
+                                    {profile.title}.
+                                </p>
+                            </div>
 
-                    <div className="flex items-center gap-5">
-                        {[
-                            [
-                                "Work",
-                                "#work",
-                            ],
-                            [
-                                "Services",
-                                "#services",
-                            ],
-                            [
-                                "Contact",
-                                "#contact",
-                            ],
-                        ].map(
-                            ([
-                                label,
-                                href,
-                            ]) => (
-                                <a
-                                    key={
-                                        href
-                                    }
-                                    href={
-                                        href
-                                    }
-                                    className={`
+                            <div className="flex items-center gap-5">
+                                {[
+                                    [
+                                        "Work",
+                                        "#work",
+                                    ],
+                                    [
+                                        "Services",
+                                        "#services",
+                                    ],
+                                    [
+                                        "Contact",
+                                        "#contact",
+                                    ],
+                                ].map(
+                                    ([
+                                        label,
+                                        href,
+                                    ]) => (
+                                        <a
+                                            key={
+                                                href
+                                            }
+                                            href={
+                                                href
+                                            }
+                                            className={`
                                         text-xs
                                         font-medium
                                         transition
                                         hover:text-sky-500
                                         ${muted}
                                     `}
-                                >
-                                    {
-                                        label
-                                    }
-                                </a>
-                            ),
-                        )}
+                                        >
+                                            {
+                                                label
+                                            }
+                                        </a>
+                                    ),
+                                )}
 
-                        <a
-                            href="/admin"
-                            className={`
+                                <a
+                                    href="/admin"
+                                    className={`
                                 text-xs
                                 font-medium
                                 transition
                                 hover:text-sky-500
                                 ${muted}
                             `}
-                        >
-                            Admin
-                        </a>
-                    </div>
-                </div>
-            </footer>
+                                >
+                                    Admin
+                                </a>
+                            </div>
+                        </div>
+                    </footer>
 
-            {/* =====================================================
+                    {/* =====================================================
                 FLOATING CONTACT BUTTONS
             ====================================================== */}
 
-            <div
-                aria-label="Contact links"
-                className="fixed bottom-24 left-2 top-auto z-[60] translate-y-0 sm:left-4 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
-            >
-                <m.div
-                    aria-hidden="true"
-                    animate={{ opacity: [0.35, 0.7, 0.35] }}
-                    transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-                    className={`absolute left-[27px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-sky-400/80 to-transparent ${isLight ? "" : "shadow-[0_0_18px_rgba(56,189,248,0.8)]"}`}
-                />
+                    <div
+                        aria-label="Contact links"
+                        className="fixed bottom-24 left-2 top-auto z-[60] translate-y-0 sm:left-4 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
+                    >
+                        <m.div
+                            aria-hidden="true"
+                            animate={{ opacity: [0.35, 0.7, 0.35] }}
+                            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                            className={`absolute left-[27px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-sky-400/80 to-transparent ${isLight ? "" : "shadow-[0_0_18px_rgba(56,189,248,0.8)]"}`}
+                        />
 
-                <div className="relative flex flex-col gap-3">
-                    {profile.email && (
-                        <a
-                            href={`mailto:${profile.email}`}
-                            aria-label="Email me on Gmail"
-                            title="Gmail"
-                            className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-white/20 bg-white/90 px-3 text-slate-800 shadow-[0_12px_35px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-red-300/70 hover:bg-white hover:shadow-[0_16px_40px_rgba(239,68,68,0.22)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
-                        >
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-red-500/15 via-white to-red-500/10 text-red-500 ring-1 ring-red-200/70">
-                                <Mail className="h-5 w-5" />
-                            </span>
-                            <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                <span className="block text-sm font-bold">Gmail</span>
-                                <span className="block text-[10px] font-medium text-slate-500">Send me an email</span>
-                            </span>
-                        </a>
-                    )}
+                        <div className="relative flex flex-col gap-3">
+                            {profile.email && (
+                                <a
+                                    href={`mailto:${profile.email}`}
+                                    aria-label="Email me on Gmail"
+                                    title="Gmail"
+                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-white/20 bg-white/90 px-3 text-slate-800 shadow-[0_12px_35px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-red-300/70 hover:bg-white hover:shadow-[0_16px_40px_rgba(239,68,68,0.22)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                >
+                                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-red-500/15 via-white to-red-500/10 text-red-500 ring-1 ring-red-200/70">
+                                        <Mail className="h-5 w-5" />
+                                    </span>
+                                    <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                        <span className="block text-sm font-bold">Gmail</span>
+                                        <span className="block text-[10px] font-medium text-slate-500">Send me an email</span>
+                                    </span>
+                                </a>
+                            )}
 
-                    {process.env.NEXT_PUBLIC_WHATSAPP_NUMBER && (
-                        <a
-                            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.replace(/\D/g, "")}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="Contact me on WhatsApp"
-                            title="WhatsApp"
-                            className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-emerald-300/40 bg-emerald-500 px-3 text-white shadow-[0_12px_35px_rgba(16,185,129,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_16px_40px_rgba(16,185,129,0.35)] focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
-                        >
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
-                                <MessageCircle className="h-5 w-5" />
-                            </span>
-                            <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                <span className="block text-sm font-bold">WhatsApp</span>
-                                <span className="block text-[10px] font-medium text-emerald-50/90">Chat with me</span>
-                            </span>
-                        </a>
-                    )}
+                            {process.env.NEXT_PUBLIC_WHATSAPP_NUMBER && (
+                                <a
+                                    href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.replace(/\D/g, "")}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Contact me on WhatsApp"
+                                    title="WhatsApp"
+                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-emerald-300/40 bg-emerald-500 px-3 text-white shadow-[0_12px_35px_rgba(16,185,129,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_16px_40px_rgba(16,185,129,0.35)] focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                >
+                                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
+                                        <MessageCircle className="h-5 w-5" />
+                                    </span>
+                                    <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                        <span className="block text-sm font-bold">WhatsApp</span>
+                                        <span className="block text-[10px] font-medium text-emerald-50/90">Chat with me</span>
+                                    </span>
+                                </a>
+                            )}
 
-                    {process.env.NEXT_PUBLIC_TELEGRAM_USERNAME && (
-                        <a
-                            href={`https://t.me/${process.env.NEXT_PUBLIC_TELEGRAM_USERNAME.replace(/^@/, "")}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="Message me on Telegram"
-                            title="Telegram"
-                            className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-sky-300/40 bg-sky-500 px-3 text-white shadow-[0_12px_35px_rgba(14,165,233,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-sky-400 hover:shadow-[0_16px_40px_rgba(14,165,233,0.35)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-slate-950"
-                        >
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
-                                <Send className="h-5 w-5 -translate-x-px" />
-                            </span>
-                            <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                <span className="block text-sm font-bold">Telegram</span>
-                                <span className="block text-[10px] font-medium text-sky-50/90">Message me</span>
-                            </span>
-                        </a>
-                    )}
+                            {process.env.NEXT_PUBLIC_TELEGRAM_USERNAME && (
+                                <a
+                                    href={`https://t.me/${process.env.NEXT_PUBLIC_TELEGRAM_USERNAME.replace(/^@/, "")}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Message me on Telegram"
+                                    title="Telegram"
+                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-sky-300/40 bg-sky-500 px-3 text-white shadow-[0_12px_35px_rgba(14,165,233,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-sky-400 hover:shadow-[0_16px_40px_rgba(14,165,233,0.35)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                >
+                                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
+                                        <Send className="h-5 w-5 -translate-x-px" />
+                                    </span>
+                                    <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                        <span className="block text-sm font-bold">Telegram</span>
+                                        <span className="block text-[10px] font-medium text-sky-50/90">Message me</span>
+                                    </span>
+                                </a>
+                            )}
 
-                    {siteConfig.github && (
-                        <a
-                            href={siteConfig.github}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="Visit my GitHub"
-                            title="GitHub"
-                            className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-slate-600/70 bg-slate-950/95 px-3 text-white shadow-[0_12px_35px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
-                        >
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
-                                <GithubIcon className="h-5 w-5" />
-                            </span>
-                            <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                <span className="block text-sm font-bold">GitHub</span>
-                                <span className="block text-[10px] font-medium text-slate-400">View my code</span>
-                            </span>
-                        </a>
-                    )}
-                </div>
-            </div>
+                            {siteConfig.github && (
+                                <a
+                                    href={siteConfig.github}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Visit my GitHub"
+                                    title="GitHub"
+                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-slate-600/70 bg-slate-950/95 px-3 text-white shadow-[0_12px_35px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                >
+                                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
+                                        <GithubIcon className="h-5 w-5" />
+                                    </span>
+                                    <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                        <span className="block text-sm font-bold">GitHub</span>
+                                        <span className="block text-[10px] font-medium text-slate-400">View my code</span>
+                                    </span>
+                                </a>
+                            )}
+                        </div>
+                    </div>
 
-            {/* =====================================================
+                    {/* =====================================================
                 CHATBOT
             ====================================================== */}
 
-            <PortfolioChatbot />
-        </main>
-        </>
+                    <PortfolioChatbot />
+                </main>
+            </>
         </LazyMotion>
     );
 }
