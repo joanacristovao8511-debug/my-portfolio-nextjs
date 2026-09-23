@@ -949,8 +949,40 @@ export function PortfolioLanding({
                                 }}
                                 className="relative"
                             >
+                                <m.div
+                                    aria-hidden="true"
+                                    className="pointer-events-none absolute -inset-4 rounded-[40px] border border-sky-400/20"
+                                    animate={{
+                                        rotate: [0, 1.5, 0, -1.5, 0],
+                                        scale: [1, 1.015, 1, 1.015, 1],
+                                        opacity: [0.4, 0.75, 0.4, 0.7, 0.4],
+                                    }}
+                                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                                />
+
+                                <m.div
+                                    aria-hidden="true"
+                                    className="pointer-events-none absolute -inset-7 rounded-[46px] bg-sky-400/10 blur-2xl"
+                                    animate={{ scale: [0.96, 1.04, 0.96], opacity: [0.3, 0.65, 0.3] }}
+                                    transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                                />
+
+                                <m.div
+                                    aria-hidden="true"
+                                    className="pointer-events-none absolute -inset-2 rounded-[36px]"
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+                                >
+                                    <div className="absolute inset-0 rounded-[36px] bg-[conic-gradient(from_0deg,transparent_0deg,rgba(56,189,248,0.35)_70deg,transparent_140deg,rgba(59,130,246,0.25)_230deg,transparent_310deg)]" />
+                                </m.div>
+
                                 <div className="absolute -inset-6 rounded-[40px] bg-sky-500/10 blur-3xl" />
 
+                                <m.div
+                                    whileHover={{ y: -6, scale: 1.008 }}
+                                    transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                                    className="relative"
+                                >
                                 <div
                                     className={`
                                         senior-hero-card
@@ -1048,6 +1080,7 @@ export function PortfolioLanding({
                                         </div> */}
                                     </div>
                                 </div>
+                                </m.div>
                             </m.div>
                         </m.div>
                     </div>
@@ -1461,7 +1494,7 @@ export function PortfolioLanding({
                                                 )}
                                             </div>
                                             <p className={`mt-5 max-w-3xl text-sm leading-7 ${muted}`}>{experience.description}</p>
-                                            {tags.length > 0 && (
+                                            {/* {tags.length > 0 && (
                                                 <div className="mt-6 flex flex-wrap gap-2">
                                                     {tags.map((tag) => (
                                                         <span key={tag} className={`rounded-full border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] ${tagClass}`}>
@@ -1469,7 +1502,7 @@ export function PortfolioLanding({
                                                         </span>
                                                     ))}
                                                 </div>
-                                            )}
+                                            )} */}
                                         </m.article>
                                     );
                                 })}
