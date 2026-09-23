@@ -36,6 +36,52 @@ import { usePortfolioLandingState } from "./use-portfolio-landing";
 import { siteConfig } from "@/lib/site-config";
 import { LoadingProgress } from "./loading-progress";
 
+const projectCardFallbacks: Record<string, {
+    built: string;
+    focus: string;
+    outcome: string;
+}> = {
+    "ai-workflow-automation": {
+        built: "AI-assisted workflow automation that connects structured business data with intelligent processing flows.",
+        focus: "AI automation · APIs · TypeScript · workflow orchestration",
+        outcome: "Designed to reduce repetitive manual work while keeping business workflows structured and understandable.",
+    },
+    "retrieval-augmented-generation": {
+        built: "A knowledge assistant that grounds AI responses in relevant source context instead of relying only on model memory.",
+        focus: "RAG · retrieval · source grounding · Next.js · TypeScript",
+        outcome: "Focused on useful, context-aware answers with a production-minded application architecture.",
+    },
+    "developer-portfolio-cms": {
+        built: "A database-driven portfolio platform with project, skill, experience and profile management.",
+        focus: "Next.js · Prisma · PostgreSQL · admin UX · AI integration",
+        outcome: "Turns portfolio content into a maintainable product instead of a collection of hard-coded pages.",
+    },
+    "business-management-platform": {
+        built: "A full-stack business platform for centralizing customers, records, workflows and day-to-day operations.",
+        focus: "Full-stack architecture · dashboards · structured data · responsive UX",
+        outcome: "Designed to give teams a clearer operational workspace and reduce fragmented business processes.",
+    },
+    "saas-analytics-dashboard": {
+        built: "A SaaS analytics interface for monitoring business performance, users, revenue and operational metrics.",
+        focus: "React · Next.js · TypeScript · data visualization · dashboard UX",
+        outcome: "Built around information hierarchy so important metrics can be understood quickly and acted on.",
+    },
+    "ai-portfolio-assistant": {
+        built: "A conversational AI layer that lets visitors explore portfolio knowledge through natural-language questions.",
+        focus: "OpenAI · contextual knowledge · conversation UX · Next.js",
+        outcome: "Makes the portfolio interactive while keeping core experience, projects and services discoverable without the assistant.",
+    },
+};
+
+function getProjectCardContent(project: PortfolioLandingProps["projectList"][number]) {
+    const fallback = projectCardFallbacks[project.slug];
+    return {
+        built: project.description?.trim() || fallback?.built || project.summary,
+        focus: project.architecture?.trim() || fallback?.focus || parseTags(project.tags).slice(0, 5).join(" · "),
+        outcome: project.impact?.trim() || fallback?.outcome || "Built with a focus on usability, maintainability and real product value.",
+    };
+}
+
 export function PortfolioLanding({
     profile,
     skillList,
@@ -1289,7 +1335,7 @@ export function PortfolioLanding({
                             </button>
                         </div>
                     ) : (
-                        <div className="space-y-7">
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                             {visibleProjects.map((project, index) => {
                                 const tags = parseTags(project.tags);
                                 const skillNames = (project.skills ?? []).map((skill) => skill.name);
@@ -1306,124 +1352,114 @@ export function PortfolioLanding({
                                         viewport={{ once: true, amount: 0.12 }}
                                         variants={cardReveal}
                                         transition={{ delay: Math.min(index * 0.06, 0.25) }}
-                                        className={`senior-card group relative overflow-hidden rounded-[32px] border ${panel} ${isFeatured ? "shadow-2xl shadow-sky-950/10" : ""}`}
+                                        className={`senior-card group relative flex h-full flex-col overflow-hidden rounded-[28px] border ${panel} transition duration-300 hover:-translate-y-1 ${isFeatured ? "border-sky-400/30 shadow-xl shadow-sky-950/20" : ""}`}
                                     >
-                                        {isFeatured && (
-                                            <div className="absolute right-6 top-6 z-20 rounded-full border border-sky-300/20 bg-sky-500 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.18em] text-slate-950 shadow-lg shadow-sky-500/20">
-                                                Featured build
-                                            </div>
-                                        )}
+                                        <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-slate-950">
+                                            <div className="absolute inset-0 bg-slate-950" />
+                                            <div className="absolute -inset-16 bg-[radial-gradient(circle_at_30%_20%,rgba(14,165,233,0.28),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(99,102,241,0.18),transparent_30%)]" />
 
-                                        <div className={`grid ${isFeatured ? "lg:grid-cols-[1.35fr_0.65fr]" : "lg:grid-cols-[0.95fr_1.05fr]"}`}>
-                                            <div className={`relative overflow-hidden ${isFeatured ? "min-h-[390px] lg:min-h-[500px]" : "min-h-[280px]"}`}>
-                                                <div className="absolute inset-0 bg-slate-950" />
-                                                <div className="absolute -inset-16 bg-[radial-gradient(circle_at_30%_20%,rgba(14,165,233,0.28),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(56,189,248,0.16),transparent_30%)]" />
-
-                                                <m.div
-                                                    whileHover={{ scale: 1.025, y: -3 }}
-                                                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                                                    className="absolute inset-2.5 overflow-hidden rounded-[18px] border border-white/10 bg-slate-900 shadow-2xl sm:inset-3.5"
-                                                >
-                                                    <div className="flex h-9 items-center gap-1.5 border-b border-white/10 bg-slate-950/90 px-4">
-                                                        <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-                                                        <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
-                                                        <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
-                                                        <div className="mx-auto h-5 w-2/5 rounded-md border border-white/10 bg-white/[0.04]" />
-                                                    </div>
-
-                                                    <ProjectPreview project={project} />
-                                                </m.div>
-
-                                                <div className="absolute bottom-7 left-7 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-xl">
-                                                    <Eye className="h-3 w-3" />
-                                                    Product preview
+                                            <m.div
+                                                whileHover={{ scale: 1.025 }}
+                                                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                                                className="absolute inset-3 overflow-hidden rounded-[18px] border border-white/10 bg-slate-900 shadow-2xl"
+                                            >
+                                                <div className="flex h-8 items-center gap-1.5 border-b border-white/10 bg-slate-950/90 px-3.5">
+                                                    <span className="h-2 w-2 rounded-full bg-red-400/70" />
+                                                    <span className="h-2 w-2 rounded-full bg-amber-400/70" />
+                                                    <span className="h-2 w-2 rounded-full bg-emerald-400/70" />
+                                                    <div className="mx-auto h-4 w-2/5 rounded-md border border-white/10 bg-white/[0.04]" />
                                                 </div>
+                                                <ProjectPreview project={project} />
+                                            </m.div>
+
+                                            {isFeatured && (
+                                                <div className="absolute left-6 top-6 z-20 inline-flex items-center gap-1.5 rounded-full border border-sky-300/20 bg-sky-500 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.16em] text-slate-950 shadow-lg shadow-sky-500/20">
+                                                    <Sparkles className="h-3 w-3" aria-hidden="true" />
+                                                    Featured
+                                                </div>
+                                            )}
+
+                                            <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
+                                                <Eye className="h-3 w-3" />
+                                                Product preview
                                             </div>
+                                        </div>
 
-                                            <div className={`flex flex-col justify-between ${isFeatured ? "p-7 sm:p-10" : "p-7 sm:p-9"}`}>
-                                                <div>
-                                                    <div className="flex items-center gap-3">
-                                                        <span className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">
-                                                            {String(index + 1).padStart(2, "0")}
-                                                        </span>
-                                                        <span className={`h-px w-8 ${isLight ? "bg-slate-200" : "bg-slate-700"}`} />
-                                                        <span className={`rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.14em] ${tagClass}`}>
-                                                            {project.status || "Build"}
-                                                        </span>
-                                                    </div>
-
-                                                    <h3 className={`mt-7 text-3xl font-black leading-tight tracking-[-0.03em] ${heading} ${isFeatured ? "sm:text-4xl" : "sm:text-3xl"}`}>
-                                                        {project.title}
-                                                    </h3>
-
-                                                    <p className={`mt-4 max-w-xl text-sm leading-7 ${muted}`}>
-                                                        {project.summary}
-                                                    </p>
-
-                                                    <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                                                        <div className={`rounded-2xl border p-4 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/50"}`}>
-                                                            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
-                                                            <p className={`mt-2 text-xs leading-6 ${muted}`}>
-                                                                {project.description || project.summary}
-                                                            </p>
-                                                        </div>
-                                                        <div className={`rounded-2xl border p-4 ${isLight ? "border-slate-200 bg-white/70" : "border-slate-800 bg-slate-950/30"}`}>
-                                                            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
-                                                            <p className={`mt-2 text-xs leading-6 ${muted}`}>
-                                                                {project.solution || project.architecture || project.challenge || "Full-stack product engineering with a focus on usability and maintainability."}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    {displayTags.length > 0 && (
-                                                        <div className="mt-6 flex flex-wrap gap-2">
-                                                            {displayTags.slice(0, isFeatured ? 7 : 5).map((tag) => (
-                                                                <span key={tag} className={`rounded-full border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.13em] ${tagClass}`}>
-                                                                    {tag}
-                                                                </span>
-                                                            ))}
-                                                        </div>
-                                                    )}
+                                        <div className="flex flex-1 flex-col p-6 sm:p-7">
+                                            <div>
+                                                <div className="flex items-center gap-3">
+                                                    <span className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">
+                                                        {String(index + 1).padStart(2, "0")}
+                                                    </span>
+                                                    <span className={`h-px w-7 ${isLight ? "bg-slate-200" : "bg-slate-700"}`} />
+                                                    <span className={`rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.14em] ${tagClass}`}>
+                                                        {project.status || "Build"}
+                                                    </span>
                                                 </div>
 
-                                                <div className="mt-9 flex flex-wrap items-center gap-3 border-t border-slate-200/60 pt-6 dark:border-slate-800/70">
-                                                    <a
-                                                        href={`/projects/${project.slug}`}
-                                                        className="group/link inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2.5 text-xs font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
-                                                    >
-                                                        Case study
-                                                        <ArrowUpRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                                                <h3 className={`mt-5 text-2xl font-black leading-tight tracking-[-0.03em] ${heading}`}>
+                                                    {project.title}
+                                                </h3>
+
+                                                <p className={`mt-3 text-sm leading-6 ${muted}`}>
+                                                    {project.summary}
+                                                </p>
+
+                                                {(() => {
+                                                    const cardContent = getProjectCardContent(project);
+                                                    return (
+                                                        <div className="mt-5 space-y-3">
+                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
+                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
+                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.built}</p>
+                                                            </div>
+                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-white" : "border-slate-800 bg-slate-900/50"}`}>
+                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
+                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.focus}</p>
+                                                            </div>
+                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
+                                                                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Outcome</p>
+                                                                <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.outcome}</p>
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })()}
+
+                                                {displayTags.length > 0 && (
+                                                    <div className="mt-5 flex flex-wrap gap-1.5">
+                                                        {displayTags.slice(0, 5).map((tag) => (
+                                                            <span key={tag} className={`rounded-full border px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.11em] ${tagClass}`}>
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-200/60 pt-5 dark:border-slate-800/70">
+                                                <a href={`/projects/${project.slug}`} className="group/link inline-flex items-center gap-1.5 rounded-full bg-slate-950 px-3.5 py-2.5 text-[11px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
+                                                    Case study
+                                                    <ArrowUpRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                                                </a>
+
+                                                {hasLiveUrl ? (
+                                                    <a href={project.url!} target="_blank" rel="noreferrer" className="group/link inline-flex items-center gap-1.5 rounded-full bg-sky-500 px-3.5 py-2.5 text-[11px] font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-sky-400">
+                                                        Live demo
+                                                        <ExternalLink className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5" />
                                                     </a>
+                                                ) : (
+                                                    <span className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2.5 text-[11px] font-semibold ${tagClass}`}>
+                                                        <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                                                        Not deployed
+                                                    </span>
+                                                )}
 
-                                                    {hasLiveUrl ? (
-                                                        <a
-                                                            href={project.url!}
-                                                            target="_blank"
-                                                            rel="noreferrer"
-                                                            className="group/link inline-flex items-center gap-2 rounded-full bg-sky-500 px-4 py-2.5 text-xs font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-sky-400"
-                                                        >
-                                                            Live demo
-                                                            <ExternalLink className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5" />
-                                                        </a>
-                                                    ) : (
-                                                        <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-semibold ${tagClass}`}>
-                                                            <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                                                            Not deployed yet
-                                                        </span>
-                                                    )}
-
-                                                    {hasGithub && (
-                                                        <a
-                                                            href={project.githubUrl!}
-                                                            target="_blank"
-                                                            rel="noreferrer"
-                                                            className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold transition hover:-translate-y-0.5 ${secondaryButton}`}
-                                                        >
-                                                            <GithubIcon className="h-3.5 w-3.5" />
-                                                            Source code
-                                                        </a>
-                                                    )}
-                                                </div>
+                                                {hasGithub && (
+                                                    <a href={project.githubUrl!} target="_blank" rel="noreferrer" className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2.5 text-[11px] font-bold transition hover:-translate-y-0.5 ${secondaryButton}`}>
+                                                        <GithubIcon className="h-3.5 w-3.5" />
+                                                        Source
+                                                    </a>
+                                                )}
                                             </div>
                                         </div>
                                     </m.article>
@@ -1431,7 +1467,6 @@ export function PortfolioLanding({
                             })}
                         </div>
                     )}
-
                     {hasMoreProjects && (
                         <div className="mt-10 flex justify-center">
                             <m.button

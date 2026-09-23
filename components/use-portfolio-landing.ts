@@ -228,7 +228,7 @@ export function usePortfolioLandingState({
 
     const visibleProjects = showAllProjects
         ? filteredProjects
-        : filteredProjects.slice(0, 4);
+        : filteredProjects.slice(0, 6);
 
     const featuredCount = filteredProjects.filter((project) => project.featured).length;
 
@@ -236,7 +236,7 @@ export function usePortfolioLandingState({
         visibleProjects.slice(1);
 
     const hasMoreProjects =
-        filteredProjects.length > 4;
+        filteredProjects.length > 6;
 
     /* ============================================================
        SKILLS
