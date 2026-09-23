@@ -1052,7 +1052,7 @@ export function PortfolioLanding({
                                 label: "Technical skills",
                             },
                             {
-                                value: profile.title.includes("Product") ? "Full stack + design" : "Full-stack delivery",
+                                value: profile.title.includes("Product") ? "Full stack + AI" : "Full-stack delivery",
                                 label: "Primary focus",
                             },
                         ].map(
