@@ -62,7 +62,7 @@ export function PortfolioLanding({
             className={`
                 senior-shell
                 min-h-screen
-                overflow-hidden
+                overflow-x-clip
                 transition-colors
                 duration-500
                 ${pageClass}
