@@ -1716,9 +1716,9 @@ export function PortfolioLanding({
                                                 <Icon className="h-5 w-5" />
                                             </div>
                                             <div>
-                                                {/* <p className="text-[11px] font-black uppercase tracking-[0.18em] text-sky-500">
+                                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-sky-500">
                                                     {service.label}
-                                                </p> */}
+                                                </p>
                                                 <p className={`mt-1 text-xs font-semibold ${muted}`}>
                                                     Service {service.number}
                                                 </p>
@@ -1746,10 +1746,20 @@ export function PortfolioLanding({
                                     </div>
 
                                     <div className={`mt-6 border-t pt-5 ${isLight ? "border-slate-200/80" : "border-slate-800/80"}`}>
-                                        <div className="flex items-start gap-3">
+                                        <div className="grid gap-4 sm:grid-cols-2">
+                                            <div>
+                                                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-sky-500">Indicative investment</p>
+                                                <p className={`mt-1 text-sm font-bold ${heading}`}>{service.investment ?? "Scoped per project"}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-sky-500">Typical timeline</p>
+                                                <p className={`mt-1 text-sm font-bold ${heading}`}>{service.timeline ?? "Scoped per project"}</p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-4 flex items-start gap-3">
                                             <Check className="mt-0.5 h-4 w-4 shrink-0 text-sky-500" />
                                             <div>
-                                                <p className={`text-xs font-black uppercase tracking-[0.16em] ${heading}`}>Typical scope</p>
+                                                <p className={`text-xs font-black uppercase tracking-[0.16em] ${heading}`}>Scope</p>
                                                 <p className={`mt-1 text-sm leading-6 ${muted}`}>{service.includes}</p>
                                             </div>
                                         </div>
@@ -1981,33 +1991,45 @@ export function PortfolioLanding({
                                     ${muted}
                                 `}
                             >
-                                The goal isn't to write the
-                                most code. It's to understand
-                                the problem, design the right
-                                solution and ship software
-                                that creates lasting value.
+                                A senior process means making the important decisions early: clarify the outcome, reduce uncertainty, build in small slices, and leave behind software the team can actually own.
                             </p>
+
+                            <div className="mt-7 grid max-w-xl grid-cols-3 gap-3">
+                                {[
+                                    ["01", "Clarify", "Goals & constraints"],
+                                    ["02", "Build", "Small, testable slices"],
+                                    ["03", "Improve", "Measure & iterate"],
+                                ].map(([number, title, text]) => (
+                                    <div key={number} className={`rounded-2xl border p-4 ${softPanel}`}>
+                                        <p className="text-[10px] font-black tracking-[0.16em] text-sky-500">{number}</p>
+                                        <p className={`mt-2 text-sm font-black ${heading}`}>{title}</p>
+                                        <p className={`mt-1 text-xs leading-5 ${muted}`}>{text}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </m.div>
 
                         <div className="space-y-3">
                             {[
                                 {
                                     number: "01",
-                                    title: "Business first",
-                                    text:
-                                        "Understand the goal before choosing the technology.",
+                                    title: "Discover the real problem",
+                                    text: "Align on users, constraints, success criteria and the smallest version worth shipping.",
                                 },
                                 {
                                     number: "02",
-                                    title: "Clean engineering",
-                                    text:
-                                        "Build software that is reliable, maintainable and ready to grow.",
+                                    title: "Design the system",
+                                    text: "Choose the architecture, data model and UX that fit the product instead of forcing a stack onto it.",
                                 },
                                 {
                                     number: "03",
-                                    title: "Long-term thinking",
-                                    text:
-                                        "Create systems that continue working after launch.",
+                                    title: "Build in vertical slices",
+                                    text: "Ship working pieces early, validate assumptions and keep technical decisions reversible where possible.",
+                                },
+                                {
+                                    number: "04",
+                                    title: "Harden before handoff",
+                                    text: "Test critical paths, improve performance, document the important decisions and prepare a clean deployment.",
                                 },
                             ].map(
                                 (

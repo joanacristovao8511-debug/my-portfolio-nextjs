@@ -35,26 +35,45 @@ export function usePortfolioLandingState({
 
     const openChat = useChatbotStore((state) => state.openChat);
 
-    const serviceMeta = [
+    const serviceMeta: Array<{
+        label: string;
+        tags: string[];
+        includes: string;
+        investment: string;
+        timeline: string;
+        target: string;
+    }> = [
         {
             label: "Product development",
             tags: ["Strategy", "UX", "Production"],
             includes: "Architecture, implementation and deployment.",
+            investment: "Illustrative: $4k-$12k",
+            timeline: "Typical scope: 3-8 weeks",
+            target: "Target: launch-ready MVP",
         },
         {
             label: "Engineering modernization",
             tags: ["Performance", "Architecture", "UX"],
             includes: "Refactoring, performance work and maintainable systems.",
+            investment: "Illustrative: $3k-$10k",
+            timeline: "Typical scope: 2-6 weeks",
+            target: "Target: faster, safer releases",
         },
         {
             label: "Internal tools",
             tags: ["Dashboards", "Workflows", "Data"],
             includes: "Operational interfaces, reporting and workflow automation.",
+            investment: "Illustrative: $3k-$9k",
+            timeline: "Typical scope: 2-6 weeks",
+            target: "Target: reduce manual work",
         },
         {
             label: "AI integration",
             tags: ["RAG", "Assistants", "Automation"],
             includes: "Practical AI features integrated into real products.",
+            investment: "Illustrative: $4k-$15k",
+            timeline: "Typical scope: 3-8 weeks",
+            target: "Target: useful AI in production",
         },
     ];
 
