@@ -1124,11 +1124,10 @@ export function PortfolioLanding({
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.55, duration: 0.5 }}
-                                className={`mt-14 rounded-3xl border p-4 sm:p-5 ${
-                                    isLight
+                                className={`mt-14 rounded-3xl border p-4 sm:p-5 ${isLight
                                         ? "border-slate-200 bg-white/70 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
                                         : "border-slate-800 bg-slate-900/70"
-                                }`}
+                                    }`}
                             >
                                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                                     <div>
@@ -1143,11 +1142,10 @@ export function PortfolioLanding({
                                         {["React / Next.js", "TypeScript", "AI / RAG", "APIs + Data"].map((item) => (
                                             <span
                                                 key={item}
-                                                className={`rounded-full border px-3 py-1.5 text-[11px] font-semibold ${
-                                                    isLight
+                                                className={`rounded-full border px-3 py-1.5 text-[11px] font-semibold ${isLight
                                                         ? "border-slate-200 bg-slate-50 text-slate-700"
                                                         : "border-slate-700 bg-slate-950 text-slate-200"
-                                                }`}
+                                                    }`}
                                             >
                                                 {item}
                                             </span>
@@ -1502,19 +1500,17 @@ export function PortfolioLanding({
                                     })}
                                 </div>
                             )}
-                            {hasMoreProjects && (
-                                <div className="mt-10 flex justify-center">
-                                    <m.button
-                                        type="button"
-                                        whileHover={{ y: -2 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        onClick={() => setShowAllProjects((current) => !current)}
-                                        className={`rounded-full border px-6 py-3 text-sm font-semibold transition ${secondaryButton}`}
-                                    >
-                                        {showAllProjects ? "Show less" : `Show all ${projects.length} projects`}
-                                    </m.button>
-                                </div>
-                            )}
+                            <div className="mt-10 flex justify-center">
+                                <m.button
+                                    type="button"
+                                    whileHover={{ y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={() => setShowAllProjects((current) => !current)}
+                                    className={`rounded-full border px-6 py-3 text-sm font-semibold transition ${secondaryButton}`}
+                                >
+                                    {showAllProjects ? "Show less" : `Show all ${projects.length} projects`}
+                                </m.button>
+                            </div>
                         </div>
                     </section>
 
