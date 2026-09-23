@@ -1526,7 +1526,7 @@ export function PortfolioLanding({
                                 </div>
                                 <h3 className={`mt-6 text-2xl font-black tracking-[-0.03em] ${heading}`}>Education history</h3>
                                 <p className={`mt-3 max-w-xl text-sm leading-7 ${muted}`}>
-                                    Add degrees, certifications or formal training here when you are ready. The section is already wired into the landing page layout.
+                                    Vietnam National University, Hanoi, Bachelor’s degree in Computer Science
                                 </p>
                             </div>
                             <div className={`rounded-[28px] border p-8 sm:p-10 ${isLight ? "border-sky-100 bg-sky-50/70" : "border-sky-400/20 bg-sky-500/5"}`}>
