@@ -277,8 +277,8 @@ export function usePortfolioLandingState({
     const visibleProjects = showAllProjects
         ? [...featuredProjects, ...shippedProjects]
         : [
-            ...featuredProjects.slice(0, 3),
-            ...shippedProjects.slice(0, 3),
+            ...featuredProjects.slice(0, 2),
+            ...shippedProjects.slice(0, 2),
         ];
 
     const featuredCount = featuredProjects.length;
