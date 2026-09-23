@@ -20,6 +20,29 @@ export type ProfileItem = {
     availability?: string | null;
 };
 
+export type ExperienceItem = {
+    id: number;
+    name?: string | null;
+    company: string;
+    position: string;
+    location?: string | null;
+    startDate: string;
+    endDate?: string | null;
+    description: string;
+    technologies?: string | null;
+    current: boolean;
+};
+
+export type EducationItem = {
+    id: string;
+    institution: string;
+    degree: string;
+    field?: string;
+    startDate?: string;
+    endDate?: string;
+    description?: string;
+};
+
 export type ProjectItem = {
     id: number;
     slug: string;
@@ -61,10 +84,14 @@ export type PortfolioLandingProps = {
     content?: PortfolioContent | null;
     skillList: SkillItem[];
     projectList: ProjectItem[];
+    experienceList?: ExperienceItem[];
+    educationList?: EducationItem[];
 };
 
 export const navItems = [
     { label: "Work", href: "#work", id: "work" },
+    { label: "Experience", href: "#experience", id: "experience" },
+    { label: "Education", href: "#education", id: "education" },
     { label: "Services", href: "#services", id: "services" },
     { label: "Stack", href: "#stack", id: "stack" },
     { label: "Contact", href: "#contact", id: "contact" },

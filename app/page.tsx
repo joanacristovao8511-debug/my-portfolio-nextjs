@@ -39,7 +39,7 @@ const fallbackProfile: ProfileData = {
 export default async function HomePage() {
   await ensureDatabase();
 
-  const [profile, skills, projects, content] = await Promise.all([
+  const [profile, skills, projects, experiences, content] = await Promise.all([
     prisma.profile.findFirst({ orderBy: { id: "asc" } }).catch(() => null),
     prisma.skill.findMany({
       select: { id: true, name: true, category: true },
@@ -74,6 +74,12 @@ export default async function HomePage() {
       orderBy: [
         { featured: "desc" },
         { createdAt: "desc" },
+      ],
+    }).catch(() => []),
+    prisma.experience.findMany({
+      orderBy: [
+        { current: "desc" },
+        { startDate: "desc" },
       ],
     }).catch(() => []),
     prisma.siteContent.findFirst().catch(() => null),
@@ -123,6 +129,19 @@ export default async function HomePage() {
             category: skill.category,
           }))
         : fallbackSkills}
+      experienceList={experiences.map((experience: typeof experiences[number]) => ({
+        id: experience.id,
+        name: experience.name,
+        company: experience.company,
+        position: experience.position,
+        location: experience.location,
+        startDate: experience.startDate,
+        endDate: experience.endDate,
+        description: experience.description,
+        technologies: experience.technologies,
+        current: experience.current,
+      }))}
+      educationList={[]}
       projectList={projects.map((project: typeof projects[number]) => ({
         id: project.id,
         slug: project.slug,

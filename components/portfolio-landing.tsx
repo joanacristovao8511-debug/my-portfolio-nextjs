@@ -20,7 +20,14 @@ import { cardReveal, navItems, parseTags, sectionReveal, type PortfolioLandingPr
 import { usePortfolioLandingState } from "./use-portfolio-landing";
 import { siteConfig } from "@/lib/site-config";
 
-export function PortfolioLanding({ profile, skillList, projectList, content }: PortfolioLandingProps) {
+export function PortfolioLanding({
+    profile,
+    skillList,
+    projectList,
+    content,
+    experienceList = [],
+    educationList = [],
+}: PortfolioLandingProps) {
     const {
         theme, setTheme, mobileMenu, setMobileMenu, showAllProjects, setShowAllProjects,
         projectCategory, setProjectCategory, projectCategories,
@@ -1363,6 +1370,158 @@ export function PortfolioLanding({ profile, skillList, projectList, content }: P
                             >
                                 {showAllProjects ? "Show less" : `Show all ${projects.length} projects`}
                             </m.button>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            {/* =====================================================
+                EXPERIENCE
+            ====================================================== */}
+
+            <section
+                id="experience"
+                className="scroll-mt-24 portfolio-deferred-section border-t border-slate-200/60 dark:border-slate-800/60"
+            >
+                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
+                    <m.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.15 }}
+                        variants={sectionReveal}
+                        className="max-w-3xl"
+                    >
+                        <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-500">Career</p>
+                        <h2 className={`mt-3 text-3xl font-black tracking-[-0.04em] sm:text-5xl ${heading}`}>Experience</h2>
+                        <p className={`mt-4 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
+                            A snapshot of the roles, products and engineering work that shaped my approach to building software.
+                        </p>
+                    </m.div>
+
+                    {experienceList.length > 0 ? (
+                        <div className="relative mt-12">
+                            <div className="absolute bottom-4 left-[11px] top-4 hidden w-px bg-slate-200 dark:bg-slate-800 sm:block" />
+                            <div className="space-y-6">
+                                {experienceList.map((experience, index) => {
+                                    const tags = parseTags(experience.technologies);
+                                    return (
+                                        <m.article
+                                            key={experience.id}
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            viewport={{ once: true, amount: 0.12 }}
+                                            variants={cardReveal}
+                                            transition={{ delay: index * 0.06 }}
+                                            className={`relative rounded-[28px] border p-6 sm:ml-10 sm:p-8 ${softPanel}`}
+                                        >
+                                            <span className="absolute -left-[39px] top-8 hidden h-3 w-3 rounded-full border-4 border-sky-500 bg-white shadow-sm dark:bg-slate-950 sm:block" />
+                                            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                                                <div>
+                                                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-sky-500">
+                                                        {experience.startDate} — {experience.current ? "Present" : experience.endDate || ""}
+                                                    </p>
+                                                    <h3 className={`mt-2 text-xl font-black tracking-[-0.025em] ${heading}`}>
+                                                        {experience.position}
+                                                    </h3>
+                                                    <p className={`mt-1 text-sm font-semibold ${muted}`}>
+                                                        {experience.company}{experience.location ? ` · ${experience.location}` : ""}
+                                                    </p>
+                                                </div>
+                                                {experience.current && (
+                                                    <span className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-300">
+                                                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                                        Current
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className={`mt-5 max-w-3xl text-sm leading-7 ${muted}`}>{experience.description}</p>
+                                            {tags.length > 0 && (
+                                                <div className="mt-6 flex flex-wrap gap-2">
+                                                    {tags.map((tag) => (
+                                                        <span key={tag} className={`rounded-full border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] ${tagClass}`}>
+                                                            {tag}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </m.article>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={`mt-12 rounded-[28px] border p-8 ${softPanel}`}>
+                            <p className={`text-sm ${muted}`}>Experience details are ready to be added from the portfolio admin.</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            {/* =====================================================
+                EDUCATION
+            ====================================================== */}
+
+            <section
+                id="education"
+                className="scroll-mt-24 portfolio-deferred-section"
+            >
+                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
+                    <m.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.15 }}
+                        variants={sectionReveal}
+                        className="max-w-3xl"
+                    >
+                        <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-500">Learning</p>
+                        <h2 className={`mt-3 text-3xl font-black tracking-[-0.04em] sm:text-5xl ${heading}`}>Education</h2>
+                        <p className={`mt-4 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
+                            Academic background and focused learning that support the way I design, engineer and ship digital products.
+                        </p>
+                    </m.div>
+
+                    {educationList.length > 0 ? (
+                        <div className="mt-12 grid gap-5 md:grid-cols-2">
+                            {educationList.map((education, index) => (
+                                <m.article
+                                    key={education.id}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, amount: 0.12 }}
+                                    variants={cardReveal}
+                                    transition={{ delay: index * 0.06 }}
+                                    className={`rounded-[28px] border p-7 sm:p-8 ${softPanel}`}
+                                >
+                                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-sky-500">
+                                        {education.startDate || "Education"}{education.endDate ? ` — ${education.endDate}` : ""}
+                                    </p>
+                                    <h3 className={`mt-3 text-2xl font-black tracking-[-0.03em] ${heading}`}>{education.degree}</h3>
+                                    <p className={`mt-2 text-sm font-semibold ${muted}`}>
+                                        {education.institution}{education.field ? ` · ${education.field}` : ""}
+                                    </p>
+                                    {education.description && (
+                                        <p className={`mt-5 text-sm leading-7 ${muted}`}>{education.description}</p>
+                                    )}
+                                </m.article>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className={`mt-12 grid gap-5 md:grid-cols-[1.2fr_0.8fr]`}>
+                            <div className={`rounded-[28px] border p-8 sm:p-10 ${softPanel}`}>
+                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-lg shadow-sky-500/20">
+                                    <BriefcaseBusiness className="h-5 w-5" />
+                                </div>
+                                <h3 className={`mt-6 text-2xl font-black tracking-[-0.03em] ${heading}`}>Education history</h3>
+                                <p className={`mt-3 max-w-xl text-sm leading-7 ${muted}`}>
+                                    Add degrees, certifications or formal training here when you are ready. The section is already wired into the landing page layout.
+                                </p>
+                            </div>
+                            <div className={`rounded-[28px] border p-8 sm:p-10 ${isLight ? "border-sky-100 bg-sky-50/70" : "border-sky-400/20 bg-sky-500/5"}`}>
+                                <p className="text-xs font-black uppercase tracking-[0.18em] text-sky-500">Continuous learning</p>
+                                <p className={`mt-4 text-sm leading-7 ${muted}`}>
+                                    Current learning is reflected throughout the portfolio through the technical stack, projects and AI product work.
+                                </p>
+                            </div>
                         </div>
                     )}
                 </div>
