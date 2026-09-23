@@ -1,0 +1,67 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientTransform="translate(256 256) rotate(90) scale(256)">
+      <stop stop-color="#12375B"/>
+      <stop offset="0.65" stop-color="#071525"/>
+      <stop offset="1" stop-color="#030913"/>
+    </radialGradient>
+    <linearGradient id="metal" x1="145" y1="110" x2="385" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FCFF"/>
+      <stop offset="0.45" stop-color="#B9CBD9"/>
+      <stop offset="1" stop-color="#526779"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="145" y1="150" x2="367" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#102D45"/>
+      <stop offset="1" stop-color="#050D18"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="170" y1="180" x2="342" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67F5FF"/>
+      <stop offset="1" stop-color="#00A8FF"/>
+    </linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+
+  <circle cx="256" cy="256" r="245" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="190" fill="#00D9FF" opacity=".06" filter="url(#soft)"/>
+  <circle cx="256" cy="256" r="224" stroke="#2EDCFF" stroke-opacity=".18" stroke-width="2"/>
+
+  <!-- antenna -->
+  <path d="M256 91V58" stroke="#8EA8B8" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="256" cy="45" r="15" fill="#07131F" stroke="#55E9FF" stroke-width="6" filter="url(#glow)"/>
+
+  <!-- ears -->
+  <rect x="106" y="202" width="48" height="104" rx="24" fill="#6E8495" stroke="#B9D0DE" stroke-width="4"/>
+  <rect x="358" y="202" width="48" height="104" rx="24" fill="#6E8495" stroke="#B9D0DE" stroke-width="4"/>
+  <circle cx="130" cy="254" r="8" fill="#50E7FF"/>
+  <circle cx="382" cy="254" r="8" fill="#50E7FF"/>
+
+  <!-- head -->
+  <rect x="132" y="105" width="248" height="225" rx="78" fill="url(#metal)" stroke="#E9F8FF" stroke-opacity=".75" stroke-width="5"/>
+  <rect x="153" y="137" width="206" height="150" rx="58" fill="url(#glass)" stroke="#7ED9F2" stroke-opacity=".35" stroke-width="3"/>
+
+  <!-- eyes -->
+  <circle cx="210" cy="207" r="27" fill="#02101B" stroke="#47E7FF" stroke-width="4" filter="url(#glow)"/>
+  <circle cx="302" cy="207" r="27" fill="#02101B" stroke="#47E7FF" stroke-width="4" filter="url(#glow)"/>
+  <circle cx="210" cy="207" r="9" fill="#A8FAFF"/>
+  <circle cx="302" cy="207" r="9" fill="#A8FAFF"/>
+
+  <!-- friendly expression -->
+  <path d="M218 249C238 269 274 269 294 249" stroke="url(#cyan)" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- neck -->
+  <rect x="218" y="320" width="76" height="30" rx="14" fill="#718696"/>
+
+  <!-- body -->
+  <path d="M156 405C160 354 193 331 256 331C319 331 352 354 356 405L372 449H140L156 405Z" fill="url(#metal)" stroke="#D9EDF6" stroke-opacity=".7" stroke-width="5"/>
+  <path d="M203 352C218 369 294 369 309 352" stroke="#8FA8B7" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="256" cy="400" r="25" fill="#071421" stroke="#42E5FF" stroke-width="4" filter="url(#glow)"/>
+  <path d="M246 400L253 407L268 389" stroke="#9EFBFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- shoulders -->
+  <path d="M156 405L115 445" stroke="#839AA9" stroke-width="28" stroke-linecap="round"/>
+  <path d="M356 405L397 445" stroke="#839AA9" stroke-width="28" stroke-linecap="round"/>
+</svg>

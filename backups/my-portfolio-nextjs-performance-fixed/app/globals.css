@@ -1,0 +1,439 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --panel: rgba(15, 23, 42, 0.72);
+  --panel-soft: rgba(15, 23, 42, 0.56);
+  --panel-strong: #0f172a;
+  --surface: #0b1120;
+  --input: #0f172a;
+  --input-border: rgba(148, 163, 184, 0.24);
+  --button: rgba(15, 23, 42, 0.9);
+  --button-hover: rgba(30, 41, 59, 0.95);
+  --border: rgba(148, 163, 184, 0.2);
+  --muted: #cbd5e1;
+  --accent: #38bdf8;
+  --accent-strong: #7dd3fc;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+html[data-theme='light'] {
+  --background: #f7faff;
+  --foreground: #0f172a;
+  --panel: rgba(255, 255, 255, 0.9);
+  --panel-soft: rgba(248, 250, 252, 0.9);
+  --panel-strong: #ffffff;
+  --surface: #f8fafc;
+  --input: #ffffff;
+  --input-border: rgba(148, 163, 184, 0.45);
+  --button: #ffffff;
+  --button-hover: #f1f5f9;
+  --border: rgba(148, 163, 184, 0.38);
+  --muted: #475569;
+  --accent: #0284c7;
+  --accent-strong: #0ea5e9;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% -5%, rgba(56, 189, 248, 0.16), transparent 28%),
+    radial-gradient(circle at 92% 18%, rgba(14, 165, 233, 0.10), transparent 25%),
+    var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.32);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Scrollable project previews: tall screenshots stay intact instead of being cropped. */
+.project-preview-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.55) transparent;
+}
+
+.project-preview-scroll::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+.project-preview-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.project-preview-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.55);
+}
+
+.project-preview-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(186, 230, 253, 0.8);
+}
+
+/* ============================================================
+   Senior-level visual system
+   UI-only polish: hierarchy, depth, rhythm, and interaction.
+   ============================================================ */
+
+:root {
+  --ui-radius: 24px;
+  --ui-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+  --ui-shadow-hover: 0 30px 90px rgba(15, 23, 42, 0.13);
+  --ui-grid: rgba(100, 116, 139, 0.07);
+}
+
+html[data-theme='light'] {
+  --ui-shadow: 0 24px 70px rgba(15, 23, 42, 0.07);
+  --ui-shadow-hover: 0 30px 90px rgba(15, 23, 42, 0.12);
+  --ui-grid: rgba(100, 116, 139, 0.075);
+}
+
+html[data-theme='dark'] {
+  --ui-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+  --ui-shadow-hover: 0 34px 110px rgba(0, 0, 0, 0.4);
+  --ui-grid: rgba(148, 163, 184, 0.045);
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.senior-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.senior-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
+  opacity: 0.75;
+  background-image:
+    linear-gradient(to right, var(--ui-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--ui-grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 92%);
+}
+
+.senior-header {
+  border-color: color-mix(in srgb, var(--border) 82%, transparent) !important;
+}
+
+.senior-header > div {
+  position: relative;
+}
+
+.senior-header > div::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.senior-header:hover > div::after {
+  opacity: 1;
+}
+
+.senior-hero {
+  position: relative;
+}
+
+.senior-hero h1 {
+  text-wrap: balance;
+}
+
+.senior-hero-card {
+  box-shadow: var(--ui-shadow);
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms ease;
+}
+
+.senior-hero-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ui-shadow-hover);
+}
+
+.senior-stat,
+.senior-card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--ui-shadow);
+  transition:
+    transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 300ms ease,
+    border-color 300ms ease;
+}
+
+.senior-stat::before,
+.senior-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 38%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.senior-stat:hover,
+.senior-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--ui-shadow-hover);
+}
+
+.senior-stat:hover::before,
+.senior-card:hover::before {
+  opacity: 1;
+}
+
+.senior-shell section {
+  scroll-margin-top: 96px;
+}
+
+.senior-shell a,
+.senior-shell button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.senior-shell ::selection {
+  background: rgba(14, 165, 233, 0.24);
+}
+
+@media (max-width: 767px) {
+  .senior-shell::before {
+    background-size: 48px 48px;
+    opacity: 0.5;
+  }
+
+  .senior-stat,
+  .senior-card,
+  .senior-hero-card {
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.07);
+  }
+}
+/* Defer layout/paint work for below-the-fold portfolio sections.
+   The intrinsic size prevents large layout shifts while content is skipped. */
+.portfolio-deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+
+
+
+/* Accessibility: keyboard users can bypass persistent navigation. */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100000;
+  transform: translateY(-160%);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--panel-strong);
+  color: var(--foreground);
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: var(--ui-shadow);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+@media (max-width: 639px) {
+  .skip-link {
+    left: 0.75rem;
+    top: 0.75rem;
+  }
+}
+
+
+/* Stronger keyboard/high-contrast affordances. */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid CanvasText;
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    border: 1px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+}
+
+/* Keep the persistent chat launcher usable on touch devices. */
+button[aria-label="Open portfolio assistant"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ============================================================
+   Project case-study theme surface
+   Reuses the landing page's portfolio-theme variables so project
+   pages follow the same light/dark preference.
+   ============================================================ */
+.project-page {
+  position: relative;
+  isolation: isolate;
+  background: var(--background);
+  color: var(--foreground);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.project-page__glow {
+  background:
+    radial-gradient(circle at 15% 5%, rgba(14, 165, 233, 0.16), transparent 28%),
+    radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.12), transparent 28%);
+  opacity: 1;
+}
+
+html[data-theme='light'] .project-page__glow {
+  opacity: 0.7;
+}
+
+.project-heading {
+  color: var(--foreground);
+}
+
+.project-body,
+.project-muted {
+  color: var(--muted);
+}
+
+.project-card {
+  border-color: var(--border);
+  background: var(--panel);
+  box-shadow: var(--ui-shadow);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  box-shadow: var(--ui-shadow-hover);
+}
+
+.project-card--accent {
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+  background: color-mix(in srgb, var(--accent) 7%, var(--panel));
+}
+
+.project-secondary-button {
+  border-color: var(--border);
+  background: var(--button);
+  color: var(--foreground);
+}
+
+.project-secondary-button:hover {
+  background: var(--button-hover);
+}
+
+.project-preview-frame {
+  border-color: var(--border);
+  background: var(--panel-strong);
+  box-shadow: var(--ui-shadow-hover);
+}
+
+.project-browser-bar {
+  border-color: var(--border);
+}
+
+.project-browser-address {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--foreground) 4%, transparent);
+}
+
+.project-empty-preview,
+.project-image-placeholder {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(14, 165, 233, 0.18), transparent 35%),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), var(--panel-strong));
+  color: var(--accent-strong);
+}
+
+.project-nav-link {
+  color: var(--muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.project-nav-link:hover {
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  color: var(--foreground);
+}
+
+.project-tech {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--foreground) 4%, transparent);
+  color: var(--muted);
+}
+
+.project-related,
+.project-page footer {
+  border-color: var(--border);
+}
+
+.project-theme-toggle {
+  border-color: var(--border) !important;
+  background: var(--button) !important;
+  color: var(--foreground) !important;
+  box-shadow: none !important;
+}
+
+.project-theme-toggle:hover {
+  background: var(--button-hover) !important;
+}
+
+html[data-theme='light'] .project-theme-toggle {
+  color: #0f172a !important;
+}
+
+
+/* Performance: skip expensive rendering for offscreen content */
+.perf-skip-render { content-visibility: auto; contain-intrinsic-size: 800px; }
