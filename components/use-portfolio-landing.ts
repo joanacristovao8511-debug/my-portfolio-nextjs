@@ -31,7 +31,7 @@ export function usePortfolioLandingState({
         useState(false);
 
     const [activeSection, setActiveSection] =
-        useState("work");
+        useState("home");
 
     const openChat = useChatbotStore((state) => state.openChat);
 

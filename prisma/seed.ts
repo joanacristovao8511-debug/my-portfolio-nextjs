@@ -83,19 +83,19 @@ async function main() {
                 "Full-Stack Engineer & AI Product Builder",
 
             headline:
-                "I build AI-powered products that turn complex ideas into clear, scalable software.",
+                "I build AI-powered products that turn business workflows into software.",
 
             bio:
-                "I combine product thinking, full-stack engineering, and practical AI integration to take products from idea to polished, production-ready experiences.",
+                "Full-stack developer specializing in SaaS, business platforms, automation and AI integrations—from architecture to production.",
 
             email:
-                "azulrio906top@gmail.com",
+                "joanacristovao8511@gmail.com",
 
             location:
                 "United States",
 
             summary:
-                "I turn ambiguous product requirements into shipped, maintainable software across frontend architecture, backend systems, APIs, databases, authentication, AI integrations and product-focused UX.",
+                "I turn ambiguous product requirements into shipped, maintainable software.",
 
             availability:
                 "Available for selected freelance projects",
@@ -110,19 +110,19 @@ async function main() {
                 "Full-Stack Engineer & AI Product Builder",
 
             headline:
-                "I build AI-powered products that turn complex ideas into clear, scalable software.",
+                "I build AI-powered products that turn business workflows into software.",
 
             bio:
-                "I combine product thinking, full-stack engineering, and practical AI integration to take products from idea to polished, production-ready experiences.",
+                "Full-stack developer specializing in SaaS, business platforms, automation and AI integrations—from architecture to production.",
 
             email:
-                "azulrio906top@gmail.com",
+                "joanacristovao8511@gmail.com",
 
             location:
                 "United States",
 
             summary:
-                "I turn ambiguous product requirements into shipped, maintainable software across frontend architecture, backend systems, APIs, databases, authentication, AI integrations and product-focused UX.",
+                "I turn ambiguous product requirements into shipped, maintainable software.",
 
             availability:
                 "Available for selected freelance projects",
@@ -140,175 +140,39 @@ async function main() {
      */
 
     const skills = [
-        /*
-         * Frontend
-         */
-        {
-            name: "React",
-            category: "frontend",
-            order: 1,
-        },
-        {
-            name: "Next.js",
-            category: "frontend",
-            order: 2,
-        },
-        {
-            name: "TypeScript",
-            category: "frontend",
-            order: 3,
-        },
-        {
-            name: "JavaScript",
-            category: "frontend",
-            order: 4,
-        },
-        {
-            name: "Tailwind CSS",
-            category: "frontend",
-            order: 5,
-        },
-        {
-            name: "Zustand",
-            category: "frontend",
-            order: 6,
-        },
-        {
-            name: "HTML5",
-            category: "frontend",
-            order: 7,
-        },
-        {
-            name: "CSS3",
-            category: "frontend",
-            order: 8,
-        },
+        // Frontend
+        { name: "React", category: "frontend", order: 1 },
+        { name: "Next.js", category: "frontend", order: 2 },
+        { name: "TypeScript", category: "frontend", order: 3 },
+        { name: "Tailwind CSS", category: "frontend", order: 4 },
 
-        /*
-         * Backend
-         */
-        {
-            name: "Node.js",
-            category: "backend",
-            order: 1,
-        },
-        {
-            name: "Express",
-            category: "backend",
-            order: 2,
-        },
-        {
-            name: "REST APIs",
-            category: "backend",
-            order: 3,
-        },
-        {
-            name: "Authentication",
-            category: "backend",
-            order: 4,
-        },
-        {
-            name: "NextAuth",
-            category: "backend",
-            order: 5,
-        },
+        // Backend
+        { name: "Node.js", category: "backend", order: 1 },
+        { name: "Express", category: "backend", order: 2 },
+        { name: "REST APIs", category: "backend", order: 3 },
+        { name: "Authentication", category: "backend", order: 4 },
+        { name: "NextAuth", category: "backend", order: 5 },
 
-        /*
-         * Data
-         */
-        {
-            name: "PostgreSQL",
-            category: "database",
-            order: 1,
-        },
-        {
-            name: "SQLite",
-            category: "database",
-            order: 2,
-        },
-        {
-            name: "MongoDB",
-            category: "database",
-            order: 3,
-        },
-        {
-            name: "Prisma",
-            category: "database",
-            order: 4,
-        },
-        {
-            name: "Redis",
-            category: "database",
-            order: 5,
-        },
+        // Database
+        { name: "PostgreSQL", category: "database", order: 1 },
+        { name: "MongoDB", category: "database", order: 2 },
+        { name: "Prisma", category: "database", order: 3 },
+        { name: "Redis", category: "database", order: 4 },
 
-        /*
-         * AI
-         */
-        {
-            name: "Generative AI",
-            category: "ai",
-            order: 1,
-        },
-        {
-            name: "RAG",
-            category: "ai",
-            order: 2,
-        },
-        {
-            name: "AI Agent",
-            category: "ai",
-            order: 3,
-        },
-        {
-            name: "AI Integration",
-            category: "ai",
-            order: 4,
-        },
-        {
-            name: "AI Assistants",
-            category: "ai",
-            order: 5,
-        },
-        {
-            name: "OpenAI",
-            category: "ai",
-            order: 6,
-        },
-        {
-            name: "LLM Integration",
-            category: "ai",
-            order: 7,
-        },
-        {
-            name: "AI Automation",
-            category: "ai",
-            order: 8,
-        },
+        // AI & Automation
+        { name: "RAG", category: "ai", order: 1 },
+        { name: "AI Agent", category: "ai", order: 2 },
+        { name: "Generative AI", category: "ai", order: 3 },
+        { name: "AI Integration", category: "ai", order: 4 },
+        { name: "AI Assistants", category: "ai", order: 5 },
+        { name: "OpenAI", category: "ai", order: 6 },
+        { name: "LLM Integration", category: "ai", order: 7 },
+        { name: "AI Automation", category: "ai", order: 8 },
 
-        /*
-         * DevOps
-         */
-        {
-            name: "Git",
-            category: "devops",
-            order: 1,
-        },
-        {
-            name: "GitHub",
-            category: "devops",
-            order: 2,
-        },
-        {
-            name: "Docker",
-            category: "devops",
-            order: 3,
-        },
-        {
-            name: "Vitest",
-            category: "devops",
-            order: 4,
-        },
+        // DevOps
+        { name: "Git", category: "devops", order: 1 },
+        { name: "GitHub", category: "devops", order: 2 },
+        { name: "Docker", category: "devops", order: 3 },
     ];
 
     for (const skill of skills) {
@@ -347,44 +211,50 @@ async function main() {
         {
             title: "AI Workflow Automation",
             slug: "ai-workflow-automation",
-            summary: "An automation system that combines AI capabilities with structured business workflows.",
-            description: "An AI-assisted workflow application designed to reduce repetitive manual tasks by connecting structured application data with intelligent processing and automation flows while keeping the user experience simple.",
+            summary: "AI-assisted workflow application for turning repetitive business tasks into configurable workflows.",
+            description: "Built the workflow UI, application logic, data models, authentication, and AI integrations. The system lets users configure workflow steps, provide inputs, and use AI-powered processing as part of the workflow.",
+            challenge: "Turn repetitive business tasks into configurable workflows without making the experience feel complex.",
+            solution: "A structured workflow builder with configurable steps, inputs, authentication, persistent data and AI-powered processing.",
+            architecture: "Next.js application with TypeScript, PostgreSQL, Prisma, authentication and OpenAI integration.",
+            role: "I handled the full-stack implementation, including the frontend, backend logic, database design, authentication, workflow functionality, and AI integration.",
+            impact: "Creates a reusable foundation for automating repetitive business workflows with AI-assisted processing.",
+            category: "AI",
             url: null,
             githubUrl: null,
             imageUrl: "/projects/ai-workflow-automation.png",
             featured: true,
             status: "active",
-            tags: "AI, Automation, Node.js, APIs, TypeScript",
+            tags: "Next.js, TypeScript, PostgreSQL, Prisma, OpenAI",
         },
         {
             title: "Retrieval-Augmented Generation",
             slug: "retrieval-augmented-generation",
-            summary: "Production-ready RAG system with enterprise-grade architecture.",
-            description: "A retrieval-augmented generation application focused on grounding AI responses with relevant source context and a production-minded architecture.",
+            summary: "Document-based question-answering application that uses retrieved context to answer questions about a private knowledge base.",
+            description: "Built the application interface, document/knowledge workflow, conversational experience, and LLM integration. Responses are generated from retrieved context rather than relying only on the model's general knowledge.",
+            challenge: "Make answers about private documents more grounded and useful than relying only on a model's general knowledge.",
+            solution: "A conversational RAG workflow that retrieves relevant knowledge before generating an answer.",
+            architecture: "Next.js and TypeScript application with PostgreSQL, OpenAI and retrieval-focused application logic.",
+            role: "I built the application end to end, including the frontend, data flow, retrieval workflow, AI integration, conversational UI, and supporting application logic.",
+            impact: "Provides a practical interface for asking questions against a private knowledge base with retrieved context.",
+            category: "AI",
             url: "https://rag-app.bhaveshg.dev",
             githubUrl: null,
             imageUrl: "/projects/rag2.png",
-            featured: true,
+            featured: false,
             status: "active",
             tags: "Tailwind CSS, TypeScript, Next.js, React, RAG",
-        },
-        {
-            title: "Developer Portfolio CMS",
-            slug: "developer-portfolio-cms",
-            summary: "A content-driven developer portfolio with project management, skills, experience and an admin dashboard.",
-            description: "A database-driven portfolio platform with project, skill, experience and profile management, backed by an authenticated admin dashboard and modern full-stack architecture.",
-            url: null,
-            githubUrl: null,
-            imageUrl: "/projects/portfolio.png",
-            featured: true,
-            status: "active",
-            tags: "Next.js, Prisma, PostgreSQL, OpenAI, Vercel",
         },
         {
             title: "Business Management Platform",
             slug: "business-management-platform",
             summary: "A full-stack business application for managing customers, workflows, records and day-to-day operations.",
             description: "A practical business management platform focused on centralizing operational information and improving day-to-day workflows through structured data, responsive interfaces and production-minded full-stack engineering.",
+            challenge: "Centralize operational information and simplify recurring business workflows.",
+            solution: "A responsive full-stack business platform built around structured records, workflows and operational interfaces.",
+            architecture: "Next.js application with Tailwind CSS, API-driven workflows and Vercel deployment.",
+            role: "I handled the product implementation across the interface, application logic and operational workflows.",
+            impact: "Brings recurring business operations into a single structured application experience.",
+            category: "Full-Stack",
             url: "https://nellavio.com",
             githubUrl: null,
             imageUrl: "/projects/business-management-platform.png",
@@ -397,6 +267,12 @@ async function main() {
             slug: "saas-analytics-dashboard",
             summary: "A modern analytics dashboard for monitoring business performance, users, revenue and operational metrics.",
             description: "A responsive SaaS dashboard designed around information hierarchy, reusable data visualization patterns and fast decision-making.",
+            challenge: "Present operational and business metrics clearly enough to support fast decisions.",
+            solution: "A responsive analytics interface with reusable dashboard patterns and a clear information hierarchy.",
+            architecture: "React and Next.js with TypeScript and Tailwind CSS.",
+            role: "I designed and implemented the dashboard interface, reusable UI patterns and data-focused presentation layer.",
+            impact: "Turns business metrics into a focused interface for monitoring performance and operational signals.",
+            category: "SaaS",
             url: null,
             githubUrl: null,
             imageUrl: "/projects/saas_dashboard.png",
@@ -404,11 +280,35 @@ async function main() {
             status: "active",
             tags: "React, Next.js, TypeScript, Tailwind CSS, SaaS, Dashboard",
         },
+	{
+            title: "Developer Portfolio CMS",
+            slug: "developer-portfolio-cms",
+            summary: "Content management system for managing portfolio projects and site content without editing the application directly.",
+            description: "Built the CMS interface, content models, CRUD workflows, validation, and integration with the portfolio frontend. The project separates editable content from the presentation layer.",
+            challenge: "Separate editable portfolio content from the application presentation layer so the site can be maintained without changing frontend code.",
+            solution: "An authenticated CMS with structured content models, CRUD workflows, validation and a database-backed portfolio frontend.",
+            architecture: "Next.js, Tailwind CSS, PostgreSQL, Prisma ORM, Neon and Vercel.",
+            role: "I designed and implemented the CMS, including the content models, database layer, CRUD functionality, validation, management UI, and connection between the CMS and portfolio frontend.",
+            impact: "Makes portfolio content maintainable through a dedicated management workflow instead of direct code edits.",
+            category: "CMS",
+            url: null,
+            githubUrl: null,
+            imageUrl: "/projects/portfolio.png",
+            featured: false,
+            status: "active",
+            tags: "Next.js, TailwindCSS, PostgreSQL, Prisma ORM, Neon, Vercel",
+        },
         {
             title: "AI-Powered Portfolio Assistant",
             slug: "ai-portfolio-assistant",
             summary: "A conversational AI assistant that helps visitors explore skills, projects, experience and services naturally.",
             description: "An AI assistant integrated into the portfolio with contextual portfolio knowledge, conversation history, suggested questions and an API-driven conversation layer.",
+            challenge: "Let visitors explore portfolio information conversationally instead of relying only on static navigation.",
+            solution: "A portfolio-aware AI assistant with contextual knowledge, conversation history and an API-driven chat experience.",
+            architecture: "Next.js, React, TypeScript and OpenAI integrated into the portfolio application.",
+            role: "I implemented the conversational interface, portfolio context layer and API-driven AI experience.",
+            impact: "Gives visitors a natural way to discover projects, skills, experience and services.",
+            category: "AI",
             url: null,
             githubUrl: null,
             imageUrl: "/ai-assistant.svg",
@@ -429,6 +329,18 @@ async function main() {
                 summary: project.summary,
                 description:
                     project.description,
+                challenge:
+                    project.challenge,
+                solution:
+                    project.solution,
+                architecture:
+                    project.architecture,
+                role:
+                    project.role,
+                impact:
+                    project.impact,
+                category:
+                    project.category,
                 url: project.url,
                 githubUrl:
                     project.githubUrl,
@@ -448,6 +360,18 @@ async function main() {
                 summary: project.summary,
                 description:
                     project.description,
+                challenge:
+                    project.challenge,
+                solution:
+                    project.solution,
+                architecture:
+                    project.architecture,
+                role:
+                    project.role,
+                impact:
+                    project.impact,
+                category:
+                    project.category,
                 url: project.url,
                 githubUrl:
                     project.githubUrl,
@@ -466,6 +390,68 @@ async function main() {
     console.log(
         `✓ Projects: ${projects.length}`,
     );
+
+    /*
+     * =========================================================
+     * SITE CONTENT
+     * =========================================================
+     * Mirrors the public portfolio copy and service positioning.
+     */
+
+    const siteContent = await prisma.siteContent.upsert({
+        where: { id: 1 },
+        update: {
+            heroBadge: "Full-Stack Engineer · AI Product Builder",
+            heroTitle: "I build AI-powered web products that turn business workflows into software.",
+            heroDescription: "Full-stack developer specializing in SaaS, business platforms, automation and AI integrations—from architecture to production.",
+            aboutTitle: "Don't just read my portfolio. Ask it.",
+            aboutText: "My AI portfolio assistant can help visitors explore my skills, projects, experience and the kind of products I build.",
+            services: [
+                { title: "Launch a new product", description: "Turn an idea into a polished web application designed around real users, clear workflows and measurable business goals." },
+                { title: "Modernize an existing app", description: "Improve performance, UX, architecture and maintainability without throwing away the parts that already work." },
+                { title: "Business dashboards", description: "Build focused internal tools, reporting systems and workflow applications that help teams move faster and make better decisions." },
+                { title: "AI-powered experiences", description: "Add practical AI assistants, intelligent search, RAG and automation where they create useful product value." },
+            ],
+            whyTitle: "Good software starts with clarity.",
+            whyItems: [
+                { title: "Discover the real problem", description: "Align on users, constraints, success criteria and the smallest version worth shipping." },
+                { title: "Design the system", description: "Choose the architecture, data model, and UX around the product — not the other way around." },
+                { title: "Build in vertical slices", description: "Ship working slices early, validate assumptions, and keep the system easy to change as we learn." },
+                { title: "Harden before launch", description: "Test critical paths, improve performance, document key decisions, and leave the product ready to operate and extend." },
+            ],
+            ctaTitle: "Let's turn it into something remarkable.",
+            ctaDescription: "Have an idea worth building? Let's turn it into something remarkable.",
+            ctaPrimaryText: "Start a conversation",
+            ctaSecondaryText: "See my work",
+        },
+        create: {
+            id: 1,
+            heroBadge: "Full-Stack Engineer · AI Product Builder",
+            heroTitle: "I build AI-powered web products that turn business workflows into software.",
+            heroDescription: "Full-stack developer specializing in SaaS, business platforms, automation and AI integrations—from architecture to production.",
+            aboutTitle: "Don't just read my portfolio. Ask it.",
+            aboutText: "My AI portfolio assistant can help visitors explore my skills, projects, experience and the kind of products I build.",
+            services: [
+                { title: "Launch a new product", description: "Turn an idea into a polished web application designed around real users, clear workflows and measurable business goals." },
+                { title: "Modernize an existing app", description: "Improve performance, UX, architecture and maintainability without throwing away the parts that already work." },
+                { title: "Business dashboards", description: "Build focused internal tools, reporting systems and workflow applications that help teams move faster and make better decisions." },
+                { title: "AI-powered experiences", description: "Add practical AI assistants, intelligent search, RAG and automation where they create useful product value." },
+            ],
+            whyTitle: "Good software starts with clarity.",
+            whyItems: [
+                { title: "Discover the real problem", description: "Align on users, constraints, success criteria and the smallest version worth shipping." },
+                { title: "Design the system", description: "Choose the architecture, data model, and UX around the product — not the other way around." },
+                { title: "Build in vertical slices", description: "Ship working slices early, validate assumptions, and keep the system easy to change as we learn." },
+                { title: "Harden before launch", description: "Test critical paths, improve performance, document key decisions, and leave the product ready to operate and extend." },
+            ],
+            ctaTitle: "Let's turn it into something remarkable.",
+            ctaDescription: "Have an idea worth building? Let's turn it into something remarkable.",
+            ctaPrimaryText: "Start a conversation",
+            ctaSecondaryText: "See my work",
+        },
+    });
+
+    console.log(`✓ Site content: ${siteContent.id}`);
 
     /*
      * =========================================================
