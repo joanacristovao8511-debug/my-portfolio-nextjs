@@ -88,10 +88,10 @@ export const navItems = [
 ];
 
 export const fallbackServices = [
-    { number: "01", icon: Layers3, title: "Launch a new product", text: "Turn an idea into a polished, production-ready web application designed around real business goals." },
-    { number: "02", icon: Zap, title: "Modernize an existing app", text: "Improve performance, UX, architecture and maintainability without throwing away what already works." },
-    { number: "03", icon: Database, title: "Business dashboards", text: "Build powerful internal tools, reporting systems and workflow applications that make teams more productive." },
-    { number: "04", icon: Sparkles, title: "AI-powered experiences", text: "Add useful AI assistants, intelligent search, automation and AI-powered workflows to existing products." },
+    { number: "01", icon: Layers3, label: "Product development", title: "Launch a new product", text: "Turn an idea into a polished web application designed around real users and business goals.", tags: ["Strategy", "UX", "Production"], includes: "Architecture, implementation and deployment." },
+    { number: "02", icon: Zap, label: "Engineering modernization", title: "Modernize an existing app", text: "Improve performance, UX, architecture and maintainability without throwing away what already works.", tags: ["Performance", "Architecture", "UX"], includes: "Refactoring, performance work and maintainable systems." },
+    { number: "03", icon: Database, label: "Internal tools", title: "Business dashboards", text: "Build focused internal tools, reporting systems and workflow applications that help teams move faster.", tags: ["Dashboards", "Workflows", "Data"], includes: "Operational interfaces, reporting and workflow automation." },
+    { number: "04", icon: Sparkles, label: "AI integration", title: "AI-powered experiences", text: "Add practical AI assistants, intelligent search and automation to products where they create real value.", tags: ["RAG", "Assistants", "Automation"], includes: "AI features integrated into real product workflows." },
 ];
 
 export const fallbackSkillGroups = {

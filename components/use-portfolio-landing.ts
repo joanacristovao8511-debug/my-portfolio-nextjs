@@ -35,6 +35,29 @@ export function usePortfolioLandingState({
 
     const openChat = useChatbotStore((state) => state.openChat);
 
+    const serviceMeta = [
+        {
+            label: "Product development",
+            tags: ["Strategy", "UX", "Production"],
+            includes: "Architecture, implementation and deployment.",
+        },
+        {
+            label: "Engineering modernization",
+            tags: ["Performance", "Architecture", "UX"],
+            includes: "Refactoring, performance work and maintainable systems.",
+        },
+        {
+            label: "Internal tools",
+            tags: ["Dashboards", "Workflows", "Data"],
+            includes: "Operational interfaces, reporting and workflow automation.",
+        },
+        {
+            label: "AI integration",
+            tags: ["RAG", "Assistants", "Automation"],
+            includes: "Practical AI features integrated into real products.",
+        },
+    ];
+
     const services = content?.services?.length
         ? content.services.map((service, index) => ({
               number: String(index + 1).padStart(2, "0"),
@@ -48,6 +71,7 @@ export function usePortfolioLandingState({
                               : Sparkles,
               title: service.title,
               text: service.description,
+              ...(serviceMeta[index] ?? serviceMeta[0]),
           }))
         : fallbackServices;
 

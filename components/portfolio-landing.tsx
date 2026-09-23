@@ -1143,7 +1143,7 @@ export function PortfolioLanding({
                                 label: "Technical skills",
                             },
                             {
-                                value: profile.title.includes("Product") ? "Full stack + design" : "Full-stack delivery",
+                                value: profile.title.includes("Product") ? "Full stack + AI" : "Full-stack delivery",
                                 label: "Primary focus",
                             },
                         ].map(
@@ -1650,185 +1650,113 @@ export function PortfolioLanding({
                 id="services"
                 className="scroll-mt-24 portfolio-deferred-section"
             >
-                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
-                    <div className="grid gap-8 sm:gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+                <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
+                    <div className="mb-10 flex flex-col gap-6 lg:mb-12 lg:flex-row lg:items-end lg:justify-between">
                         <m.div
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{
-                                once: true,
-                                amount: 0.2,
-                            }}
+                            viewport={{ once: true, amount: 0.2 }}
                             variants={sectionReveal}
+                            className="max-w-2xl"
                         >
-                            <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
-                                What I can build
-                            </p>
-
-                            <h2
-                                className={`
-                                    mt-4
-                                    text-4xl
-                                    font-black
-                                    tracking-tight
-                                    sm:text-5xl
-                                    ${heading}
-                                `}
-                            >
-                                From idea
-                                <br />
-                                to production.
+                            <div className="flex items-center gap-3">
+                                <span className="h-px w-8 bg-sky-500" />
+                                <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
+                                    Services
+                                </p>
+                            </div>
+                            <h2 className={`mt-4 text-4xl font-black tracking-tight sm:text-5xl ${heading}`}>
+                                Built around your<br className="hidden sm:block" /> problem, not a template.
                             </h2>
-
-                            <p
-                                className={`
-                                    mt-5
-                                    max-w-md
-                                    text-sm
-                                    leading-7
-                                    ${muted}
-                                `}
-                            >
-                                I help businesses design,
-                                build and improve digital
-                                products that are useful,
-                                fast and easy to maintain.
+                            <p className={`mt-5 max-w-xl text-sm leading-7 sm:text-base ${muted}`}>
+                                From product architecture to polished interfaces and AI integrations, I focus on shipping useful software that is clear to use and practical to maintain.
                             </p>
-
-                            <a
-                                href="#contact"
-                                className="
-                                    mt-7
-                                    inline-flex
-                                    items-center
-                                    gap-2
-                                    text-sm
-                                    font-bold
-                                    text-sky-500
-                                    hover:text-sky-400
-                                "
-                            >
-                                Discuss your project
-
-                                <ArrowRight className="h-4 w-4" />
-                            </a>
                         </m.div>
 
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            {services.map(
-                                (
-                                    service,
-                                    index,
-                                ) => {
-                                    const Icon =
-                                        service.icon;
+                        <m.a
+                            href="#contact"
+                            initial={{ opacity: 0, y: 14 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.5, delay: 0.12 }}
+                            className={`group inline-flex shrink-0 items-center gap-2 self-start rounded-full border px-5 py-3 text-sm font-bold transition hover:-translate-y-0.5 lg:self-auto ${softPanel} ${heading}`}
+                        >
+                            Start a conversation
+                            <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </m.a>
+                    </div>
 
-                                    return (
-                                        <m.article
-                                            key={
-                                                service.number
-                                            }
-                                            initial="hidden"
-                                            whileInView="visible"
-                                            viewport={{
-                                                once: true,
-                                                amount: 0.15,
-                                            }}
-                                            variants={{
-                                                ...cardReveal,
-                                                visible:
-                                                    {
-                                                        opacity: 1,
-                                                        y: 0,
-                                                        transition:
-                                                            {
-                                                                duration:
-                                                                    0.5,
-                                                                delay:
-                                                                    index *
-                                                                    0.08,
-                                                                ease: [
-                                                                    0.16,
-                                                                    1,
-                                                                    0.3,
-                                                                    1,
-                                                                ] as const,
-                                                            },
-                                                    },
-                                            }}
-                                            whileHover={{
-                                                y: -4,
-                                            }}
-                                            className={`
-                                                group
-                                                rounded-[26px]
-                                                border
-                                                p-6
-                                                transition
-                                                duration-300
-                                                ${softPanel}
-                                            `}
-                                        >
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-xs font-black text-sky-500">
-                                                    {
-                                                        service.number
-                                                    }
-                                                </span>
-
-                                                <m.div
-                                                    whileHover={{
-                                                        rotate: 5,
-                                                        scale: 1.06,
-                                                    }}
-                                                    className={`
-                                                        flex
-                                                        h-10
-                                                        w-10
-                                                        items-center
-                                                        justify-center
-                                                        rounded-xl
-                                                        ${
-                                                            isLight
-                                                                ? "bg-sky-50 text-sky-600"
-                                                                : "bg-sky-500/10 text-sky-400"
-                                                        }
-                                                    `}
-                                                >
-                                                    <Icon className="h-4 w-4" />
-                                                </m.div>
+                    <div className="grid gap-4 md:grid-cols-2">
+                        {services.map((service, index) => {
+                            const Icon = service.icon;
+                            return (
+                                <m.article
+                                    key={service.number}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, amount: 0.15 }}
+                                    variants={{
+                                        ...cardReveal,
+                                        visible: {
+                                            opacity: 1,
+                                            y: 0,
+                                            transition: {
+                                                duration: 0.5,
+                                                delay: index * 0.08,
+                                                ease: [0.16, 1, 0.3, 1] as const,
+                                            },
+                                        },
+                                    }}
+                                    whileHover={{ y: -5 }}
+                                    className={`group senior-card rounded-[28px] border p-6 sm:p-7 ${softPanel}`}
+                                >
+                                    <div className="flex items-start justify-between gap-5">
+                                        <div className="flex items-center gap-3">
+                                            <div className={`flex h-11 w-11 items-center justify-center rounded-2xl ${isLight ? "bg-sky-50 text-sky-600" : "bg-sky-500/10 text-sky-400"}`}>
+                                                <Icon className="h-5 w-5" />
                                             </div>
+                                            <div>
+                                                {/* <p className="text-[11px] font-black uppercase tracking-[0.18em] text-sky-500">
+                                                    {service.label}
+                                                </p> */}
+                                                <p className={`mt-1 text-xs font-semibold ${muted}`}>
+                                                    Service {service.number}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <ArrowUpRight className={`h-5 w-5 shrink-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 ${muted}`} />
+                                    </div>
 
-                                            <h3
-                                                className={`
-                                                    mt-8
-                                                    text-xl
-                                                    font-bold
-                                                    ${heading}
-                                                `}
-                                            >
-                                                {
-                                                    service.title
-                                                }
-                                            </h3>
+                                    <h3 className={`mt-7 text-2xl font-black tracking-tight ${heading}`}>
+                                        {service.title}
+                                    </h3>
+                                    <p className={`mt-3 max-w-xl text-sm leading-7 ${muted}`}>
+                                        {service.text}
+                                    </p>
 
-                                            <p
-                                                className={`
-                                                    mt-3
-                                                    text-sm
-                                                    leading-6
-                                                    ${muted}
-                                                `}
+                                    <div className="mt-6 flex flex-wrap gap-2">
+                                        {(service.tags ?? []).map((tag: string) => (
+                                            <span
+                                                key={tag}
+                                                className={`rounded-full border px-3 py-1.5 text-[11px] font-bold ${tagClass}`}
                                             >
-                                                {
-                                                    service.text
-                                                }
-                                            </p>
-                                        </m.article>
-                                    );
-                                },
-                            )}
-                        </div>
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className={`mt-6 border-t pt-5 ${isLight ? "border-slate-200/80" : "border-slate-800/80"}`}>
+                                        <div className="flex items-start gap-3">
+                                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-sky-500" />
+                                            <div>
+                                                <p className={`text-xs font-black uppercase tracking-[0.16em] ${heading}`}>Typical scope</p>
+                                                <p className={`mt-1 text-sm leading-6 ${muted}`}>{service.includes}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </m.article>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
