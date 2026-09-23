@@ -15,6 +15,19 @@ const PortfolioChatbot = dynamic(() => import("@/components/portfolio-chatbot"),
     ssr: false,
     loading: () => null,
 });
+
+function GithubIcon({ className = "h-5 w-5" }: { className?: string }) {
+    return (
+        <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className={className}
+        >
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.342-3.369-1.342-.455-1.157-1.11-1.466-1.11-1.466-.908-.621.069-.609.069-.609 1.004.071 1.532 1.031 1.532 1.031.892 1.529 2.341 1.087 2.91.831.091-.646.349-1.087.635-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844a9.57 9.57 0 0 1 2.504.337c1.909-1.294 2.748-1.025 2.748-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .268.18.579.688.481A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z" />
+        </svg>
+    );
+}
 import { ProjectPreview } from "./project-preview";
 import { cardReveal, navItems, parseTags, sectionReveal, type PortfolioLandingProps } from "./portfolio-data";
 import { usePortfolioLandingState } from "./use-portfolio-landing";
@@ -1346,7 +1359,7 @@ export function PortfolioLanding({
                                                             rel="noreferrer"
                                                             className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold transition hover:-translate-y-0.5 ${secondaryButton}`}
                                                         >
-                                                            {/* <Github className="h-3.5 w-3.5" /> */}
+                                                            <GithubIcon className="h-3.5 w-3.5" />
                                                             Source code
                                                         </a>
                                                     )}
@@ -2480,7 +2493,7 @@ export function PortfolioLanding({
                             className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-slate-600/70 bg-slate-950/95 px-3 text-white shadow-[0_12px_35px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
                         >
                             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
-                                {/* <Github className="h-5 w-5" /> */}
+                                <GithubIcon className="h-5 w-5" />
                             </span>
                             <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                                 <span className="block text-sm font-bold">GitHub</span>
