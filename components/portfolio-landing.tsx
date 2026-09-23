@@ -1991,7 +1991,7 @@ export function PortfolioLanding({
                                     ${muted}
                                 `}
                             >
-                                A senior process means making the important decisions early: clarify the outcome, reduce uncertainty, build in small slices, and leave behind software the team can actually own.
+                                I reduce uncertainty before writing too much code — then ship in small, testable increments.
                             </p>
 
                             <div className="mt-7 grid max-w-xl grid-cols-3 gap-3">
@@ -2019,17 +2019,17 @@ export function PortfolioLanding({
                                 {
                                     number: "02",
                                     title: "Design the system",
-                                    text: "Choose the architecture, data model and UX that fit the product instead of forcing a stack onto it.",
+                                    text: "Choose the architecture, data model, and UX around the product — not the other way around.",
                                 },
                                 {
                                     number: "03",
                                     title: "Build in vertical slices",
-                                    text: "Ship working pieces early, validate assumptions and keep technical decisions reversible where possible.",
+                                    text: "Ship working slices early, validate assumptions, and keep the system easy to change as we learn.",
                                 },
                                 {
                                     number: "04",
-                                    title: "Harden before handoff",
-                                    text: "Test critical paths, improve performance, document the important decisions and prepare a clean deployment.",
+                                    title: "Harden before launch",
+                                    text: "Test critical paths, improve performance, document key decisions, and leave the product ready to operate and extend.",
                                 },
                             ].map(
                                 (
