@@ -27,9 +27,9 @@ type ProfileData = {
 
 const fallbackProfile: ProfileData = {
   name: "Frunco Ruiz",
-  title: "Full-Stack Developer | AI Product Builder",
-  headline: "I build AI-powered web applications and digital products that help businesses grow faster.",
-  bio: "I help startups and businesses transform ideas into scalable software through full-stack development, AI integration, and modern product design.",
+  title: "Full-Stack Engineer | AI Product Builder",
+  headline: "I build AI-powered products that turn complex ideas into clear, scalable software.",
+  bio: "I combine product thinking, full-stack engineering, and practical AI integration to take products from idea to polished, production-ready experiences.",
   email: null,
   location: "United States",
   summary: "I design and build modern web applications with a strong focus on usability, performance, maintainability and real business value.",

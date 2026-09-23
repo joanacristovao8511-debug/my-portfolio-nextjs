@@ -80,13 +80,13 @@ async function main() {
             name: "Frunco Ruiz",
 
             title:
-                "Full-Stack Developer & AI Product Builder",
+                "Full-Stack Engineer & AI Product Builder",
 
             headline:
-                "Building intelligent digital products with Full-Stack + AI.",
+                "I build AI-powered products that turn complex ideas into clear, scalable software.",
 
             bio:
-                "Full-stack developer and product builder creating polished web applications, business platforms and AI-powered experiences with a strong focus on usability, performance and maintainable engineering.",
+                "I combine product thinking, full-stack engineering, and practical AI integration to take products from idea to polished, production-ready experiences.",
 
             email:
                 "azulrio906top@gmail.com",
@@ -95,7 +95,7 @@ async function main() {
                 "United States",
 
             summary:
-                "I build intelligent digital products with Full-Stack + AI, combining frontend architecture, backend systems, APIs, databases, authentication, AI integrations and product-focused UX.",
+                "I turn ambiguous product requirements into shipped, maintainable software across frontend architecture, backend systems, APIs, databases, authentication, AI integrations and product-focused UX.",
 
             availability:
                 "Available for selected freelance projects",
@@ -107,13 +107,13 @@ async function main() {
             name: "Frunco Ruiz",
 
             title:
-                "Full-Stack Developer & AI Product Builder",
+                "Full-Stack Engineer & AI Product Builder",
 
             headline:
-                "Building intelligent digital products with Full-Stack + AI.",
+                "I build AI-powered products that turn complex ideas into clear, scalable software.",
 
             bio:
-                "Full-stack developer and product builder creating polished web applications, business platforms and AI-powered experiences with a strong focus on usability, performance and maintainable engineering.",
+                "I combine product thinking, full-stack engineering, and practical AI integration to take products from idea to polished, production-ready experiences.",
 
             email:
                 "azulrio906top@gmail.com",
@@ -122,7 +122,7 @@ async function main() {
                 "United States",
 
             summary:
-                "I build intelligent digital products with Full-Stack + AI, combining frontend architecture, backend systems, APIs, databases, authentication, AI integrations and product-focused UX.",
+                "I turn ambiguous product requirements into shipped, maintainable software across frontend architecture, backend systems, APIs, databases, authentication, AI integrations and product-focused UX.",
 
             availability:
                 "Available for selected freelance projects",

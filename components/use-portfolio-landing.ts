@@ -267,19 +267,28 @@ export function usePortfolioLandingState({
         return projects.filter((project) => project.category?.trim() === projectCategory);
     }, [projectCategory, projects]);
 
-    const featuredProject = filteredProjects.find((project) => project.featured) ?? filteredProjects[0] ?? null;
+    const featuredProjects = filteredProjects.filter((project) => project.featured);
+    const shippedProjects = filteredProjects.filter((project) => !project.featured);
 
+    const featuredProject = featuredProjects[0] ?? shippedProjects[0] ?? null;
+
+    // Keep the landing page organized as two clear product stories: featured first,
+    // then shipped work. The collapsed view shows up to three from each group.
     const visibleProjects = showAllProjects
-        ? filteredProjects
-        : filteredProjects.slice(0, 3);
+        ? [...featuredProjects, ...shippedProjects]
+        : [
+            ...featuredProjects.slice(0, 3),
+            ...shippedProjects.slice(0, 3),
+        ];
 
-    const featuredCount = filteredProjects.filter((project) => project.featured).length;
+    const featuredCount = featuredProjects.length;
+    const shippedCount = shippedProjects.length;
 
     const remainingProjects =
         visibleProjects.slice(1);
 
     const hasMoreProjects =
-        filteredProjects.length > 3;
+        filteredProjects.length > visibleProjects.length;
 
     /* ============================================================
        SKILLS
@@ -378,8 +387,11 @@ export function usePortfolioLandingState({
         projects,
         filteredProjects,
         featuredProject,
+        featuredProjects,
+        shippedProjects,
         visibleProjects,
         featuredCount,
+        shippedCount,
         remainingProjects,
         hasMoreProjects,
         groupedSkills,

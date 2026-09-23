@@ -117,7 +117,7 @@ export function PortfolioLanding({
         theme, setTheme, mobileMenu, setMobileMenu, showAllProjects, setShowAllProjects,
         projectCategory, setProjectCategory, projectCategories,
         scrolled, activeSection, openChat, services, projects, filteredProjects, featuredProject, visibleProjects,
-        featuredCount, remainingProjects, hasMoreProjects, groupedSkills, isLight, pageClass,
+        featuredCount, shippedCount, remainingProjects, hasMoreProjects, groupedSkills, isLight, pageClass,
         muted, heading, panel, softPanel, secondaryButton, tagClass,
     } = usePortfolioLandingState({ skillList, projectList, content });
 
@@ -699,7 +699,7 @@ export function PortfolioLanding({
                                         }}
                                         className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-sky-500"
                                     >
-                                        {content?.heroBadge || "Full-Stack AI Developer · Product Builder"}
+                                        {content?.heroBadge || "Full-Stack Engineer · AI Product Builder"}
                                     </m.p>
 
                                     <m.div
@@ -781,7 +781,7 @@ export function PortfolioLanding({
                                     ${heading}
                                 `}
                                     >
-                                        {content?.heroTitle || profile.headline || "Building intelligent digital products with Full-Stack + AI."}
+                                        {content?.heroTitle || profile.headline || "I build AI-powered products that turn complex ideas into clear, scalable software."}
                                     </m.h1>
 
                                     <m.p
@@ -867,7 +867,7 @@ export function PortfolioLanding({
                                         sm:w-auto
                                     "
                                         >
-                                            Explore my work
+                                            See what I've built
                                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                                         </a>
 
@@ -896,7 +896,7 @@ export function PortfolioLanding({
                                     `}
                                         >
                                             <Bot className="h-4 w-4" />
-                                            Ask my AI assistant
+                                            Ask about my experience
                                         </button>
 
                                         <a
@@ -926,9 +926,10 @@ export function PortfolioLanding({
                                         className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3"
                                     >
                                         {[
-                                            "Full-stack development",
-                                            "Product design",
+                                            "End-to-end ownership",
+                                            "Production-ready engineering",
                                             "AI integration",
+                                            "Product-minded UX",
                                         ].map((item) => (
                                             <div
                                                 key={item}
@@ -1118,13 +1119,54 @@ export function PortfolioLanding({
                                 </m.div>
                             </div>
 
+                            {/* Hiring-manager scan */}
+                            <m.div
+                                initial={{ opacity: 0, y: 12 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.55, duration: 0.5 }}
+                                className={`mt-14 rounded-3xl border p-4 sm:p-5 ${
+                                    isLight
+                                        ? "border-slate-200 bg-white/70 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                                        : "border-slate-800 bg-slate-900/70"
+                                }`}
+                            >
+                                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                    <div>
+                                        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">
+                                            What I bring to a team
+                                        </p>
+                                        <p className={`mt-1 text-sm font-semibold ${heading}`}>
+                                            I turn ambiguous product requirements into shipped, maintainable software.
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["React / Next.js", "TypeScript", "AI / RAG", "APIs + Data"].map((item) => (
+                                            <span
+                                                key={item}
+                                                className={`rounded-full border px-3 py-1.5 text-[11px] font-semibold ${
+                                                    isLight
+                                                        ? "border-slate-200 bg-slate-50 text-slate-700"
+                                                        : "border-slate-700 bg-slate-950 text-slate-200"
+                                                }`}
+                                            >
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </m.div>
+
                             {/* Hero stats */}
 
-                            <div className="mt-20 grid gap-4 sm:grid-cols-3">
+                            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                                 {[
                                     {
                                         value: `${featuredCount || projectList.length}`,
                                         label: featuredCount ? "Featured projects" : "Projects",
+                                    },
+                                    {
+                                        value: `${shippedCount < 20 ? "20" : shippedCount}+`,
+                                        label: "Shipped products",
                                     },
                                     {
                                         value: `${skillList.length}+`,
@@ -1401,6 +1443,10 @@ export function PortfolioLanding({
                                                                         <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
                                                                         <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.built}</p>
                                                                     </div>
+                                                                    <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-white" : "border-slate-800 bg-slate-900/50"}`}>
+                                                                        <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
+                                                                        <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.focus}</p>
+                                                                    </div>
                                                                     {
                                                                         cardContent.role !== "" && (
                                                                             <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
@@ -1409,14 +1455,20 @@ export function PortfolioLanding({
                                                                             </div>
                                                                         )
                                                                     }
-                                                                    <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-white" : "border-slate-800 bg-slate-900/50"}`}>
-                                                                        <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
-                                                                        <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.focus}</p>
-                                                                    </div>
 
                                                                 </div>
                                                             );
                                                         })()}
+
+                                                        {displayTags.length > 0 && (
+                                                            <div className="mt-5 flex flex-wrap gap-1.5">
+                                                                {displayTags.slice(0, 5).map((tag) => (
+                                                                    <span key={tag} className={`rounded-full border px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.11em] ${tagClass}`}>
+                                                                        {tag}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        )}
                                                     </div>
 
                                                     <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-200/60 pt-5 dark:border-slate-800/70">
