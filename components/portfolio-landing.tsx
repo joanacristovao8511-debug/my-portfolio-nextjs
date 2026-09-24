@@ -2553,7 +2553,7 @@ export function PortfolioLanding({
 
                     <div
                         aria-label="Contact links"
-                        className="responsive-contact-dock fixed bottom-24 left-2 top-auto z-[60] translate-y-0 sm:left-4 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
+                        className="responsive-contact-dock fixed bottom-6 left-4 top-auto z-[60] translate-y-0 md:bottom-6 md:top-auto md:translate-y-0"
                     >
                         <m.div
                             aria-hidden="true"
