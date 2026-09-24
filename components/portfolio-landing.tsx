@@ -1152,10 +1152,10 @@ export function PortfolioLanding({
                                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                                     <div>
                                         <p className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">
-                                            What I bring to a team
+                                            What you get with me
                                         </p>
                                         <p className={`mt-1 text-sm font-semibold ${heading}`}>
-                                            I turn ambiguous product requirements into shipped, maintainable software.
+                                            I turn product requirements into shipped, maintainable software that gives you great profit.
                                         </p>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
@@ -1191,7 +1191,7 @@ export function PortfolioLanding({
                                         label: "Technical skills",
                                     },
                                     {
-                                        value: profile.title.includes("Product") ? "Full stack + AI" : "Full-stack delivery",
+                                        value: profile.title.includes("Product") ? "Full stack + AI" : "Full-stack + AI",
                                         label: "Primary focus",
                                     },
                                 ].map(
@@ -1550,7 +1550,7 @@ export function PortfolioLanding({
                             >
                                 <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-500">Career</p>
                                 <h2 className={`mt-3 text-3xl font-black tracking-[-0.04em] sm:text-5xl ${heading}`}>Experience</h2>
-                                <p className={`mt-4 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
+                                <p className={`mt-4 max-w-3xl text-sm leading-7 sm:text-base ${muted}`}>
                                     A snapshot of the roles, products and engineering work that shaped my approach to building software.
                                 </p>
                             </m.div>
@@ -1646,7 +1646,7 @@ export function PortfolioLanding({
                                         GSDC Certified
                                     </span>
                                 </div>
-                                <p className={`mt-4 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
+                                <p className={`mt-4 max-w-3xl text-sm leading-7 sm:text-base ${muted}`}>
                                     Full Stack Developer Certificate from the Global Skill Development Council (GSDC), issued January 20, 2023.
                                 </p>
                             </m.div>
@@ -1727,9 +1727,8 @@ export function PortfolioLanding({
                                 </div>
 
                                 <h2 className={`max-w-3xl text-4xl font-black leading-[0.98] tracking-[-0.04em] sm:text-5xl ${heading}`}>
-                                    Don't just read my portfolio.
+                                    Ask my portfolio Assistant.
                                     <br />
-                                    <span className="text-sky-500">Ask it.</span>
                                 </h2>
 
                                 <p className={`mt-5 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
@@ -1806,7 +1805,7 @@ export function PortfolioLanding({
                                         </p>
                                     </div>
                                     <h2 className={`mt-4 text-4xl font-black tracking-tight sm:text-5xl ${heading}`}>
-                                        Built around your<br className="hidden sm:block" /> problem, not a template.
+                                        I will give you real profit.
                                     </h2>
                                     <p className={`mt-5 max-w-xl text-sm leading-7 sm:text-base ${muted}`}>
                                         From product architecture to polished interfaces and AI integrations, I focus on shipping useful software that is clear to use and practical to maintain.
@@ -1955,9 +1954,9 @@ export function PortfolioLanding({
                                         ${heading}
                                     `}
                                         >
-                                            Tools that turn
+                                            Skills that lead your
                                             <br />
-                                            ideas into products.
+                                            ideas into profit.
                                         </h2>
 
                                         <p
@@ -1970,7 +1969,7 @@ export function PortfolioLanding({
                                     `}
                                         >
                                             A modern, practical
-                                            stack focused on
+                                            skill focused on
                                             maintainability,
                                             performance and great
                                             user experiences.
@@ -2104,7 +2103,7 @@ export function PortfolioLanding({
                                     variants={sectionReveal}
                                 >
                                     <p className="text-xs font-bold uppercase tracking-[0.25em] text-sky-500">
-                                        How I work
+                                        Work attitude
                                     </p>
 
                                     <h2
@@ -2131,7 +2130,8 @@ export function PortfolioLanding({
                                     ${muted}
                                 `}
                                     >
-                                        I reduce uncertainty before writing too much code — then ship in small, testable increments.
+                                        Clients request is the first thing.<br/>
+                                        I reduce uncertainty before start developing — apply plan to result accurately.
                                     </p>
 
                                     <div className="mt-7 grid max-w-xl grid-cols-3 gap-3">
@@ -2168,7 +2168,7 @@ export function PortfolioLanding({
                                         },
                                         {
                                             number: "04",
-                                            title: "Harden before launch",
+                                            title: "Perfect testing before launch",
                                             text: "Test critical paths, improve performance, document key decisions, and leave the product ready to operate and extend.",
                                         },
                                     ].map(
