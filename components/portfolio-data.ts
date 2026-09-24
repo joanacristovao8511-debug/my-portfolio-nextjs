@@ -83,6 +83,7 @@ export const navItems = [
     { label: "Home", href: "#home", id: "home" },
     { label: "Work", href: "#work", id: "work" },
     { label: "Experience", href: "#experience", id: "experience" },
+    { label: "Certification", href: "#certification", id: "certification" },
     { label: "Services", href: "#services", id: "services" },
     { label: "Stack", href: "#stack", id: "stack" },
     { label: "Contact", href: "#contact", id: "contact" },

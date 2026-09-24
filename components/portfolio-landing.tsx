@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Fragment, useCallback, useEffect, useState } from "react";
 
 import { ProcessSection } from "./sections/process";
@@ -927,7 +928,7 @@ export function PortfolioLanding({
                                     >
                                         {[
                                             "End-to-end ownership",
-                                            "Production-ready engineering",
+                                            "Maintainable systems",
                                             "AI integration",
                                             "Product-minded UX",
                                         ].map((item) => (
@@ -1591,6 +1592,97 @@ export function PortfolioLanding({
                                     <p className={`text-sm ${muted}`}>Experience details are ready to be added from the portfolio admin.</p>
                                 </div>
                             )}
+                        </div>
+                    </section>
+
+                    {/* =====================================================
+                CERTIFICATION
+            ====================================================== */}
+
+                    <section
+                        id="certification"
+                        className="scroll-mt-24 portfolio-deferred-section relative overflow-hidden border-t border-amber-400/30 dark:border-amber-300/20"
+                    >
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_35%,rgba(245,158,11,0.12),transparent_30%),radial-gradient(circle_at_82%_65%,rgba(251,191,36,0.08),transparent_28%)]" />
+
+                        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
+                            <m.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.15 }}
+                                variants={sectionReveal}
+                                className="max-w-4xl"
+                            >
+                                <div className="flex items-center gap-3">
+                                    <span className="h-px w-12 bg-amber-500" />
+                                    <p className="text-xs font-black uppercase tracking-[0.24em] text-amber-600 dark:text-amber-400">
+                                        Professional Credential
+                                    </p>
+                                </div>
+                                <div className="mt-4 flex flex-wrap items-center gap-3">
+                                    <h2 className={`text-3xl font-black tracking-[-0.04em] sm:text-5xl ${heading}`}>
+                                        Certified Full-Stack Developer
+                                    </h2>
+                                    <span className="inline-flex items-center rounded-full border border-amber-400/60 bg-amber-400/10 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.16em] text-amber-700 dark:text-amber-300">
+                                        GSDC Certified
+                                    </span>
+                                </div>
+                                <p className={`mt-4 max-w-2xl text-sm leading-7 sm:text-base ${muted}`}>
+                                    Full Stack Developer Certificate from the Global Skill Development Council (GSDC), issued January 20, 2023.
+                                </p>
+                            </m.div>
+
+                            <m.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.12 }}
+                                variants={cardReveal}
+                                className="mt-9 overflow-hidden rounded-[30px] border border-amber-400/70 bg-white/80 p-4 shadow-[0_20px_70px_rgba(245,158,11,0.12)] backdrop-blur-sm dark:border-amber-300/40 dark:bg-slate-950/75 sm:p-6 lg:p-7"
+                            >
+                                <div className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(260px,1fr)] lg:items-center">
+                                    <div className="flex justify-center">
+                                        <div className="w-full lg:w-2/3">
+                                            <div className="overflow-hidden rounded-2xl border-2 border-amber-400 bg-white shadow-[0_12px_45px_rgba(245,158,11,0.18)] dark:border-amber-300 dark:bg-slate-900">
+                                                <Image
+                                                    src="/certificates/fullstack-cert.png"
+                                                    alt="GSDC Certified Full Stack Developer certificate issued to Frunco Ruiz"
+                                                    width={1381}
+                                                    height={1139}
+                                                    unoptimized
+                                                    className="h-auto w-full object-contain"
+                                                    sizes="(max-width: 1024px) 100vw, 44vw"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="lg:border-l lg:border-amber-400/20 lg:pl-8">
+                                        <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400">
+                                            Verified Credential
+                                        </p>
+                                        <h3 className={`mt-3 text-2xl font-black tracking-[-0.03em] ${heading}`}>
+                                            Full Stack Developer Certificate
+                                        </h3>
+                                        <p className={`mt-3 text-sm leading-6 ${muted}`}>
+                                            A formal full-stack development credential issued by the Global Skill Development Council.
+                                        </p>
+                                        <dl className={`mt-6 space-y-4 text-sm ${muted}`}>
+                                            <div>
+                                                <dt className="font-semibold">Issuing organization</dt>
+                                                <dd className="mt-1">Global Skill Development Council</dd>
+                                            </div>
+                                            <div>
+                                                <dt className="font-semibold">Issued</dt>
+                                                <dd className="mt-1">January 20, 2023</dd>
+                                            </div>
+                                            <div>
+                                                <dt className="font-semibold">Certificate ID</dt>
+                                                <dd className="mt-1 font-mono tracking-wide">656467464</dd>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </m.div>
                         </div>
                     </section>
 
