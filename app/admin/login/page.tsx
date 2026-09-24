@@ -188,7 +188,7 @@ export default function AdminLoginPage() {
                     placeholder="you@example.com"
                     required
                     className={dark
-                      ? 'h-12 w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/10'
+                      ? 'h-12 w-full rounded-xl border border-white/10 bg-[#15171c]/20 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/10'
                       : 'h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 pl-11 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-400/10'}
                   />
                 </div>
@@ -210,7 +210,7 @@ export default function AdminLoginPage() {
                     placeholder="Enter your password"
                     required
                     className={dark
-                      ? 'h-12 w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-12 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/10'
+                      ? 'h-12 w-full rounded-xl border border-white/10 bg-[#15171c]/20 pl-11 pr-12 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/10'
                       : 'h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 pl-11 pr-12 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-400/10'}
                   />
                   <button type="button" onClick={() => setShowPassword((current) => !current)}

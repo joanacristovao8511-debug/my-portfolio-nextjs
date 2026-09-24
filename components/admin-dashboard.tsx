@@ -4063,7 +4063,7 @@ function Notice({
             <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg p-1 hover:bg-black/5"
+                className="rounded-lg p-1 hover:bg-[#15171c]/5"
             >
                 <X className="h-4 w-4" />
             </button>

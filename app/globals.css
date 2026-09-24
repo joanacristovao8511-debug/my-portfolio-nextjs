@@ -441,3 +441,152 @@ html[data-theme='light'] .project-theme-toggle {
 
 /* Performance: skip expensive rendering for offscreen content */
 .perf-skip-render { content-visibility: auto; contain-intrinsic-size: 800px; }
+
+/* ============================================================
+   Responsive hardening
+   Tested against the layout breakpoints used by the landing page.
+   ============================================================ */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Keep anchored sections clear of the sticky header on compact screens. */
+@media (max-width: 767px) {
+  .senior-shell section {
+    scroll-margin-top: 82px;
+  }
+
+  .senior-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.25rem, 11vw, 3.5rem);
+    line-height: 0.96;
+    letter-spacing: -0.045em;
+  }
+
+  /* The decorative hero artwork is intentionally shorter on phones so it
+     does not dominate the first viewport or push the CTA too far down. */
+  .senior-hero-card {
+    border-radius: 24px;
+  }
+
+  .senior-hero-card > div {
+    min-height: 330px !important;
+    border-radius: 20px;
+  }
+
+  /* Make long CMS/database content safe on narrow screens. */
+  .senior-shell p,
+  .senior-shell h1,
+  .senior-shell h2,
+  .senior-shell h3,
+  .senior-shell dd,
+  .senior-shell a {
+    overflow-wrap: anywhere;
+  }
+
+  /* Certificate remains readable without becoming wider than the viewport. */
+  #certification .max-w-4xl {
+    max-width: 100%;
+  }
+
+  #certification img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Floating contact rail becomes a compact horizontal dock on touch devices.
+     This prevents it from covering ~250px of the page while scrolling. */
+  .responsive-contact-dock {
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: calc(4.75rem + env(safe-area-inset-bottom)) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .responsive-contact-dock > div:last-child {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .responsive-contact-dock > div:last-child > a {
+    width: 3rem !important;
+    height: 3rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .responsive-contact-dock > div:last-child > a > span:last-child {
+    display: none;
+  }
+
+  .responsive-contact-dock > div:first-child {
+    display: none;
+  }
+
+  /* Avoid hover-only expansion on touch devices. */
+  .responsive-contact-dock a {
+    transform: none !important;
+  }
+
+  /* Give fixed chat/contact controls room around iOS safe areas. */
+  .portfolio-chat-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (max-width: 479px) {
+  .senior-hero {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .senior-hero h1 {
+    font-size: clamp(2.15rem, 12vw, 3rem);
+  }
+
+  #certification .rounded-\[30px\] {
+    border-radius: 22px;
+  }
+
+  #certification .rounded-2xl {
+    border-radius: 14px;
+  }
+}
+
+/* Tablet: preserve generous composition without allowing desktop-sized
+   hero art or controls to crowd the narrower grid. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .senior-hero-card > div {
+    min-height: 380px !important;
+  }
+
+  #certification img {
+    max-height: 62vh;
+    width: auto;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .responsive-contact-dock > div:first-child {
+    animation: none !important;
+  }
+}
+
+
+/* Comfortable landing-site charcoal palette */
+:root {
+  --foreground: #374151;
+  --background: #fafafa;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  color: #374151;
+}

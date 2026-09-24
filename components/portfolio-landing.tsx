@@ -604,11 +604,30 @@ export function PortfolioLanding({
                                                                     index *
                                                                     0.04,
                                                             }}
-                                                            onClick={() =>
-                                                                setMobileMenu(
-                                                                    false,
-                                                                )
-                                                            }
+                                                            onClick={(event) => {
+                                                                // Closing the animated mobile menu can unmount the clicked
+                                                                // anchor before the browser performs its default #hash jump.
+                                                                // Handle the navigation explicitly so every mobile nav item
+                                                                // reliably scrolls to its section.
+                                                                event.preventDefault();
+                                                                const targetId = item.href.replace(/^#/, "");
+                                                                setMobileMenu(false);
+
+                                                                window.requestAnimationFrame(() => {
+                                                                    window.requestAnimationFrame(() => {
+                                                                        const target = document.getElementById(targetId);
+                                                                        if (target) {
+                                                                            target.scrollIntoView({
+                                                                                behavior: "smooth",
+                                                                                block: "start",
+                                                                            });
+                                                                        }
+
+                                                                        // Keep the URL/hash in sync without triggering a page reload.
+                                                                        window.history.replaceState(null, "", item.href);
+                                                                    });
+                                                                });
+                                                            }}
                                                             className={`
                                                     flex
                                                     items-center
@@ -1411,7 +1430,7 @@ export function PortfolioLanding({
                                                         </div>
                                                     )}
 
-                                                    <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
+                                                    <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-[#15171c]/45 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
                                                         <Eye className="h-3 w-3" />
                                                         Product preview
                                                     </div>
@@ -2514,7 +2533,7 @@ export function PortfolioLanding({
 
                     <div
                         aria-label="Contact links"
-                        className="fixed bottom-24 left-2 top-auto z-[60] translate-y-0 sm:left-4 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
+                        className="responsive-contact-dock fixed bottom-24 left-2 top-auto z-[60] translate-y-0 sm:left-4 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
                     >
                         <m.div
                             aria-hidden="true"
