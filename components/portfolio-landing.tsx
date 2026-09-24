@@ -1444,10 +1444,6 @@ export function PortfolioLanding({
                                                                         <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
                                                                         <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.built}</p>
                                                                     </div>
-                                                                    <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-white" : "border-slate-800 bg-slate-900/50"}`}>
-                                                                        <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">Engineering focus</p>
-                                                                        <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.focus}</p>
-                                                                    </div>
                                                                     {
                                                                         cardContent.role !== "" && (
                                                                             <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
@@ -1460,10 +1456,9 @@ export function PortfolioLanding({
                                                                 </div>
                                                             );
                                                         })()}
-
                                                         {displayTags.length > 0 && (
                                                             <div className="mt-5 flex flex-wrap gap-1.5">
-                                                                {displayTags.slice(0, 5).map((tag) => (
+                                                                {displayTags.map((tag) => (
                                                                     <span key={tag} className={`rounded-full border px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.11em] ${tagClass}`}>
                                                                         {tag}
                                                                     </span>
