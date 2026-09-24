@@ -141,7 +141,7 @@ export function PortfolioLanding({
                                 </div>
                                 <div>
                                     <p className="text-sm font-semibold tracking-tight text-[color:var(--foreground)]">Portfolio</p>
-                                    <p className="text-xs text-[color:var(--muted)]">Full-Stack Developer &amp; AI Product Builder</p>
+                                    <p className="text-xs text-[color:var(--muted)]">Full-stack developer &amp; AI product builder</p>
                                 </div>
                             </div>
                             <LoadingProgress durationMs={2600} onComplete={finishInitialLoader} />
@@ -699,7 +699,7 @@ export function PortfolioLanding({
                                         }}
                                         className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-sky-500"
                                     >
-                                        {content?.heroBadge || "Full-Stack Engineer · AI Product Builder"}
+                                        {content?.heroBadge || "Full-stack developer & AI product builder"}
                                     </m.p>
 
                                     <m.div

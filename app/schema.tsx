@@ -12,7 +12,7 @@ type PersonSchemaProps = {
 
 export function PersonSchema({
   name = "Frunco Ruiz",
-  jobTitle = "Full-Stack Developer & AI Product Builder",
+  jobTitle = "Full-stack developer & AI product builder",
   description = siteConfig.description,
   website,
   github = siteConfig.github,

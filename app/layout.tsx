@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Frunco Ruiz — Full-Stack Developer & AI Product Builder",
+        alt: "Frunco Ruiz — Full-stack developer & AI product builder",
       },
     ],
   },

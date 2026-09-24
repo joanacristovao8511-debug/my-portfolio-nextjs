@@ -11,7 +11,7 @@ export const siteConfig = {
   name: process.env.NEXT_PUBLIC_SITE_NAME?.trim() || "Frunco Ruiz Portfolio",
   title:
     process.env.NEXT_PUBLIC_SITE_TITLE?.trim() ||
-    "Frunco Ruiz | Full-Stack Developer & AI Product Builder",
+    "Frunco Ruiz | Full-stack developer & AI product builder",
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION?.trim() ||
     "Frunco Ruiz builds AI-powered web applications, SaaS platforms, and modern full-stack digital products.",

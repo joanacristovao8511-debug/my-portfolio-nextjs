@@ -80,7 +80,7 @@ async function main() {
             name: "Frunco Ruiz",
 
             title:
-                "Full-Stack Engineer & AI Product Builder",
+                "Full-stack developer & AI product builder",
 
             headline:
                 "I build AI-powered products that turn business workflows into software.",
@@ -107,7 +107,7 @@ async function main() {
             name: "Frunco Ruiz",
 
             title:
-                "Full-Stack Engineer & AI Product Builder",
+                "Full-stack developer & AI product builder",
 
             headline:
                 "I build AI-powered products that turn business workflows into software.",
@@ -401,7 +401,7 @@ async function main() {
     const siteContent = await prisma.siteContent.upsert({
         where: { id: 1 },
         update: {
-            heroBadge: "Full-Stack Engineer · AI Product Builder",
+            heroBadge: "Full-stack developer & AI product builder",
             heroTitle: "I build AI-powered web products that turn business workflows into software.",
             heroDescription: "Full-stack developer specializing in SaaS, business platforms, automation and AI integrations—from architecture to production.",
             aboutTitle: "Don't just read my portfolio. Ask it.",
@@ -426,7 +426,7 @@ async function main() {
         },
         create: {
             id: 1,
-            heroBadge: "Full-Stack Engineer · AI Product Builder",
+            heroBadge: "Full-stack developer & AI product builder",
             heroTitle: "I build AI-powered web products that turn business workflows into software.",
             heroDescription: "Full-stack developer specializing in SaaS, business platforms, automation and AI integrations—from architecture to production.",
             aboutTitle: "Don't just read my portfolio. Ask it.",
@@ -475,9 +475,9 @@ async function main() {
 
     const experiences = [
         {
-            name: "Full-Stack Developer & AI Product Engineer",
+            name: "Full-stack developer & AI product builder",
             company: "Independent / Freelance",
-            position: "Full-Stack Developer & AI Product Engineer",
+            position: "Full-stack developer & AI product builder",
             location: "Remote",
             startDate: "2023-05",
             endDate: null,
@@ -486,9 +486,9 @@ async function main() {
             current: true,
         },
         {
-            name: "Senior Full-Stack Developer",
+            name: "Senior Full-stack developer",
             company: "Product Development",
-            position: "Senior Full-Stack Developer",
+            position: "Senior Full-stack developer",
             location: "Remote",
             startDate: "2021-01",
             endDate: "2022-04",

@@ -15,7 +15,7 @@ export default function Loading() {
             </div>
             <div>
               <p className="text-sm font-semibold tracking-tight">Portfolio</p>
-              <p className="text-xs text-[color:var(--muted)]">Full-Stack Developer & AI Product Builder</p>
+              <p className="text-xs text-[color:var(--muted)]">Full-stack developer & AI product builder</p>
             </div>
           </div>
           <LoadingProgress />
