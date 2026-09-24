@@ -604,3 +604,51 @@ h1, h2, h3, h4, h5, h6 {
 p, span, li, label {
   color: #4b5563;
 }
+
+
+/* Dark mode typography refinement */
+html[data-theme='dark'] {
+  --foreground: #e2e8f0;
+  --muted: #94a3b8;
+  --border: rgba(148, 163, 184, 0.16);
+  --heading: #f1f5f9;
+  --body-text: #cbd5e1;
+}
+
+html[data-theme='dark'] body {
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html[data-theme='dark'] h1,
+html[data-theme='dark'] h2,
+html[data-theme='dark'] h3,
+html[data-theme='dark'] h4 {
+  color: var(--heading);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+html[data-theme='dark'] p,
+html[data-theme='dark'] li,
+html[data-theme='dark'] label {
+  color: var(--body-text);
+}
+
+html[data-theme='dark'] .text-white {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme='dark'] .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme='dark'] .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+html[data-theme='dark'] .text-slate-500 {
+  color: #64748b !important;
+}
