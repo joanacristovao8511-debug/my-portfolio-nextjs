@@ -1065,7 +1065,7 @@ export function PortfolioLanding({
                                             border
                                             ${isLight
                                                             ? "border-slate-200 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.16),transparent_32%),linear-gradient(145deg,#eff6ff_0%,#f8fafc_52%,#dbeafe_100%)]"
-                                                            : "border-slate-800 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.18),transparent_32%),linear-gradient(145deg,#0f172a_0%,#111827_52%,#172554_100%)]"
+                                                            : "border-slate-800 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.18),transparent_32%),linear-gradient(145deg,#0f172a_0%,#374151_52%,#172554_100%)]"
                                                         }
                                             sm:min-h-[350px]
                                         `}
@@ -1145,8 +1145,8 @@ export function PortfolioLanding({
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.55, duration: 0.5 }}
                                 className={`mt-14 rounded-3xl border p-4 sm:p-5 ${isLight
-                                        ? "border-slate-200 bg-white/70 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
-                                        : "border-slate-800 bg-slate-900/70"
+                                    ? "border-slate-200 bg-white/70 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                                    : "border-slate-800 bg-slate-900/70"
                                     }`}
                             >
                                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -1163,8 +1163,8 @@ export function PortfolioLanding({
                                             <span
                                                 key={item}
                                                 className={`rounded-full border px-3 py-1.5 text-[11px] font-semibold ${isLight
-                                                        ? "border-slate-200 bg-slate-50 text-slate-700"
-                                                        : "border-slate-700 bg-slate-950 text-slate-200"
+                                                    ? "border-slate-200 bg-slate-50 text-slate-700"
+                                                    : "border-slate-700 bg-slate-950 text-slate-200"
                                                     }`}
                                             >
                                                 {item}
@@ -1665,9 +1665,9 @@ export function PortfolioLanding({
                                                 <Image
                                                     src="/certificates/fullstack-cert.png"
                                                     alt="GSDC Certified Full Stack Developer certificate issued to Frunco Ruiz"
-                                                    width={1381}
-                                                    height={1139}
-                                                    unoptimized
+                                                    width={900}
+                                                    height={800}
+                                                    // unoptimized
                                                     className="h-auto w-full object-contain"
                                                     sizes="(max-width: 1024px) 100vw, 44vw"
                                                 />
@@ -2406,7 +2406,7 @@ export function PortfolioLanding({
                                     </p>
 
                                     <m.a
-                                        href={profile.email ? `mailto:${profile.email}` : "#contact"}
+                                        href={profile.email ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}&su=${encodeURIComponent("Portfolio Inquiry")}&body=${encodeURIComponent("Hello Frunco,\\n\\nI would like to discuss a project opportunity.")}` : "#contact"}
                                         whileHover={{
                                             y: -2,
                                             scale: 1.01,
@@ -2545,8 +2545,8 @@ export function PortfolioLanding({
                         <div className="relative flex flex-col gap-3">
                             {profile.email && (
                                 <a
-                                    href={`mailto:${profile.email}`}
-                                    aria-label="Email me on Gmail"
+                                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}&su=${encodeURIComponent("Portfolio Inquiry")}&body=${encodeURIComponent("Hello Frunco,\\n\\nI would like to discuss a project opportunity.")}`}
+                                    target="_blank" rel="noopener noreferrer" aria-label="Open Gmail compose"
                                     title="Gmail"
                                     className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-white/20 bg-white/90 px-3 text-slate-800 shadow-[0_12px_35px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-red-300/70 hover:bg-white hover:shadow-[0_16px_40px_rgba(239,68,68,0.22)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
                                 >
