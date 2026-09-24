@@ -920,7 +920,7 @@ export function PortfolioLanding({
                                         </button>
 
                                         <a
-                                            href="/documents/Frunco_Ruiz_Resume.pdf"
+                                            href="/documents/Frunco_Ruiz_Resume.docx"
                                             target="_blank"
                                             rel="noreferrer"
                                             className={`inline-flex w-full items-center justify-center gap-2 rounded-full border px-5 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 sm:w-auto ${secondaryButton}`}
@@ -1181,6 +1181,10 @@ export function PortfolioLanding({
                                     {
                                         value: `${featuredCount || projectList.length}`,
                                         label: featuredCount ? "Featured projects" : "Projects",
+                                    },
+                                    {
+                                        value: `7+ years`,
+                                        label: 'experience',
                                     },
                                     {
                                         value: `${shippedCount < 20 ? "20" : shippedCount}+`,
