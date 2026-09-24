@@ -1074,16 +1074,7 @@ export function AdminDashboard({
                 </div>
             </div>
 
-            {/* COMMAND MODAL */}
-            {commandOpen && (
-                <CommandModal
-                    dark={dark}
-                    navigate={navigate}
-                    onClose={() =>
-                        setCommandOpen(false)
-                    }
-                />
-            )}
+            
         </main>
     );
 }

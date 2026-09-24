@@ -1739,7 +1739,7 @@ export function PortfolioLanding({
                                     <button
                                         type="button"
                                         onClick={openChat}
-                                        className="group inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-sky-500/15 transition hover:-translate-y-0.5 hover:bg-sky-400"
+                                        className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm text-slate-950 shadow-xl shadow-sky-500/15 transition hover:-translate-y-0.5 hover:bg-sky-400"
                                     >
                                         <Bot className="h-4 w-4" />
                                         Start a conversation
@@ -2386,8 +2386,7 @@ export function PortfolioLanding({
                                     items-center
                                     justify-center
                                     rounded-2xl
-                                    bg-slate-950
-                                    text-white
+                                    text-grey
                                     shadow-xl
                                 "
                                     >
@@ -2395,15 +2394,33 @@ export function PortfolioLanding({
                                     </m.div>
 
                                     <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-slate-950/60">
-                                        {content?.ctaTitle || "Have an idea worth building?"}
+                                        Tell me your idea
                                     </p>
 
                                     <h2 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
-                                        {content?.ctaTitle || "Let's turn it into something remarkable."}
+                                        Let's turn it into remarkable that gives you new profit.
                                     </h2>
 
                                     <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-slate-950/70">
+                                        Ready to create a digital experience that helps your brand stand out? Share your goals, and let's discuss how we can turn your ideas into a polished, high-impact solution.
                                     </p>
+
+                                    <div className="mx-auto mt-8 grid max-w-3xl gap-4 text-left sm:grid-cols-3">
+                                        {[
+                                            ["01", "Share your vision", "Tell me about your goals, audience, and project needs."],
+                                            ["02", "Get a clear plan", "Receive practical ideas, timelines, and next steps."],
+                                            ["03", "Build something great", "Launch a professional solution designed for results."],
+                                        ].map(([number, title, text]) => (
+                                            <div
+                                                key={number}
+                                                className="rounded-2xl border border-slate-950/10 bg-white/40 p-4 backdrop-blur-sm"
+                                            >
+                                                <p className="text-xs font-black tracking-widest text-slate-950/50">{number}</p>
+                                                <h3 className="mt-2 text-sm font-black text-slate-950">{title}</h3>
+                                                <p className="mt-1 text-xs leading-5 text-slate-950/60">{text}</p>
+                                            </div>
+                                        ))}
+                                    </div>
 
                                     <m.a
                                         href={profile.email ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}&su=${encodeURIComponent("Portfolio Inquiry")}&body=${encodeURIComponent("Hello Frunco,\\n\\nI would like to discuss a project opportunity.")}` : "#contact"}
@@ -2473,12 +2490,28 @@ export function PortfolioLanding({
                             <div className="flex items-center gap-5">
                                 {[
                                     [
+                                        "Home",
+                                        "#home",
+                                    ],
+                                    [
                                         "Work",
                                         "#work",
                                     ],
                                     [
+                                        "Experience",
+                                        "#experience",
+                                    ],
+                                    [
+                                        "Certification",
+                                        "#certification",
+                                    ],
+                                    [
                                         "Services",
                                         "#services",
+                                    ],
+                                    [
+                                        "Stack",
+                                        "#stack",
                                     ],
                                     [
                                         "Contact",
@@ -2510,19 +2543,6 @@ export function PortfolioLanding({
                                         </a>
                                     ),
                                 )}
-
-                                <a
-                                    href="/admin"
-                                    className={`
-                                text-xs
-                                font-medium
-                                transition
-                                hover:text-sky-500
-                                ${muted}
-                            `}
-                                >
-                                    Admin
-                                </a>
                             </div>
                         </div>
                     </footer>
