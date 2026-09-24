@@ -137,7 +137,7 @@ export function PortfolioLanding({
                     >
                         <div className="w-full max-w-xl rounded-[28px] border border-[color-mix(in_srgb,var(--foreground)_10%,transparent)] bg-[color-mix(in_srgb,var(--foreground)_4%,transparent)] p-7 shadow-[0_24px_80px_rgba(15,23,42,0.12)] sm:p-9">
                             <div className="mb-8 flex items-center gap-3">
-                                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-500 text-sm font-black text-white shadow-lg shadow-blue-500/20">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-500 text-sm font-black text-foreground shadow-lg shadow-blue-500/20">
                                     A
                                 </div>
                                 <div>
@@ -265,8 +265,8 @@ export function PortfolioLanding({
                         duration-300
                         shadow-[0_8px_24px_rgba(15,23,42,0.04)]
                         ${isLight
-                                    ? "border-slate-200/80 bg-white/80"
-                                    : "border-slate-800/70 bg-slate-950/80"
+                                    ? "border-border/80 bg-white/80"
+                                    : "border-border/70 bg-background/80"
                                 }
                     `}
                         >
@@ -309,7 +309,7 @@ export function PortfolioLanding({
                                     justify-center
                                     rounded-2xl
                                     bg-sky-500
-                                    text-white
+                                    text-foreground
                                     shadow-lg
                                     shadow-sky-500/20
                                     sm:h-11
@@ -372,7 +372,7 @@ export function PortfolioLanding({
                                             ${active
                                                         ? isLight
                                                             ? "text-slate-950"
-                                                            : "text-white"
+                                                            : "text-foreground"
                                                         : muted
                                                     }
                                         `}
@@ -386,8 +386,8 @@ export function PortfolioLanding({
                                                     -z-10
                                                     rounded-full
                                                     ${isLight
-                                                                ? "bg-slate-100"
-                                                                : "bg-white/10"
+                                                                ? "bg-surface"
+                                                                : "bg-panel"
                                                             }
                                                 `}
                                                         transition={{
@@ -564,8 +564,8 @@ export function PortfolioLanding({
                                     border-t
                                     md:hidden
                                     ${isLight
-                                                ? "border-slate-200 bg-white"
-                                                : "border-slate-800 bg-slate-950"
+                                                ? "border-border bg-white"
+                                                : "border-border bg-background"
                                             }
                                 `}
                                     >
@@ -1051,8 +1051,8 @@ export function PortfolioLanding({
                                         ring-1
                                         ring-slate-200/50
                                         ${isLight
-                                                        ? "border-slate-200 bg-white/90"
-                                                        : "border-slate-800 bg-slate-900"
+                                                        ? "border-border bg-white/90"
+                                                        : "border-border bg-panel"
                                                     }
                                     `}
                                             >
@@ -1064,8 +1064,8 @@ export function PortfolioLanding({
                                             rounded-[26px]
                                             border
                                             ${isLight
-                                                            ? "border-slate-200 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.16),transparent_32%),linear-gradient(145deg,#eff6ff_0%,#f8fafc_52%,#dbeafe_100%)]"
-                                                            : "border-slate-800 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.18),transparent_32%),linear-gradient(145deg,#0f172a_0%,#374151_52%,#172554_100%)]"
+                                                            ? "border-border bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.16),transparent_32%),linear-gradient(145deg,#eff6ff_0%,#f8fafc_52%,#dbeafe_100%)]"
+                                                            : "border-border bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.18),transparent_32%),linear-gradient(145deg,#0f172a_0%,#374151_52%,#172554_100%)]"
                                                         }
                                             sm:min-h-[350px]
                                         `}
@@ -1090,11 +1090,11 @@ export function PortfolioLanding({
                                                 ${
                                                     isLight
                                                         ? "border-white/80 bg-white/85 text-slate-900"
-                                                        : "border-white/10 bg-slate-950/75 text-white"
+                                                        : "border-white/10 bg-background/75 text-foreground"
                                                 }
                                             `}
                                         >
-                                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500 text-white shadow-lg shadow-sky-500/20">
+                                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500 text-foreground shadow-lg shadow-sky-500/20">
                                                 <Sparkles className="h-4 w-4" />
                                             </span>
                                             <div>
@@ -1115,14 +1115,14 @@ export function PortfolioLanding({
                                                 ${
                                                     isLight
                                                         ? "border-white/80 bg-white/90 text-slate-900"
-                                                        : "border-white/10 bg-slate-950/80 text-white"
+                                                        : "border-white/10 bg-background/80 text-foreground"
                                                 }
                                             `}
                                         >
                                             <div className="flex items-start gap-3">
                                                 <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500 shadow-[0_0_0_5px_rgba(16,185,129,0.12)]" />
                                                 <div>
-                                                    <p className={`text-xs font-semibold ${isLight ? "text-slate-500" : "text-slate-400"}`}>
+                                                    <p className={`text-xs font-semibold ${isLight ? "text-muted" : "text-muted"}`}>
                                                         Building the next generation
                                                     </p>
                                                     <p className="mt-1 text-sm font-bold">
@@ -1145,8 +1145,8 @@ export function PortfolioLanding({
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.55, duration: 0.5 }}
                                 className={`mt-14 rounded-3xl border p-4 sm:p-5 ${isLight
-                                    ? "border-slate-200 bg-white/70 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
-                                    : "border-slate-800 bg-slate-900/70"
+                                    ? "border-border bg-white/70 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                                    : "border-border bg-panel/70"
                                     }`}
                             >
                                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -1163,8 +1163,8 @@ export function PortfolioLanding({
                                             <span
                                                 key={item}
                                                 className={`rounded-full border px-3 py-1.5 text-[11px] font-semibold ${isLight
-                                                    ? "border-slate-200 bg-slate-50 text-slate-700"
-                                                    : "border-slate-700 bg-slate-950 text-slate-200"
+                                                    ? "border-border bg-surface text-foreground"
+                                                    : "border-border bg-background text-slate-200"
                                                     }`}
                                             >
                                                 {item}
@@ -1232,7 +1232,7 @@ export function PortfolioLanding({
                                         senior-stat
                                         rounded-2xl
                                         border
-                                        border-slate-200/70
+                                        border-border/70
                                         bg-white/40
                                         p-6
                                         transition
@@ -1279,7 +1279,7 @@ export function PortfolioLanding({
 
                     <section
                         id="work"
-                        className="relative scroll-mt-24 overflow-hidden border-t border-slate-200/60 dark:border-slate-800/60"
+                        className="relative scroll-mt-24 overflow-hidden border-t border-border/60 dark:border-border/60"
                     >
                         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-sky-500/[0.07] to-transparent" />
 
@@ -1367,7 +1367,7 @@ export function PortfolioLanding({
                                     <button
                                         type="button"
                                         onClick={openChat}
-                                        className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-sky-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/30"
+                                        className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold text-foreground transition hover:bg-sky-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/30"
                                     >
                                         Ask about my work
                                         <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1405,16 +1405,16 @@ export function PortfolioLanding({
                                                 transition={{ delay: Math.min(index * 0.06, 0.25) }}
                                                 className={`senior-card group relative flex h-full flex-col overflow-hidden rounded-[28px] border ${panel} transition duration-300 hover:-translate-y-1 ${isFeatured ? "border-sky-400/30 shadow-xl shadow-sky-950/20" : ""}`}
                                             >
-                                                <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-slate-950">
-                                                    <div className="absolute inset-0 bg-slate-950" />
+                                                <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-background">
+                                                    <div className="absolute inset-0 bg-background" />
                                                     <div className="absolute -inset-16 bg-[radial-gradient(circle_at_30%_20%,rgba(14,165,233,0.28),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(99,102,241,0.18),transparent_30%)]" />
 
                                                     <m.div
                                                         whileHover={{ scale: 1.025 }}
                                                         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                                                        className="absolute inset-3 overflow-hidden rounded-[18px] border border-white/10 bg-slate-900 shadow-2xl"
+                                                        className="absolute inset-3 overflow-hidden rounded-[18px] border border-white/10 bg-panel shadow-2xl"
                                                     >
-                                                        <div className="flex h-8 items-center gap-1.5 border-b border-white/10 bg-slate-950/90 px-3.5">
+                                                        <div className="flex h-8 items-center gap-1.5 border-b border-white/10 bg-background/90 px-3.5">
                                                             <span className="h-2 w-2 rounded-full bg-red-400/70" />
                                                             <span className="h-2 w-2 rounded-full bg-amber-400/70" />
                                                             <span className="h-2 w-2 rounded-full bg-emerald-400/70" />
@@ -1430,7 +1430,7 @@ export function PortfolioLanding({
                                                         </div>
                                                     )}
 
-                                                    <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-[#15171c]/45 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
+                                                    <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-[#15171c]/45 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-foreground backdrop-blur-xl">
                                                         <Eye className="h-3 w-3" />
                                                         Product preview
                                                     </div>
@@ -1442,7 +1442,7 @@ export function PortfolioLanding({
                                                             <span className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-500">
                                                                 {String(index + 1).padStart(2, "0")}
                                                             </span>
-                                                            <span className={`h-px w-7 ${isLight ? "bg-slate-200" : "bg-slate-700"}`} />
+                                                            <span className={`h-px w-7 ${isLight ? "bg-slate-200" : "bg-panel"}`} />
                                                             <span className={`rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.14em] ${tagClass}`}>
                                                                 {project.status || "Build"}
                                                             </span>
@@ -1460,13 +1460,13 @@ export function PortfolioLanding({
                                                             const cardContent = getProjectCardContent(project);
                                                             return (
                                                                 <div className="mt-5 space-y-3">
-                                                                    <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
+                                                                    <div className={`rounded-2xl border p-3.5 ${isLight ? "border-border bg-surface/80" : "border-border bg-background/45"}`}>
                                                                         <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">What I built</p>
                                                                         <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.built}</p>
                                                                     </div>
                                                                     {
                                                                         cardContent.role !== "" && (
-                                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-slate-200 bg-slate-50/80" : "border-slate-800 bg-slate-950/45"}`}>
+                                                                            <div className={`rounded-2xl border p-3.5 ${isLight ? "border-border bg-surface/80" : "border-border bg-background/45"}`}>
                                                                                 <p className="text-[9px] font-black uppercase tracking-[0.18em] text-sky-500">My role</p>
                                                                                 <p className={`mt-1.5 text-xs leading-5 ${muted}`}>{cardContent.role}</p>
                                                                             </div>
@@ -1487,8 +1487,8 @@ export function PortfolioLanding({
                                                         )}
                                                     </div>
 
-                                                    <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-200/60 pt-5 dark:border-slate-800/70">
-                                                        <a href={`/projects/${project.slug}`} className="group/link inline-flex items-center gap-1.5 rounded-full bg-slate-950 px-3.5 py-2.5 text-[11px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
+                                                    <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-border/60 pt-5 dark:border-border/70">
+                                                        <a href={`/projects/${project.slug}`} className="group/link inline-flex items-center gap-1.5 rounded-full bg-background px-3.5 py-2.5 text-[11px] font-bold text-foreground transition hover:-translate-y-0.5 hover:bg-panel dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
                                                             Case study
                                                             <ArrowUpRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                                                         </a>
@@ -1538,7 +1538,7 @@ export function PortfolioLanding({
 
                     <section
                         id="experience"
-                        className="scroll-mt-24 portfolio-deferred-section border-t border-slate-200/60 dark:border-slate-800/60"
+                        className="scroll-mt-24 portfolio-deferred-section border-t border-border/60 dark:border-border/60"
                     >
                         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
                             <m.div
@@ -1557,7 +1557,7 @@ export function PortfolioLanding({
 
                             {experienceList.length > 0 ? (
                                 <div className="relative mt-12">
-                                    <div className="absolute bottom-4 left-[11px] top-4 hidden w-px bg-slate-200 dark:bg-slate-800 sm:block" />
+                                    <div className="absolute bottom-4 left-[11px] top-4 hidden w-px bg-slate-200 dark:bg-panel sm:block" />
                                     <div className="space-y-6">
                                         {experienceList.map((experience, index) => {
                                             const tags = parseTags(experience.technologies);
@@ -1571,7 +1571,7 @@ export function PortfolioLanding({
                                                     transition={{ delay: index * 0.06 }}
                                                     className={`relative rounded-[28px] border p-6 sm:ml-10 sm:p-8 ${softPanel}`}
                                                 >
-                                                    <span className="absolute -left-[39px] top-8 hidden h-3 w-3 rounded-full border-4 border-sky-500 bg-white shadow-sm dark:bg-slate-950 sm:block" />
+                                                    <span className="absolute -left-[39px] top-8 hidden h-3 w-3 rounded-full border-4 border-sky-500 bg-white shadow-sm dark:bg-background sm:block" />
                                                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                                                         <div>
                                                             <p className="text-[10px] font-black uppercase tracking-[0.18em] text-sky-500">
@@ -1656,12 +1656,12 @@ export function PortfolioLanding({
                                 whileInView="visible"
                                 viewport={{ once: true, amount: 0.12 }}
                                 variants={cardReveal}
-                                className="mt-9 overflow-hidden rounded-[30px] border border-amber-400/70 bg-white/80 p-4 shadow-[0_20px_70px_rgba(245,158,11,0.12)] backdrop-blur-sm dark:border-amber-300/40 dark:bg-slate-950/75 sm:p-6 lg:p-7"
+                                className="mt-9 overflow-hidden rounded-[30px] border border-amber-400/70 bg-white/80 p-4 shadow-[0_20px_70px_rgba(245,158,11,0.12)] backdrop-blur-sm dark:border-amber-300/40 dark:bg-background/75 sm:p-6 lg:p-7"
                             >
                                 <div className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(260px,1fr)] lg:items-center">
                                     <div className="flex justify-center">
                                         <div className="w-full lg:w-2/3">
-                                            <div className="overflow-hidden rounded-2xl border-2 border-amber-400 bg-white shadow-[0_12px_45px_rgba(245,158,11,0.18)] dark:border-amber-300 dark:bg-slate-900">
+                                            <div className="overflow-hidden rounded-2xl border-2 border-amber-400 bg-white shadow-[0_12px_45px_rgba(245,158,11,0.18)] dark:border-amber-300 dark:bg-panel">
                                                 <Image
                                                     src="/certificates/fullstack-cert.png"
                                                     alt="GSDC Certified Full Stack Developer certificate issued to Frunco Ruiz"
@@ -1709,7 +1709,7 @@ export function PortfolioLanding({
                 AI ASSISTANT SHOWCASE
             ====================================================== */}
 
-                    <section className="portfolio-deferred-section relative overflow-hidden border-y border-slate-200/60 dark:border-slate-800/60">
+                    <section className="portfolio-deferred-section relative overflow-hidden border-y border-border/60 dark:border-border/60">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(14,165,233,0.12),transparent_30%),radial-gradient(circle_at_85%_70%,rgba(99,102,241,0.10),transparent_28%)]" />
 
                         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-24">
@@ -1755,8 +1755,8 @@ export function PortfolioLanding({
                                 transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                                 className={`senior-card relative overflow-hidden rounded-[28px] border p-5 shadow-2xl ${panel}`}
                             >
-                                <div className="flex items-center gap-3 border-b border-slate-200/70 pb-4 dark:border-slate-800/70">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-lg shadow-sky-500/20">
+                                <div className="flex items-center gap-3 border-b border-border/70 pb-4 dark:border-border/70">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500 text-foreground shadow-lg shadow-sky-500/20">
                                         <Bot className="h-5 w-5" />
                                     </div>
                                     <div>
@@ -1884,7 +1884,7 @@ export function PortfolioLanding({
                                                 ))}
                                             </div>
 
-                                            <div className={`mt-6 border-t pt-5 ${isLight ? "border-slate-200/80" : "border-slate-800/80"}`}>
+                                            <div className={`mt-6 border-t pt-5 ${isLight ? "border-border/80" : "border-border/80"}`}>
                                                 <div className="grid gap-4 sm:grid-cols-2">
                                                     <div>
                                                         <p className="text-[10px] font-black uppercase tracking-[0.16em] text-sky-500">Indicative investment</p>
@@ -2437,15 +2437,15 @@ export function PortfolioLanding({
                                     items-center
                                     gap-2
                                     rounded-full
-                                    bg-slate-950
+                                    bg-background
                                     px-6
                                     py-3.5
                                     text-sm
                                     font-bold
-                                    text-white
+                                    text-foreground
                                     shadow-xl
                                     transition
-                                    hover:bg-slate-800
+                                    hover:bg-panel
                                 "
                                     >
                                         <Mail className="h-4 w-4" />
@@ -2568,14 +2568,14 @@ export function PortfolioLanding({
                                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}&su=${encodeURIComponent("Portfolio Inquiry")}&body=${encodeURIComponent("Hello Frunco,\\n\\nI would like to discuss a project opportunity.")}`}
                                     target="_blank" rel="noopener noreferrer" aria-label="Open Gmail compose"
                                     title="Gmail"
-                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-white/20 bg-white/90 px-3 text-slate-800 shadow-[0_12px_35px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-red-300/70 hover:bg-white hover:shadow-[0_16px_40px_rgba(239,68,68,0.22)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-white/20 bg-white/90 px-3 text-foreground shadow-[0_12px_35px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-red-300/70 hover:bg-white hover:shadow-[0_16px_40px_rgba(239,68,68,0.22)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
                                 >
                                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-red-500/15 via-white to-red-500/10 text-red-500 ring-1 ring-red-200/70">
                                         <Mail className="h-5 w-5" />
                                     </span>
                                     <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                                         <span className="block text-sm font-bold">Gmail</span>
-                                        <span className="block text-[10px] font-medium text-slate-500">Send me an email</span>
+                                        <span className="block text-[10px] font-medium text-muted">Send me an email</span>
                                     </span>
                                 </a>
                             )}
@@ -2587,7 +2587,7 @@ export function PortfolioLanding({
                                     rel="noreferrer"
                                     aria-label="Contact me on WhatsApp"
                                     title="WhatsApp"
-                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-emerald-300/40 bg-emerald-500 px-3 text-white shadow-[0_12px_35px_rgba(16,185,129,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_16px_40px_rgba(16,185,129,0.35)] focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-emerald-300/40 bg-emerald-500 px-3 text-foreground shadow-[0_12px_35px_rgba(16,185,129,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_16px_40px_rgba(16,185,129,0.35)] focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
                                 >
                                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
                                         <MessageCircle className="h-5 w-5" />
@@ -2606,7 +2606,7 @@ export function PortfolioLanding({
                                     rel="noreferrer"
                                     aria-label="Message me on Telegram"
                                     title="Telegram"
-                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-sky-300/40 bg-sky-500 px-3 text-white shadow-[0_12px_35px_rgba(14,165,233,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-sky-400 hover:shadow-[0_16px_40px_rgba(14,165,233,0.35)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-sky-300/40 bg-sky-500 px-3 text-foreground shadow-[0_12px_35px_rgba(14,165,233,0.28)] transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:bg-sky-400 hover:shadow-[0_16px_40px_rgba(14,165,233,0.35)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-slate-950"
                                 >
                                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
                                         <Send className="h-5 w-5 -translate-x-px" />
@@ -2625,14 +2625,14 @@ export function PortfolioLanding({
                                     rel="noreferrer"
                                     aria-label="Visit my GitHub"
                                     title="GitHub"
-                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-slate-600/70 bg-slate-950/95 px-3 text-white shadow-[0_12px_35px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                    className="group flex h-14 w-14 items-center overflow-hidden rounded-full border border-slate-600/70 bg-background/95 px-3 text-foreground shadow-[0_12px_35px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all duration-300 hover:w-44 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-[0_16px_40px_rgba(0,0,0,0.5)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-950"
                                 >
-                                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
+                                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-panel ring-1 ring-border">
                                         <GithubIcon className="h-5 w-5" />
                                     </span>
                                     <span className="ml-3 min-w-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                                         <span className="block text-sm font-bold">GitHub</span>
-                                        <span className="block text-[10px] font-medium text-slate-400">View my code</span>
+                                        <span className="block text-[10px] font-medium text-muted">View my code</span>
                                     </span>
                                 </a>
                             )}
