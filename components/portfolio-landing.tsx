@@ -1489,7 +1489,7 @@ export function PortfolioLanding({
                                                                 ))}
                                                             </div>
                                                         )}
-                                                    </div> 
+                                                    </div>
 
                                                     <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-border/60 pt-5 dark:border-border/70">
                                                         <a href={`/projects/${project.slug}`} className="group/link inline-flex items-center gap-1.5 rounded-full bg-background px-3.5 py-2.5 text-[11px] font-bold text-foreground transition hover:-translate-y-0.5 hover:bg-panel dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
